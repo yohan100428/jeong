@@ -21,10 +21,19 @@ lang.addEventListener('change', () => setLang(lang.value));
 try { if (localStorage.getItem('lang') === 'en') setLang('en'); } catch {}
 
 // ---- 개발용 관리자 모드 (프론트엔드 모의 상태, 실제 권한 없음) ----
-// 로컬(file://, localhost)에서만 토글·관리자 메뉴가 생김. 공개 사이트에는 아예 안 만들어짐.
+// 로컬(file://, localhost) 또는 ?dev=1 일 때만 토글·관리자 메뉴가 생김.
 // 실제 인증 도입 시 adminMode.isAdmin 을 서버 세션/권한 확인 결과로 교체.
 // 상태 변경 알림: window.addEventListener('adminchange', e => e.detail.isAdmin)
-const IS_DEV = location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname);
+// 로컬이 아닌 주소(배포 사이트 등)에서는 주소 끝에 ?dev=1 한 번 붙이면 켜짐 (브라우저에 기억, ?dev=0 으로 해제)
+const IS_DEV = (() => {
+  const local = location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname);
+  try {
+    const dev = new URLSearchParams(location.search).get('dev');
+    if (dev === '1') localStorage.setItem('jeong-dev', '1');
+    if (dev === '0') localStorage.removeItem('jeong-dev');
+    return local || localStorage.getItem('jeong-dev') === '1';
+  } catch { return local; }
+})();
 const adminMode = { isAdmin: false, setIsAdmin() {} };
 
 if (IS_DEV) {
