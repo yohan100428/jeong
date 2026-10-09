@@ -1,10 +1,10 @@
 /* 관리자 화면 전용. 폼/알림(.upload, .notice, .search)은 research.css 재사용 */
-.admin { max-width: var(--max); }
+.admin-page { max-width: var(--max); }
 .admin-tabs { display: flex; gap: 4px; margin-bottom: 40px; border-bottom: 1px solid var(--line); overflow-x: auto; }
 .admin-tabs a { padding: 10px 14px; color: var(--muted); border-bottom: 2px solid transparent; white-space: nowrap; font-size: .9rem; }
 .admin-tabs a:hover { color: var(--fg); }
 .admin-tabs a[aria-current="page"] { color: var(--fg); border-bottom-color: var(--accent-hi); }
-.muted, .admin small { color: var(--muted); }
+.muted, .admin-page small { color: var(--muted); }
 
 /* 대시보드 */
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 40px; }
@@ -21,21 +21,21 @@
 .quick .pop-btn { width: auto; padding: 10px 20px; }
 
 /* 자료 관리 표 */
-.admin .search { margin-top: 32px; }
+.admin-page .search { margin-top: 32px; }
 .table-wrap { margin-top: 12px; overflow-x: auto; }
-.admin table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-.admin th, .admin td { padding: 14px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; white-space: nowrap; }
-.admin th { color: var(--muted); font-weight: 500; font-size: .8rem; border-bottom-color: var(--accent-hi); }
-.admin td:first-child { white-space: normal; min-width: 220px; }
-.admin td:first-child a:hover { color: var(--accent-hi); }
-.admin td small { display: block; margin-top: 2px; font-size: .75rem; }
+.admin-page table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.admin-page th, .admin-page td { padding: 14px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; white-space: nowrap; }
+.admin-page th { color: var(--muted); font-weight: 500; font-size: .8rem; border-bottom-color: var(--accent-hi); }
+.admin-page td:first-child { white-space: normal; min-width: 220px; }
+.admin-page td:first-child a:hover { color: var(--accent-hi); }
+.admin-page td small { display: block; margin-top: 2px; font-size: .75rem; }
 .status { padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: none; color: var(--muted); font: inherit; font-size: .8rem; cursor: pointer; }
 .status.published { background: var(--accent); border-color: var(--accent-hi); color: #fff; }
 .acts { display: flex; gap: 6px; }
 .acts a, .acts button { padding: 4px 12px; border: 1px solid var(--line); border-radius: 6px; background: none; color: var(--fg); font: inherit; font-size: .8rem; cursor: pointer; }
 .acts a:hover { border-color: var(--accent-hi); }
 .danger:hover { border-color: #E5484D !important; color: #E5484D !important; }
-.admin button:disabled { opacity: .5; cursor: wait; }
+.admin-page button:disabled { opacity: .5; cursor: wait; }
 
 /* 콘텐츠 미리보기 */
 .preview { padding: 40px 20px; text-align: center; border: 1px solid var(--line); border-radius: 12px; background: radial-gradient(ellipse at 50% 0%, #24122F, var(--bg) 70%); }
