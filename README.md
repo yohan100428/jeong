@@ -28,7 +28,7 @@ python -m http.server 8000
 - 비밀번호 검사 없음, 이름만 브라우저에 저장. 실제 인증 붙일 때 `js/main.js` 의 `auth` 교체
 
 ## 개발용 관리자 모드
-- 로컬(file://, localhost)에서만 헤더 오른쪽 끝에 `Admin` 토글이 나타남. 공개 사이트에는 안 보임
+- 로컬(file://, localhost)에서만 언어 선택 왼쪽에 `Admin` 스위치가 나타남. 공개 사이트에는 안 보임
 - ON: 프로필 옆 Administrator 표시 + 햄버거 메뉴에 관리자 메뉴(현재 Coming Soon)
 - 실제 권한 없음 (화면 개발용 모의 상태). 코드: `js/main.js` 의 `adminMode`
 

@@ -33,7 +33,7 @@ if (IS_DEV) {
 
   const actions = document.querySelector('.actions');
   profile.insertAdjacentHTML('beforebegin', '<span class="admin-badge" hidden>Administrator</span>');
-  actions.insertAdjacentHTML('beforeend', `
+  lang.insertAdjacentHTML('beforebegin', `
     <button type="button" class="admin-switch" role="switch" aria-checked="false" aria-label="관리자 모드 (개발용)">
       <span class="track" aria-hidden="true"><span class="thumb"></span></span><span class="label" aria-hidden="true">Admin</span>
     </button>`);
