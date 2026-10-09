@@ -10,27 +10,44 @@
 <body>
 <header>
   <div class="wrap">
+    <button class="icon-btn menu-btn" aria-label="메뉴 열기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
     <a class="logo" href="#home">JEONG</a>
-    <button class="menu-btn" aria-label="메뉴" aria-expanded="false">☰</button>
-    <nav>
-      <a href="#home">홈</a>
-      <a href="#parts">부품</a>
-      <a href="#projects">프로젝트</a>
-      <a href="#research">연구</a>
-      <a href="#contact">문의</a>
-    </nav>
+    <div class="actions">
+      <select class="lang" aria-label="언어 선택">
+        <option value="ko">KO</option>
+        <option value="en">EN</option>
+      </select>
+      <!-- ponytail: 로그인 기능 없음, 계정 기능 만들 때 링크 교체 -->
+      <a class="icon-btn" href="#contact" aria-label="프로필">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </a>
+    </div>
   </div>
 </header>
+
+<dialog id="drawer" aria-label="메뉴">
+  <button class="icon-btn close" aria-label="닫기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <nav>
+    <a href="#parts" data-en="Parts Store">부품 스토어</a>
+    <a href="#projects" data-en="Projects">프로젝트</a>
+    <a href="#research" data-en="Papers">논문</a>
+    <a href="#contact" data-en="Contact">문의</a>
+  </nav>
+</dialog>
 
 <main>
   <div class="hero" id="home"><div>
     <h1>JEONG</h1>
-    <p>브랜드 슬로건을 여기에 입력하세요.</p>
-    <a class="btn" href="#parts">부품 보기</a>
+    <p data-en="Enter your brand slogan here.">브랜드 슬로건을 여기에 입력하세요.</p>
+    <a class="btn" href="#parts" data-en="View Parts">부품 보기</a>
   </div></div>
 
   <section id="parts"><div class="wrap">
-    <h2>부품</h2>
+    <h2 data-en="Parts Store">부품 스토어</h2>
     <div class="grid">
       <article class="card">
         <h3>부품 이름</h3>
@@ -41,7 +58,7 @@
   </div></section>
 
   <section id="projects"><div class="wrap">
-    <h2>프로젝트</h2>
+    <h2 data-en="Projects">프로젝트</h2>
     <div class="grid">
       <article class="card">
         <h3>프로젝트 이름</h3>
@@ -52,7 +69,7 @@
   </div></section>
 
   <section id="research"><div class="wrap">
-    <h2>연구 · 논문</h2>
+    <h2 data-en="Research · Papers">연구 · 논문</h2>
     <article class="card">
       <h3>논문 제목</h3>
       <p class="meta">저자 · 학회/저널 · 2026</p>
@@ -61,7 +78,7 @@
   </div></section>
 
   <section id="contact"><div class="wrap">
-    <h2>문의</h2>
+    <h2 data-en="Contact">문의</h2>
     <p>이메일: <a href="mailto:contact@jeong.com">contact@jeong.com</a></p>
   </div></section>
 </main>
