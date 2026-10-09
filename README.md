@@ -10,6 +10,8 @@
   - `content/<slug>.md` 본문 (Markdown, `$수식$` LaTeX 지원)
   - `files/` 첨부파일 (PDF, CAD, 데이터)
   - `index.html` 목록/검색 · `doc.html?slug=...` 상세
+  - `upload.html` 업로드 화면 (관리자 메뉴 → Upload Research). **화면만 동작, 저장 안 됨**
+    - `upload.js` 화면 로직 · `upload-api.js` 서버 연결 지점 (서버 붙일 때 이 파일만 교체, 할 일은 파일 상단 주석)
 
 ## 로컬 확인
 본문(.md) 불러오기는 웹 서버가 필요:

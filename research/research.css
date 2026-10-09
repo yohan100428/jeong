@@ -75,3 +75,20 @@
   .item { padding: 20px 44px 20px 4px; }
   .item .title { font-size: 1.05rem; }
 }
+
+/* 업로드 폼 */
+.upload { max-width: none; margin-top: 40px; gap: 32px; }
+.upload fieldset { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0; padding: 0; border: 0; }
+.upload legend { margin-bottom: 16px; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.upload label { display: grid; gap: 6px; font-size: .85rem; color: var(--muted); }
+.upload .full { grid-column: 1 / -1; }
+.upload input, .upload select, .upload textarea { border-radius: 8px; color: var(--fg); font-size: .95rem; }
+.upload input:focus, .upload select:focus, .upload textarea:focus { outline: none; border-color: var(--accent-hi); }
+.upload .mono { font-family: ui-monospace, Consolas, monospace; font-size: .9rem; }
+.upload input[type=file] { padding: 8px; }
+.upload [type=submit] { justify-self: start; width: auto; padding: 12px 40px; }
+.upload [type=submit]:disabled { opacity: .6; cursor: wait; }
+.notice { margin-top: 32px; padding: 16px 20px; border: 1px solid var(--line); border-left: 3px solid var(--accent-hi); border-radius: 8px; background: var(--card); }
+.notice.err { border-left-color: #E5484D; }
+.notice pre { margin: 12px 0 0; max-height: 320px; overflow: auto; font-size: .8rem; color: var(--muted); }
+@media (max-width: 600px) { .upload fieldset { grid-template-columns: 1fr; } }
