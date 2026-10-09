@@ -74,7 +74,8 @@ header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  /* 햄버거 서랍은 예외: 사용자가 누를 때만 움직이는 짧은 동작이라 유지 */
+  *:not(#drawer), *::before, *::after { animation: none !important; transition: none !important; }
 }
 
 /* 프로필 팝업 */
