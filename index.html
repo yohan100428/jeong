@@ -3,33 +3,69 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>홈 | JEONG</title>
+<title>JEONG</title>
 <meta name="description" content="JEONG 공식 사이트 — 자동차 부품, 프로젝트, 연구">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header><div class="wrap">
-  <a class="logo" href="index.html">JEONG</a>
-  <button class="menu-btn" aria-label="메뉴">☰</button>
-  <nav>
-    <a href="index.html">홈</a>
-    <a href="parts.html">부품</a>
-    <a href="projects.html">프로젝트</a>
-    <a href="research.html">연구</a>
-    <a href="contact.html">문의</a>
-  </nav>
-</div></header>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#home">JEONG</a>
+    <button class="menu-btn" aria-label="메뉴" aria-expanded="false">☰</button>
+    <nav>
+      <a href="#home">홈</a>
+      <a href="#parts">부품</a>
+      <a href="#projects">프로젝트</a>
+      <a href="#research">연구</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-<div class="hero"><div>
-  <h1>JEONG</h1>
-  <p>브랜드 슬로건을 여기에 입력하세요.</p>
-  <a class="btn" href="parts.html">부품 보기</a>
-</div></div>
-<section><div class="wrap">
-  <h2>About</h2>
-  <p>브랜드 소개 문구.</p>
-</div></section>
+  <div class="hero" id="home"><div>
+    <h1>JEONG</h1>
+    <p>브랜드 슬로건을 여기에 입력하세요.</p>
+    <a class="btn" href="#parts">부품 보기</a>
+  </div></div>
+
+  <section id="parts"><div class="wrap">
+    <h2>부품</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>부품 이름</h3>
+        <p class="meta">품번 JG-0001 · 적용 차종</p>
+        <p class="price">₩0</p>
+      </article>
+    </div>
+  </div></section>
+
+  <section id="projects"><div class="wrap">
+    <h2>프로젝트</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>프로젝트 이름</h3>
+        <p class="meta">2026 · 진행중</p>
+        <p>프로젝트 설명.</p>
+      </article>
+    </div>
+  </div></section>
+
+  <section id="research"><div class="wrap">
+    <h2>연구 · 논문</h2>
+    <article class="card">
+      <h3>논문 제목</h3>
+      <p class="meta">저자 · 학회/저널 · 2026</p>
+      <p>연구 목적, 방법, 결과 요약.</p>
+    </article>
+  </div></section>
+
+  <section id="contact"><div class="wrap">
+    <h2>문의</h2>
+    <p>이메일: <a href="mailto:contact@jeong.com">contact@jeong.com</a></p>
+  </div></section>
 </main>
+
 <footer><div class="wrap">© 2026 JEONG. All rights reserved.</div></footer>
 <script src="js/main.js"></script>
 </body>

@@ -47,3 +47,11 @@ footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--mu
   nav.open { display: flex; }
   nav a { padding: 14px 20px; }
 }
+
+/* 리본 메뉴 */
+html { scroll-behavior: smooth; }
+section, .hero { scroll-margin-top: 68px; }
+header { border-top: 4px solid var(--accent); }
+nav a { position: relative; padding-block: 6px; }
+nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); transform: scaleX(0); transition: transform .2s; }
+nav a:hover::after { transform: scaleX(1); }
