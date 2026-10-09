@@ -3,11 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Engineering Research | JEONG MOTORS</title>
-<meta name="description" content="JEONG MOTORS 연구자료실 — 기술 보고서, 실험 보고서, 연구논문">
+<title>로그인 | JEONG MOTORS</title>
+<meta name="description" content="JEONG 공식 사이트 — 자동차 부품, 프로젝트, 연구">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="research.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
@@ -15,7 +14,7 @@
     <button class="icon-btn menu-btn" aria-label="메뉴 열기">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
-    <a class="logo" href="../index.html">JEONG</a>
+    <a class="logo" href="index.html">JEONG</a>
     <div class="actions">
       <select class="lang" aria-label="언어 선택">
         <option value="ko">KO</option>
@@ -33,31 +32,43 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <nav>
-    <a href="../index.html" data-en="Home">홈</a>
+    <a href="index.html" data-en="Home">홈</a>
     <span class="soon" aria-disabled="true"><span data-en="Parts Store">부품 스토어</span> <small data-en="Soon">준비중</small></span>
     <span class="soon" aria-disabled="true"><span data-en="Projects">프로젝트</span> <small data-en="Soon">준비중</small></span>
-    <a href="index.html" data-en="Research">논문</a>
+    <a href="research/index.html" data-en="Research">논문</a>
     <span class="soon" aria-disabled="true"><span data-en="Contact">문의</span> <small data-en="Soon">준비중</small></span>
   </nav>
 </dialog>
 
-<main class="wrap research">
-  <h1 class="page-title">Engineering Research</h1>
-  <p class="sub">Technical papers, experiments and engineering reports.</p>
-
-  <div class="search">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <label for="search" class="sr-only">연구자료 검색</label>
-    <input id="search" type="search" placeholder="논문 제목, 키워드 검색..." autocomplete="off">
+<main class="wrap login">
+  <div class="login-box">
+    <h1 data-en="Sign in">로그인</h1>
+    <p class="sub">개발용 임시 로그인 — 아무 값이나 입력하면 됩니다.</p>
+    <form id="login-form">
+      <label>아이디 또는 이메일<input name="id" autocomplete="username" autofocus></label>
+      <label>비밀번호<input name="pw" type="password" autocomplete="current-password"></label>
+      <button class="pop-btn primary" type="submit" data-en="Sign in">로그인</button>
+    </form>
   </div>
-  <div id="filters" class="filters" role="group" aria-label="연구 분야"></div>
-  <p id="count" class="count" aria-live="polite"></p>
-  <ul id="list" class="list"></ul>
 </main>
 
 <footer><div class="wrap">© 2026 JEONG MOTORS. All rights reserved.</div></footer>
-<script src="../js/main.js"></script>
-<script src="documents.js"></script>
-<script src="research.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // 로그인 후 원래 보던 페이지로. 같은 사이트 주소만 허용 (외부로 튕기는 open redirect 방지)
+  function nextUrl() {
+    const raw = new URLSearchParams(location.search).get('next');
+    try {
+      const u = new URL(raw, location.href);
+      if (raw && u.origin === location.origin && /^(https?|file):$/.test(u.protocol) && !u.pathname.endsWith('/login.html')) return u.href;
+    } catch {}
+    return new URL('index.html', location.href).href;
+  }
+  document.getElementById('login-form').addEventListener('submit', e => {
+    e.preventDefault();
+    auth.login(e.target.id.value.trim() || 'Guest'); // ponytail: 비밀번호 검사 없음
+    location.replace(nextUrl()); // replace: 뒤로가기로 로그인 화면에 다시 안 옴
+  });
+</script>
 </body>
 </html>

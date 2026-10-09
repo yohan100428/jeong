@@ -1,3 +1,6 @@
+const ROOT = new URL('..', document.currentScript.src); // 사이트 루트 (js/ 의 상위)
+const profile = document.querySelector('.profile-btn');
+
 // 햄버거 서랍
 const drawer = document.getElementById('drawer');
 document.querySelector('.menu-btn').addEventListener('click', () => drawer.showModal());
@@ -29,7 +32,6 @@ if (IS_DEV) {
   try { adminMode.isAdmin = localStorage.getItem(KEY) === '1'; } catch {}
 
   const actions = document.querySelector('.actions');
-  const profile = actions.querySelector('a.icon-btn');
   profile.insertAdjacentHTML('beforebegin', '<span class="admin-badge" hidden>Administrator</span>');
   actions.insertAdjacentHTML('beforeend', `
     <button type="button" class="admin-switch" role="switch" aria-checked="false" aria-label="관리자 모드 (개발용)">
@@ -53,7 +55,6 @@ if (IS_DEV) {
     document.body.classList.toggle('admin', on);
     toggle.setAttribute('aria-checked', on);
     badge.hidden = menu.hidden = !on;
-    profile.setAttribute('aria-label', on ? '프로필 (Administrator)' : '프로필');
   };
   adminMode.setIsAdmin = v => {
     adminMode.isAdmin = v;
@@ -65,3 +66,40 @@ if (IS_DEV) {
   addEventListener('storage', e => { if (e.key === KEY) { adminMode.isAdmin = e.newValue === '1'; render(); } }); // 다른 탭과 동기화
   render();
 }
+
+// ---- 로그인 (모의) ----
+// ponytail: 아무 값이나 통과하는 가짜 로그인, 이름만 localStorage 에 저장. 실제 인증 붙일 때 auth 만 서버 세션으로 교체.
+const auth = {
+  get user() { try { return JSON.parse(localStorage.getItem('jeong-user')); } catch { return null; } },
+  login(name) { try { localStorage.setItem('jeong-user', JSON.stringify({ name })); } catch {} },
+  logout() { try { localStorage.removeItem('jeong-user'); } catch {} },
+};
+
+// 프로필 팝업 (native popover: 바깥 클릭·Esc 로 닫힘)
+document.body.insertAdjacentHTML('beforeend', `
+  <div id="profile-pop" class="profile-pop" popover role="dialog" aria-label="계정">
+    <p class="pop-name"></p><p class="pop-sub"></p><div class="pop-action"></div>
+  </div>`);
+const pop = document.getElementById('profile-pop');
+profile.popoverTargetElement = pop;
+
+function renderProfile() {
+  const u = auth.user;
+  profile.classList.toggle('signed-in', !!u);
+  profile.setAttribute('aria-label', u ? `프로필 (${u.name})` : '프로필');
+  pop.querySelector('.pop-name').textContent = u ? u.name : '로그인이 필요합니다';
+  pop.querySelector('.pop-sub').textContent = u ? (adminMode.isAdmin ? 'Administrator' : '일반 사용자') : 'JEONG MOTORS 계정으로 로그인하세요.';
+  // 로그인 후 지금 보던 페이지로 돌아오도록 next 전달
+  pop.querySelector('.pop-action').innerHTML = u
+    ? '<button type="button" class="pop-btn" data-logout>로그아웃</button>'
+    : `<a class="pop-btn primary" href="${new URL('login.html', ROOT).href}?next=${encodeURIComponent(location.href)}">로그인</a>`;
+}
+pop.addEventListener('beforetoggle', e => {
+  profile.setAttribute('aria-expanded', e.newState === 'open');
+  if (e.newState === 'open') renderProfile();
+});
+pop.addEventListener('click', e => {
+  if (e.target.closest('[data-logout]')) { auth.logout(); renderProfile(); pop.hidePopover(); }
+});
+addEventListener('storage', e => { if (e.key === 'jeong-user') renderProfile(); });
+renderProfile();

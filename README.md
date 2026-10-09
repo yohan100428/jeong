@@ -23,6 +23,10 @@ python -m http.server 8000
 - `status: 'published'` = 공개
 - 현재 3개 자료는 화면 검증용 DEMO 샘플
 
+## 로그인 (임시)
+- 프로필 버튼 → 팝업 → 로그인 → `login.html` → 아무 값 입력 → 원래 보던 페이지로 복귀
+- 비밀번호 검사 없음, 이름만 브라우저에 저장. 실제 인증 붙일 때 `js/main.js` 의 `auth` 교체
+
 ## 개발용 관리자 모드
 - 로컬(file://, localhost)에서만 헤더 오른쪽 끝에 `Admin` 토글이 나타남. 공개 사이트에는 안 보임
 - ON: 프로필 옆 Administrator 표시 + 햄버거 메뉴에 관리자 메뉴(현재 Coming Soon)
