@@ -23,6 +23,11 @@ python -m http.server 8000
 - `status: 'published'` = 공개
 - 현재 3개 자료는 화면 검증용 DEMO 샘플
 
+## 개발용 관리자 모드
+- 로컬(file://, localhost)에서만 헤더 오른쪽 끝에 `Admin` 토글이 나타남. 공개 사이트에는 안 보임
+- ON: 프로필 옆 Administrator 표시 + 햄버거 메뉴에 관리자 메뉴(현재 Coming Soon)
+- 실제 권한 없음 (화면 개발용 모의 상태). 코드: `js/main.js` 의 `adminMode`
+
 ## 테스트
 ```
 node research/documents.test.js
