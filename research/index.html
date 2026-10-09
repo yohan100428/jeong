@@ -3,17 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JEONG</title>
-<meta name="description" content="JEONG 공식 사이트 — 자동차 부품, 프로젝트, 연구">
-<link rel="stylesheet" href="css/style.css">
+<title>Engineering Research | JEONG MOTORS</title>
+<meta name="description" content="JEONG MOTORS 연구자료실 — 기술 보고서, 실험 보고서, 연구논문">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="research.css">
 </head>
-<body>
+<body class="light">
 <header>
   <div class="wrap">
     <button class="icon-btn menu-btn" aria-label="메뉴 열기">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
-    <a class="logo" href="index.html">JEONG</a>
+    <a class="logo" href="../index.html">JEONG</a>
     <div class="actions">
       <select class="lang" aria-label="언어 선택">
         <option value="ko">KO</option>
@@ -32,23 +34,31 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <nav>
-    <a href="index.html" data-en="Home">홈</a>
+    <a href="../index.html" data-en="Home">홈</a>
     <span class="soon" aria-disabled="true"><span data-en="Parts Store">부품 스토어</span> <small data-en="Soon">준비중</small></span>
     <span class="soon" aria-disabled="true"><span data-en="Projects">프로젝트</span> <small data-en="Soon">준비중</small></span>
-    <a href="research/index.html" data-en="Research">논문</a>
+    <a href="index.html" data-en="Research">논문</a>
     <span class="soon" aria-disabled="true"><span data-en="Contact">문의</span> <small data-en="Soon">준비중</small></span>
   </nav>
 </dialog>
 
-<main>
-  <div class="hero" id="home"><div>
-    <h1>JEONG</h1>
-    <p data-en="Enter your brand slogan here.">브랜드 슬로건을 여기에 입력하세요.</p>
-    <a class="btn" href="research/index.html" data-en="Research Library">연구자료 보기</a>
-  </div></div>
+<main class="wrap research">
+  <h1 class="page-title">Engineering Research</h1>
+  <p class="sub">Technical papers, experiments and engineering reports.</p>
+
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <label for="search" class="sr-only">연구자료 검색</label>
+    <input id="search" type="search" placeholder="논문 제목, 키워드 검색..." autocomplete="off">
+  </div>
+  <div id="filters" class="filters" role="group" aria-label="연구 분야"></div>
+  <p id="count" class="count" aria-live="polite"></p>
+  <ul id="list" class="list"></ul>
 </main>
 
-<footer><div class="wrap">© 2026 JEONG. All rights reserved.</div></footer>
-<script src="js/main.js"></script>
+<footer><div class="wrap">© 2026 JEONG MOTORS. All rights reserved.</div></footer>
+<script src="../js/main.js"></script>
+<script src="documents.js"></script>
+<script src="research.js"></script>
 </body>
 </html>

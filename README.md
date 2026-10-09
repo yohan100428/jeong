@@ -3,11 +3,27 @@
 정적 사이트 (HTML/CSS/JS, 빌드 없음). `index.html` 더블클릭으로 바로 확인.
 
 ## 구조
-- `index.html` 한 페이지 사이트 (상단 메뉴: 홈·부품·프로젝트·연구·문의)
-- `css/style.css` 전체 스타일 (색상은 상단 `:root` 변수에서 변경)
-- `js/main.js` 모바일 메뉴
-- `images/parts/`, `images/projects/` 이미지 · `papers/` 논문 PDF
+- `index.html` 메인 (상단 메뉴: 햄버거 · 로고 · 언어 · 프로필)
+- `css/style.css` 공용 스타일 · `js/main.js` 메뉴/언어 전환
+- `research/` 연구자료실 (Research Library)
+  - `documents.js` **자료 데이터** — 새 자료는 여기에 객체 하나 추가
+  - `content/<slug>.md` 본문 (Markdown, `$수식$` LaTeX 지원)
+  - `files/` 첨부파일 (PDF, CAD, 데이터)
+  - `index.html` 목록/검색 · `doc.html?slug=...` 상세
 
-## 할 일
-- 문의 이메일 주소 교체 (`index.html` 의 contact@jeong.com)
-- 배포: GitHub Pages / Netlify 에 폴더 그대로 업로드
+## 로컬 확인
+본문(.md) 불러오기는 웹 서버가 필요:
+```
+python -m http.server 8000
+```
+브라우저에서 http://localhost:8000
+
+## 연구자료 공개 규칙
+- `status: 'draft'` = 로컬에서만 보임 (공개 사이트에서는 주소 끝에 `?draft=1` 붙이면 확인 가능)
+- `status: 'published'` = 공개
+- 현재 3개 자료는 화면 검증용 DEMO 샘플
+
+## 테스트
+```
+node research/documents.test.js
+```
