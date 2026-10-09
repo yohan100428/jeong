@@ -44,4 +44,14 @@
 .preview .btn { margin-top: 4px; }
 .hint { margin: -8px 0 0; font-size: .8rem; color: var(--muted); }
 
-@media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+/* 상품 사양 행 */
+#specs { display: grid; gap: 8px; }
+.spec-row { display: grid; grid-template-columns: 1fr 1fr 140px 40px; gap: 8px; }
+.spec-row .rm { border: 1px solid var(--line); border-radius: 8px; background: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; }
+.spec-row .rm:hover { color: #E5484D; border-color: #E5484D; }
+.add-spec { justify-self: start; width: auto; padding: 8px 16px; }
+
+@media (max-width: 720px) {
+  .cols { grid-template-columns: 1fr; }
+  .spec-row { grid-template-columns: 1fr 1fr; }
+}

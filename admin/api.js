@@ -51,6 +51,33 @@ const researchApi = {
   },
 };
 
+const productsApi = {
+  // 서버: GET /api/products  (관리자용: 판매 안 하는 상품 포함 전체)
+  // 외부 커머스(Shopify 등) 연결 시: 상품 정보는 여기서, 가격·재고·결제는 커머스 쪽 commerceId 로 매칭
+  async list() {
+    return structuredClone(PRODUCTS);
+  },
+
+  // 서버: POST /api/products  (multipart: meta(JSON) + images[] + actionImages[])
+  // 이미지는 shop/images/<slug>/ 에 저장하고 meta.images 경로와 맞출 것
+  async create(meta, files) {
+    await mockDelay();
+    return mockOk('product create', { slug: meta.slug, meta, images: files.images.map(f => f.name), actionImages: files.actionImages.map(f => f.name) });
+  },
+
+  // 서버: PUT /api/products/:slug  (create 와 같은 형식)
+  async update(slug, meta, files) {
+    await mockDelay();
+    return mockOk('product update', { slug, meta, images: files.images.map(f => f.name), actionImages: files.actionImages.map(f => f.name) });
+  },
+
+  // 서버: DELETE /api/products/:slug  (이미지도 함께 삭제)
+  async remove(slug) {
+    await mockDelay();
+    return mockOk('product remove', { slug });
+  },
+};
+
 const contentApi = {
   // 서버: GET /api/content  — 현재 홈 화면 문구를 그대로 반환 (서버 연결 시 index.html 도 이 값을 읽도록 변경)
   async get() {

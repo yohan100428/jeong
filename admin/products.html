@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Upload Research | JEONG MOTORS</title>
+<title>Product Management | JEONG MOTORS</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Upload Research (관리자)">
+<meta name="description" content="Product Management (관리자)">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../research/research.css">
 <link rel="stylesheet" href="../shop/shop.css">
 <link rel="stylesheet" href="admin.css">
 </head>
-<body data-page="upload">
+<body data-page="products">
 <header>
   <div class="wrap">
     <button class="icon-btn menu-btn" aria-label="메뉴 열기">
@@ -45,41 +45,25 @@
 </dialog>
 
 <main class="wrap research admin-page">
-  <nav class="admin-tabs" aria-label="관리자 메뉴"><a href="index.html">Dashboard</a><a href="research.html">Research</a><a href="upload.html" aria-current="page">Upload</a><a href="products.html">Products</a><a href="product.html">Add Product</a><a href="content.html">Content</a></nav>
-  <h1 class="page-title">Upload Research</h1>
-  <p class="sub">새 연구자료 등록</p>
+  <nav class="admin-tabs" aria-label="관리자 메뉴"><a href="index.html">Dashboard</a><a href="research.html">Research</a><a href="upload.html">Upload</a><a href="products.html" aria-current="page">Products</a><a href="product.html">Add Product</a><a href="content.html">Content</a></nav>
+  <h1 class="page-title">Product Management</h1>
+  <p class="sub">상품 목록 · 수정 · 삭제</p>
 
   <p id="gate" class="empty">관리자 모드에서만 사용할 수 있습니다.</p>
 
   <div id="panel" hidden>
-  <form id="upload-form" class="upload">
-      <fieldset>
-        <legend>기본 정보</legend>
-        <label class="full">제목 *<input name="title" required></label>
-        <label class="full">영문 제목<input name="titleEn"></label>
-        <label>분야 *<input name="category" required placeholder="예: 공기역학"></label>
-        <label>자료 유형 *<input name="documentType" list="doc-types" required placeholder="기술 보고서"></label>
-        <datalist id="doc-types"><option>기술 보고서</option><option>실험 보고서</option><option>기술 검토</option><option>연구논문</option><option>분석자료</option></datalist>
-        <label>작성자 *<input name="author" required value="JEONG MOTORS" placeholder="쉼표로 구분"></label>
-        <label>작성일 *<input name="createdAt" type="date" required></label>
-        <label>slug (주소) *<input name="slug" required pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="k01-steering-geometry" title="영문 소문자, 숫자, 하이픈"></label>
-        <label>버전<input name="version" placeholder="1.0"></label>
-        <label>관련 프로젝트<input name="projectId" placeholder="K-01"></label>
-        <label>공개 상태
-          <select name="status"><option value="draft">draft (비공개)</option><option value="published">published (공개)</option></select>
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <legend>내용</legend>
-        <label class="full">키워드<input name="keywords" placeholder="쉼표로 구분: CFD, Aerodynamics"></label>
-        <label class="full">Abstract<textarea name="abstract" rows="4"></textarea></label>
-              <label class="full">첨부파일<input name="attachments" type="file" multiple accept=".pdf,.step,.stp,.stl,.csv,.xlsx,.zip,.png,.jpg,.jpeg"></label>
-        <p id="existing" class="hint full"></p>
-      </fieldset>
-
-      <button type="submit" class="pop-btn primary">업로드</button>
-    </form>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label for="search" class="sr-only">상품 검색</label>
+      <input id="search" type="search" placeholder="상품명, 카테고리 검색..." autocomplete="off">
+    </div>
+    <p id="count" class="count" aria-live="polite"></p>
+    <div class="table-wrap">
+      <table id="table">
+        <thead><tr><th>상품</th><th>카테고리</th><th>가격</th><th>검토 상태</th><th>판매</th><th>작업</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 
   <div id="result" class="notice" role="status" hidden><strong></strong><span></span><pre></pre></div>

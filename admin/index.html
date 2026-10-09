@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../research/research.css">
+<link rel="stylesheet" href="../shop/shop.css">
 <link rel="stylesheet" href="admin.css">
 </head>
 <body data-page="dashboard">
@@ -44,9 +45,9 @@
 </dialog>
 
 <main class="wrap research admin-page">
-  <nav class="admin-tabs" aria-label="관리자 메뉴"><a href="index.html" aria-current="page">Dashboard</a><a href="research.html">Research</a><a href="upload.html">Upload</a><a href="content.html">Content</a></nav>
+  <nav class="admin-tabs" aria-label="관리자 메뉴"><a href="index.html" aria-current="page">Dashboard</a><a href="research.html">Research</a><a href="upload.html">Upload</a><a href="products.html">Products</a><a href="product.html">Add Product</a><a href="content.html">Content</a></nav>
   <h1 class="page-title">Admin Dashboard</h1>
-  <p class="sub">연구자료 현황</p>
+  <p class="sub">연구자료 · 상품 현황</p>
 
   <p id="gate" class="empty">관리자 모드에서만 사용할 수 있습니다.</p>
 
@@ -58,7 +59,9 @@
     </div>
     <div class="quick">
       <a class="pop-btn primary" href="upload.html">+ 새 자료 업로드</a>
+      <a class="pop-btn primary" href="product.html">+ 새 상품 등록</a>
       <a class="pop-btn" href="research.html">자료 관리</a>
+      <a class="pop-btn" href="products.html">상품 관리</a>
       <a class="pop-btn" href="content.html">콘텐츠 관리</a>
     </div>
   </div>
@@ -70,6 +73,7 @@
 <script src="../js/main.js"></script>
 <script src="../js/dev-admin.js"></script> <!-- 임시: 개발용 관리자 모드, 삭제 예정 -->
 <script src="../research/documents.js"></script>
+<script src="../shop/products.js"></script>
 <script src="api.js"></script> <!-- 서버 연결 시 이 파일만 교체 -->
 <script src="admin.js"></script>
 </body>

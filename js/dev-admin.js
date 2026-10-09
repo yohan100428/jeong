@@ -54,7 +54,8 @@ body.admin .profile-btn { color: var(--accent-hi); }
   drawer.insertAdjacentHTML('beforeend', `
     <nav class="admin-menu" aria-label="관리자 메뉴" hidden>
       <p class="drawer-label">Admin</p>
-      ${[['Admin Dashboard', 'index.html'], ['Research Management', 'research.html'], ['Upload Research', 'upload.html'], ['Content Management', 'content.html']]
+      ${[['Admin Dashboard', 'index.html'], ['Research Management', 'research.html'], ['Upload Research', 'upload.html'],
+         ['Product Management', 'products.html'], ['Add Product', 'product.html'], ['Content Management', 'content.html']]
         .map(([name, file]) => `<a href="${new URL(`admin/${file}`, ROOT).href}">${name}</a>`).join('')}
     </nav>`);
 
