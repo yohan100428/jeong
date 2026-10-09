@@ -20,62 +20,6 @@ function setLang(l) {
 lang.addEventListener('change', () => setLang(lang.value));
 try { if (localStorage.getItem('lang') === 'en') setLang('en'); } catch {}
 
-// ---- 개발용 관리자 모드 (프론트엔드 모의 상태, 실제 권한 없음) ----
-// 로컬(file://, localhost) 또는 ?dev=1 일 때만 토글·관리자 메뉴가 생김.
-// 실제 인증 도입 시 adminMode.isAdmin 을 서버 세션/권한 확인 결과로 교체.
-// 상태 변경 알림: window.addEventListener('adminchange', e => e.detail.isAdmin)
-// 로컬이 아닌 주소(배포 사이트 등)에서는 주소 끝에 ?dev=1 한 번 붙이면 켜짐 (브라우저에 기억, ?dev=0 으로 해제)
-const IS_DEV = (() => {
-  const local = location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname);
-  try {
-    const dev = new URLSearchParams(location.search).get('dev');
-    if (dev === '1') localStorage.setItem('jeong-dev', '1');
-    if (dev === '0') localStorage.removeItem('jeong-dev');
-    return local || localStorage.getItem('jeong-dev') === '1';
-  } catch { return local; }
-})();
-const adminMode = { isAdmin: false, setIsAdmin() {} };
-
-if (IS_DEV) {
-  const KEY = 'jeong-admin';
-  try { adminMode.isAdmin = localStorage.getItem(KEY) === '1'; } catch {}
-
-  const actions = document.querySelector('.actions');
-  profile.insertAdjacentHTML('beforebegin', '<span class="admin-badge" hidden>Administrator</span>');
-  lang.insertAdjacentHTML('beforebegin', `
-    <button type="button" class="admin-switch" role="switch" aria-checked="false" aria-label="관리자 모드 (개발용)">
-      <span class="track" aria-hidden="true"><span class="thumb"></span></span><span class="label" aria-hidden="true">Admin</span>
-    </button>`);
-
-  // 관리자 메뉴: 기능 생기면 span 을 <a href> 로 교체 (Upload Research 는 연구자료 업로드와 연결 예정)
-  const soon = name => `<span class="soon" aria-disabled="true">${name} <small>Coming Soon</small></span>`;
-  drawer.insertAdjacentHTML('beforeend', `
-    <nav class="admin-menu" aria-label="관리자 메뉴" hidden>
-      <p class="drawer-label">Admin</p>
-      ${['Admin Dashboard', 'Research Management', 'Upload Research', 'Content Management'].map(soon).join('')}
-    </nav>`);
-
-  const badge = actions.querySelector('.admin-badge');
-  const toggle = actions.querySelector('.admin-switch');
-  const menu = drawer.querySelector('.admin-menu');
-
-  const render = () => {
-    const on = adminMode.isAdmin;
-    document.body.classList.toggle('admin', on);
-    toggle.setAttribute('aria-checked', on);
-    badge.hidden = menu.hidden = !on;
-  };
-  adminMode.setIsAdmin = v => {
-    adminMode.isAdmin = v;
-    try { localStorage.setItem(KEY, v ? '1' : '0'); } catch {}
-    render();
-    dispatchEvent(new CustomEvent('adminchange', { detail: { isAdmin: v } }));
-  };
-  toggle.addEventListener('click', () => adminMode.setIsAdmin(!adminMode.isAdmin));
-  addEventListener('storage', e => { if (e.key === KEY) { adminMode.isAdmin = e.newValue === '1'; render(); } }); // 다른 탭과 동기화
-  render();
-}
-
 // ---- 로그인 (모의) ----
 // ponytail: 아무 값이나 통과하는 가짜 로그인, 이름만 localStorage 에 저장. 실제 인증 붙일 때 auth 만 서버 세션으로 교체.
 const auth = {
@@ -97,7 +41,7 @@ function renderProfile() {
   profile.classList.toggle('signed-in', !!u);
   profile.setAttribute('aria-label', u ? `프로필 (${u.name})` : '프로필');
   pop.querySelector('.pop-name').textContent = u ? u.name : '로그인이 필요합니다';
-  pop.querySelector('.pop-sub').textContent = u ? (adminMode.isAdmin ? 'Administrator' : '일반 사용자') : 'JEONG MOTORS 계정으로 로그인하세요.';
+  pop.querySelector('.pop-sub').textContent = u ? (window.adminMode?.isAdmin ? 'Administrator' : '일반 사용자') : 'JEONG MOTORS 계정으로 로그인하세요.';
   // 로그인 후 지금 보던 페이지로 돌아오도록 next 전달
   pop.querySelector('.pop-action').innerHTML = u
     ? '<button type="button" class="pop-btn" data-logout>로그아웃</button>'
