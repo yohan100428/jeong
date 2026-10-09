@@ -10,7 +10,7 @@ const count = document.getElementById('count');
 const arrow = '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg>';
 
 search.value = state.q;
-filters.innerHTML = ['전체', ...RESEARCH_CATEGORIES]
+filters.innerHTML = ['전체', ...new Set([...RESEARCH_CATEGORIES, ...DOCS.map(d => d.category)])]
   .map(c => `<button type="button" class="chip" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
 
 function render() {

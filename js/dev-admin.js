@@ -5,8 +5,8 @@
 // 삭제 방법:
 //   1) 이 파일 삭제
 //   2) 각 페이지의 <script src=".../js/dev-admin.js"></script> 한 줄 삭제
-//      (index.html, login.html, research/index.html, research/doc.html, research/upload.html)
-//   삭제 후 research/upload.html 폼은 자동으로 숨겨짐 (실제 인증 붙이면 upload.js 의 applyGate 교체)
+//      (index.html, login.html, research/index.html, research/doc.html, admin/*.html)
+//   삭제 후 admin/ 화면은 자동으로 숨겨짐 (실제 인증 붙이면 admin/admin.js 의 applyGate 교체)
 //   main.js 는 window.adminMode 가 없으면 알아서 무시하므로 수정 불필요.
 //
 // 실제 인증 도입 시: adminMode.isAdmin 을 서버 권한 확인 결과로 교체.
@@ -50,12 +50,12 @@ body.admin .profile-btn { color: var(--accent-hi); }
       <span class="track" aria-hidden="true"><span class="thumb"></span></span><span class="label" aria-hidden="true">Admin</span>
     </button>`);
 
-  // 관리자 메뉴: 기능 생기면 soon() 을 <a href> 로 교체
-  const soon = name => `<span class="soon" aria-disabled="true">${name} <small>Coming Soon</small></span>`;
+  // 관리자 메뉴 (페이지: admin/*.html)
   drawer.insertAdjacentHTML('beforeend', `
     <nav class="admin-menu" aria-label="관리자 메뉴" hidden>
       <p class="drawer-label">Admin</p>
-      ${soon('Admin Dashboard')}${soon('Research Management')}<a href="${new URL('research/upload.html', ROOT).href}">Upload Research</a>${soon('Content Management')}
+      ${[['Admin Dashboard', 'index.html'], ['Research Management', 'research.html'], ['Upload Research', 'upload.html'], ['Content Management', 'content.html']]
+        .map(([name, file]) => `<a href="${new URL(`admin/${file}`, ROOT).href}">${name}</a>`).join('')}
     </nav>`);
 
   const badge = actions.querySelector('.admin-badge');
