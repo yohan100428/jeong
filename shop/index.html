@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parts & Equipment | JEONG MOTORS</title>
-<meta name="description" content="Engineering components and tools selected by JEONG MOTORS">
+<title>Parts Store | JEONG MOTORS</title>
+<meta name="description" content="JEONG MOTORS Parts Store — components, tools and engineering resources selected for real-world projects. Preview: not yet open for orders.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&display=swap">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../research/research.css">
 <link rel="stylesheet" href="shop.css">
@@ -38,18 +39,100 @@
   </nav>
 </dialog>
 
-<main class="wrap research shop">
-  <h1 class="page-title">Parts &amp; Equipment</h1>
-  <p class="sub"><em>Engineering components and tools selected by JEONG MOTORS.</em></p>
+<main class="wrap shop">
+  <!-- A. Hero -->
+  <section class="s-hero">
+    <p class="s-label">JEONG PERFORMANCE PARTS / DIVISION 01</p>
+    <h1>BUILT TO PUSH LIMITS.<span>PARTS FOR THE DRIVEN.</span></h1>
+    <p class="lead">Discover components, tools, and engineering resources selected for real-world projects.</p>
+    <div class="s-cta">
+      <a class="btn-fill" href="catalog.html">EXPLORE THE GARAGE</a>
+      <a class="btn-line" href="#tested">OUR PHILOSOPHY</a>
+    </div>
+    <!-- 실물 사진이 생기기 전까지 쓰는 중립 기어 도형 -->
+    <svg class="s-gear" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+      <circle cx="100" cy="100" r="62"/><circle cx="100" cy="100" r="22"/>
+      <g stroke-width="16" stroke-linecap="butt">
+        <path d="M100 8v22M100 170v22M8 100h22M170 100h22M35 35l16 16M149 149l16 16M165 35l-16 16M51 149l-16 16"/>
+      </g>
+      <g stroke-width="2"><circle cx="100" cy="58" r="7"/><circle cx="100" cy="142" r="7"/><circle cx="58" cy="100" r="7"/><circle cx="142" cy="100" r="7"/></g>
+    </svg>
+  </section>
 
-  <div class="search">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <label for="search" class="sr-only">Search products</label>
-    <input id="search" type="search" placeholder="Search products, keywords..." autocomplete="off">
-  </div>
-  <div id="filters" class="filters" role="group" aria-label="Product category"></div>
-  <p id="count" class="count" aria-live="polite"></p>
-  <ul id="grid" class="grid-p"></ul>
+  <!-- B. Categories -->
+  <section class="sec" id="systems">
+    <p class="sec-no">01 / SYSTEMS</p>
+    <h2>PICK YOUR SYSTEM.</h2>
+    <p class="lead">Eight systems, one garage.</p>
+    <ul id="cats" class="cats"></ul>
+  </section>
+
+  <!-- C. Featured -->
+  <section class="sec">
+    <p class="sec-no">02 / FEATURED</p>
+    <h2>FROM THE GARAGE.</h2>
+    <p class="lead">Preview items only. The store is not open for orders, and no prices are final.</p>
+    <ul id="featured" class="pgrid"></ul>
+  </section>
+
+  <!-- D. JEONG Tested -->
+  <section class="sec" id="tested">
+    <p class="sec-no">03 / PHILOSOPHY</p>
+    <h2>TESTED. NOT JUST LISTED.</h2>
+    <div class="s-split">
+      <div>
+        <p class="lead">We believe performance parts should be understood, documented, and evaluated — not simply advertised.</p>
+        <p class="s-note">This is where we are heading, not a claim about today's catalog: no item is marked JEONG TESTED until a real test record exists.</p>
+        <a class="btn-line" href="../research/index.html">EXPLORE OUR PROCESS</a>
+      </div>
+      <ul class="s-points">
+        <li><b>01</b>Component measurements</li>
+        <li><b>02</b>Installation documentation</li>
+        <li><b>03</b>CAD compatibility</li>
+        <li><b>04</b>Testing reports</li>
+        <li><b>05</b>Engineering notes</li>
+        <li><b>06</b>Related build projects</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- E. JEONG Originals -->
+  <section class="sec s-block s-originals">
+    <p class="sec-no">04 / ORIGINALS</p>
+    <h2>MADE BY JEONG.</h2>
+    <p class="lead">Original components born from our engineering projects.</p>
+    <ul class="s-concepts">
+      <li>Custom suspension components<small>CONCEPT</small></li>
+      <li>Uprights and mechanical assemblies<small>CONCEPT</small></li>
+      <li>Electronics and control systems<small>CONCEPT</small></li>
+      <li>Engineering tools and digital resources<small>CONCEPT</small></li>
+    </ul>
+    <button type="button" class="btn-line" disabled>COMING SOON</button>
+  </section>
+
+  <!-- F. Engineering connection -->
+  <section class="sec">
+    <p class="sec-no">05 / CONNECTION</p>
+    <h2>MORE THAN PARTS.</h2>
+    <p class="lead">Explore the research, development logs, and technical documentation behind our engineering projects.</p>
+    <ul class="s-links">
+      <li><a href="../projects/index.html"><b>PROJECTS</b><small>The machines we are building</small></a></li>
+      <li><a href="../research/index.html"><b>RESEARCH</b><small>Papers and engineering reports</small></a></li>
+      <li><a href="../projects/project.html?slug=k-01#documents"><b>ENGINEERING DOCUMENTATION</b><small>K-01 project documents</small></a></li>
+      <li><a href="../membership/index.html"><b>OPEN RESOURCES</b><small>What stays free with Open Access</small></a></li>
+    </ul>
+  </section>
+
+  <!-- G. Membership -->
+  <section class="sec s-block s-garage">
+    <div>
+      <p class="sec-no">JEONG GARAGE+</p>
+      <h2>GO BEYOND THE BUILD.</h2>
+      <p>Explore advanced engineering tools, downloadable resources, and future membership benefits. Membership is in development.</p>
+    </div>
+    <a class="btn-fill" href="../membership/index.html">EXPLORE MEMBERSHIP</a>
+  </section>
+  <p class="s-motto">TESTED. NOT JUST LISTED.<br>DRIVING IS <span>JOY.</span></p>
 </main>
 
 <footer><div class="wrap">© 2026 JEONG MOTORS. All rights reserved.</div></footer>
@@ -57,6 +140,6 @@
 <script src="../js/dev-admin.js"></script> <!-- 임시: 개발용 관리자 모드, 삭제 예정 -->
 <script src="../research/documents.js"></script>
 <script src="products.js"></script>
-<script src="shop.js"></script>
+<script src="home.js"></script>
 </body>
 </html>

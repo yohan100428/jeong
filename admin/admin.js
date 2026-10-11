@@ -190,15 +190,15 @@ const pages = {
     const count = document.getElementById('count');
 
     const render = () => {
-      const hits = items.filter(p => productMatches(p, q.value, 'All'));
+      const hits = catalogFilter(items, { q: q.value });
       count.textContent = `Products: ${hits.length}`;
       tbody.innerHTML = hits.map(p => `
         <tr data-slug="${esc(p.slug)}">
-          <td><a href="../shop/item.html?slug=${encodeURIComponent(p.slug)}">${esc(p.name)}</a><small>${esc(p.slug)}${p.demo ? ' · DEMO' : ''}</small></td>
-          <td>${esc(p.category)}</td>
+          <td><a href="../shop/item.html?slug=${encodeURIComponent(p.slug)}">${esc(p.name)}</a><small>${esc(p.sku)}${p.demo ? ' · PREVIEW' : ''}</small></td>
+          <td>${esc(categoryName(p.category))}</td>
           <td>${formatPrice(p)}</td>
-          <td>${statusBadge(p)}</td>
-          <td>${AVAILABILITY_LABEL[p.availability] || esc(p.availability)}</td>
+          <td>${verifyBadge(p)}</td>
+          <td>${availBadge(p)}</td>
           <td><div class="acts"><a href="product.html?slug=${encodeURIComponent(p.slug)}">Edit</a><button type="button" class="danger" data-act="delete">Delete</button></div></td>
         </tr>`).join('') || '<tr><td colspan="6" class="empty">No products match your search.</td></tr>';
     };
@@ -218,7 +218,7 @@ const pages = {
     render();
   },
 
-  // ---- Add / Edit Product: ?slug=... 이면 수정 모드 ----
+  // ---- Add / Edit Product: ?slug=... 이면 수정 모드. 필드는 shop/products.js 의 상품 형식과 1:1 ----
   async product() {
     const form = document.getElementById('product-form');
     const f = form.elements;
@@ -226,11 +226,16 @@ const pages = {
     const editSlug = new URLSearchParams(location.search).get('slug');
     const editing = editSlug && items.find(p => p.slug === editSlug);
     const lines = s => s.split('\n').map(x => x.trim()).filter(Boolean);
+    const cells = line => line.split('|').map(x => x.trim());
+    const NOTE_FIELDS = { measurement: 'noteMeasure', assembly: 'noteAssembly', testing: 'noteTesting', limitation: 'noteLimit' };
+
+    f.category.innerHTML = PRODUCT_CATEGORIES.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
 
     // 기술 사양: 행 추가/삭제
     const specsBox = document.getElementById('specs');
     const addSpec = (s = {}) => {
       const row = document.getElementById('spec-row').content.firstElementChild.cloneNode(true);
+      row.querySelector('.group').value = s.group || '';
       row.querySelector('.label').value = s.label || '';
       row.querySelector('.value').value = s.value || '';
       row.querySelector('.source').value = s.source || 'manufacturer';
@@ -245,21 +250,25 @@ const pages = {
       document.querySelector('.sub').textContent = 'Edit product';
       document.title = 'Edit Product | JEONG MOTORS';
       form.querySelector('[type=submit]').textContent = 'Save changes';
-      for (const k of ['name', 'slug', 'summary', 'category', 'currency', 'status', 'availability', 'video', 'projectId']) {
+      for (const k of ['name', 'summary', 'description', 'slug', 'sku', 'category', 'productType', 'currency', 'availability',
+        'manufacturer', 'seller', 'sourceType', 'video']) {
         if (editing[k] != null) f[k].value = editing[k];
       }
       f.price.value = editing.price ?? '';
-      f.features.value = editing.features.join('\n');
-      f.compatibility.value = (editing.compatibility || []).join('\n');
-      f.notes.value = (editing.notes || []).join('\n');
+      f.featured.checked = !!editing.featured;
+      f.demo.checked = !!editing.demo;
+      f.affiliate.checked = !!editing.affiliate;
+      f.verifyStatus.value = editing.verification.status;
+      f.evidence.value = editing.verification.evidence || '';
+      f.requirements.value = (editing.requirements || []).join('\n');
+      for (const [kind, field] of Object.entries(NOTE_FIELDS)) {
+        f[field].value = editing.notes.filter(n => n.kind === kind && n.source !== 'manufacturer').map(n => n.text).join('\n');
+      }
+      f.noteClaims.value = editing.notes.filter(n => n.source === 'manufacturer').map(n => n.text).join('\n');
+      f.projects.value = editing.projects.map(c => `${c.slug} | ${c.evidence}`).join('\n');
+      f.documentation.value = editing.documentation.map(d => `${d.label} | ${d.kind} | ${d.url}`).join('\n');
       f.relatedResearch.value = (editing.relatedResearch || []).join(', ');
       f.relatedProducts.value = (editing.relatedProducts || []).join(', ');
-      if (editing.review) {
-        f.pros.value = editing.review.pros.join('\n');
-        f.cons.value = editing.review.cons.join('\n');
-        f.reason.value = editing.review.reason || '';
-        f.verification.value = editing.review.verification || '';
-      }
       f.slug.readOnly = true; // 주소가 바뀌면 기존 링크가 깨지므로 수정 불가
       const had = [...editing.images, ...(editing.actionImages || [])];
       if (had.length) document.getElementById('existing').textContent = `${had.length} existing image(s) kept (new files are added)`;
@@ -277,42 +286,61 @@ const pages = {
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const slug = f.slug.value;
-      if (!editing && items.some(p => p.slug === slug)) return invalid(f.slug, 'This slug is already in use.');
+      const others = items.filter(p => p !== editing);
+      if (others.some(p => p.slug === slug)) return invalid(f.slug, 'This slug is already in use.');
+      if (others.some(p => p.sku === f.sku.value.trim())) return invalid(f.sku, 'This part number is already in use.');
       if (f.video.value && !youtubeId(f.video.value)) return invalid(f.video, 'Only YouTube URLs are allowed.');
-      // 직접 써보지 않은 제품에 Tested/Used 표시 금지: 검증 내용 필수
-      if (f.status.value !== 'review' && !f.verification.value.trim()) {
-        return invalid(f.verification, 'To mark as Tested / Used in Project, fill in Verification.');
+      // 근거 없는 검증 표시 금지
+      if (f.verifyStatus.value !== 'unverified' && !f.evidence.value.trim()) {
+        return invalid(f.evidence, 'A verification status needs evidence: what was tested or reviewed, and where the record is.');
       }
+      if (f.demo.checked && f.availability.value === 'available') return invalid(f.availability, 'A preview item cannot be marked Available.');
+      // 호환 프로젝트: "slug | 근거" — 근거 없이 호환 표시 금지
+      const projects = lines(f.projects.value).map(cells);
+      if (projects.some(c => !c[0] || !c[1])) return invalid(f.projects, 'Each line needs "project-slug | evidence".');
+      // 문서: "이름 | 종류 | 주소" — 주소 없는 문서 금지
+      const documentation = lines(f.documentation.value).map(cells);
+      if (documentation.some(c => !c[0] || !c[2])) return invalid(f.documentation, 'Each line needs "label | kind | url".');
 
       const imgFiles = [...f.images.files];
       const actFiles = [...f.actionImages.files];
       const path = file => `images/${slug}/${file.name}`;
-      const review = [f.pros, f.cons, f.reason, f.verification].some(x => x.value.trim())
-        ? { pros: lines(f.pros.value), cons: lines(f.cons.value), reason: f.reason.value.trim(), verification: f.verification.value.trim() }
-        : null;
+      const notes = [
+        ...Object.entries(NOTE_FIELDS).flatMap(([kind, field]) => lines(f[field].value).map(text => ({ kind, text, source: 'jeong' }))),
+        ...lines(f.noteClaims.value).map(text => ({ kind: 'measurement', text, source: 'manufacturer' })),
+      ];
       const meta = {
         id: editing?.id || slug,
+        sku: f.sku.value.trim(),
         slug,
+        demo: f.demo.checked,
+        featured: f.featured.checked,
+        addedAt: editing?.addedAt || new Date().toLocaleDateString('sv-SE'),
         name: f.name.value.trim(),
         summary: f.summary.value.trim(),
-        category: f.category.value.trim(),
+        description: f.description.value.trim(),
+        category: f.category.value,
+        productType: f.productType.value.trim(),
+        manufacturer: f.manufacturer.value.trim(),
+        seller: f.seller.value.trim(),
+        sourceType: f.sourceType.value,
+        affiliate: f.affiliate.checked || f.sourceType.value === 'affiliate', // 제휴 상품은 항상 공개
         price: f.price.value === '' ? null : Number(f.price.value),
         currency: f.currency.value,
         images: [...(editing?.images || []), ...imgFiles.map(path)],
-        features: lines(f.features.value),
-        status: f.status.value,
         availability: f.availability.value,
-        video: f.video.value.trim(),
-        actionImages: [...(editing?.actionImages || []), ...actFiles.map(path)],
-        review,
+        verification: { status: f.verifyStatus.value, evidence: f.evidence.value.trim() },
         specs: [...specsBox.querySelectorAll('.spec-row')]
-          .map(r => ({ label: r.querySelector('.label').value.trim(), value: r.querySelector('.value').value.trim(), source: r.querySelector('.source').value }))
+          .map(r => ({ group: r.querySelector('.group').value.trim() || 'Specifications', label: r.querySelector('.label').value.trim(), value: r.querySelector('.value').value.trim(), source: r.querySelector('.source').value }))
           .filter(s => s.label),
-        compatibility: lines(f.compatibility.value),
-        notes: lines(f.notes.value),
-        projectId: f.projectId.value.trim() || undefined,
+        requirements: lines(f.requirements.value),
+        notes,
+        projects: projects.map(([slug, evidence]) => ({ slug, evidence })),
+        documentation: documentation.map(([label, kind, url]) => ({ label, kind: kind || 'manual', url })),
         relatedResearch: list(f.relatedResearch.value),
         relatedProducts: list(f.relatedProducts.value),
+        video: f.video.value.trim(),
+        actionImages: [...(editing?.actionImages || []), ...actFiles.map(path)],
       };
 
       const btn = form.querySelector('[type=submit]');

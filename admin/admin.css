@@ -46,12 +46,16 @@
 
 /* 상품 사양 행 */
 #specs { display: grid; gap: 8px; }
-.spec-row { display: grid; grid-template-columns: 1fr 1fr 140px 40px; gap: 8px; }
+.spec-row { display: grid; grid-template-columns: 1fr 1fr 1fr 170px 40px; gap: 8px; }
+.checks { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.checks label { display: flex; align-items: center; gap: 8px; }
+.checks input { width: 16px; height: 16px; padding: 0; accent-color: var(--lime); }
+.spec-row input, .spec-row select { min-width: 0; font-family: var(--font-sub); }
 .spec-row .rm { border: 1px solid var(--line); border-radius: 8px; background: none; color: var(--muted); font-family: var(--font-sub); font-size: 1.1rem; cursor: pointer; }
 .spec-row .rm:hover { color: #E5484D; border-color: #E5484D; }
 .add-spec { justify-self: start; width: auto; padding: 8px 16px; }
 
 @media (max-width: 720px) {
   .cols { grid-template-columns: 1fr; }
-  .spec-row { grid-template-columns: 1fr 1fr; }
+  .spec-row { grid-template-columns: 1fr 1fr; padding-bottom: 8px; border-bottom: 1px dashed var(--line); }
 }

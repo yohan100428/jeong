@@ -53,7 +53,7 @@ const researchApi = {
 
 const productsApi = {
   // 서버: GET /api/products  (관리자용: 판매 안 하는 상품 포함 전체)
-  // 외부 커머스(Shopify 등) 연결 시: 상품 정보는 여기서, 가격·재고·결제는 커머스 쪽 commerceId 로 매칭
+  // 외부 커머스(Shopify 등) 연결 시: 상품 정보는 여기서, 가격·재고·결제는 커머스 쪽 상품과 sku 로 매칭
   async list() {
     return structuredClone(PRODUCTS);
   },

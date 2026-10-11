@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalog — Parts Store | JEONG MOTORS</title>
+<meta name="description" content="Browse the JEONG MOTORS parts catalog by system, availability and verification status.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&display=swap">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../research/research.css">
+<link rel="stylesheet" href="shop.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <button class="icon-btn menu-btn" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a class="logo" href="../index.html">JEONG</a>
+    <div class="actions">
+      <button type="button" class="icon-btn profile-btn" aria-label="Profile" aria-haspopup="dialog" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog id="drawer" aria-label="Menu">
+  <button class="icon-btn close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="index.html">Parts Store</a>
+    <a href="../projects/index.html">Projects</a>
+    <a href="../research/index.html">Research</a>
+    <a href="../membership/index.html">Membership</a>
+    <span class="soon" aria-disabled="true"><span>Contact</span> <small>Soon</small></span>
+  </nav>
+</dialog>
+
+<main class="wrap shop">
+  <a class="back" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    Parts Store
+  </a>
+  <div class="c-head">
+    <p class="sec-no">JEONG PERFORMANCE PARTS / CATALOG</p>
+    <h1>THE GARAGE SHELVES.</h1>
+    <p class="lead">The store is in preview. Items shown are not available to order yet.</p>
+  </div>
+
+  <div class="c-layout">
+    <details id="filter-box" class="flt">
+      <summary>FILTERS</summary>
+      <form id="filters">
+        <fieldset><legend>System</legend><div id="f-cat"></div></fieldset>
+        <fieldset><legend>Price range</legend>
+          <div class="price-range">
+            <input name="min" type="number" min="0" step="any" placeholder="Min" aria-label="Minimum price">
+            <input name="max" type="number" min="0" step="any" placeholder="Max" aria-label="Maximum price">
+          </div>
+        </fieldset>
+        <fieldset><legend>Brand</legend><div id="f-brand"></div></fieldset>
+        <fieldset><legend>Availability</legend><div id="f-avail"></div></fieldset>
+        <fieldset><legend>Verification</legend><div id="f-verify"></div></fieldset>
+        <fieldset><legend>Product type</legend><div id="f-type"></div></fieldset>
+        <button type="button" class="reset">Reset filters</button>
+      </form>
+    </details>
+
+    <div class="c-main">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label for="search" class="sr-only">Search products</label>
+        <input id="search" type="search" placeholder="Search name, part number, system..." autocomplete="off">
+      </div>
+      <div class="sortbar">
+        <p id="count" class="count" aria-live="polite"></p>
+        <label>Sort <select id="sort"></select></label>
+      </div>
+      <ul id="grid" class="pgrid"></ul>
+    </div>
+  </div>
+  <p class="s-motto">TESTED. NOT JUST LISTED.<br>DRIVING IS <span>JOY.</span></p>
+</main>
+
+<footer><div class="wrap">© 2026 JEONG MOTORS. All rights reserved.</div></footer>
+<script src="../js/main.js"></script>
+<script src="../js/dev-admin.js"></script> <!-- 임시: 개발용 관리자 모드, 삭제 예정 -->
+<script src="../research/documents.js"></script>
+<script src="products.js"></script>
+<script src="shop.js"></script>
+</body>
+</html>

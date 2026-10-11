@@ -53,19 +53,42 @@
         <legend>Basics</legend>
         <label class="full">Product name *<input name="name" required></label>
         <label class="full">One-line summary *<input name="summary" required></label>
+        <label class="full">Description<textarea name="description" rows="2"></textarea></label>
         <label>Slug (URL) *<input name="slug" required pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="rack-pinion-gearbox" title="lowercase letters, numbers, hyphens"></label>
-        <label>Category *<input name="category" required placeholder="e.g. Steering"></label>
-        <label>Price<input name="price" type="number" min="0" step="any" placeholder="leave empty for 'Price TBD'"></label>
+        <label>JEONG part number (SKU) *<input name="sku" required placeholder="JG-0001"></label>
+        <label>System (category) *<select name="category" required></select></label>
+        <label>Product type *<input name="productType" required list="product-types" value="Component"></label>
+        <datalist id="product-types"><option>Component</option><option>Tool</option><option>Resource</option></datalist>
+        <label>Price<input name="price" type="number" min="0" step="any" placeholder="leave empty for 'PRICE TBA'"></label>
         <label>Currency
           <select name="currency"><option>KRW</option><option>USD</option><option>EUR</option><option>JPY</option></select>
         </label>
         <label>Availability
-          <select name="availability"><option value="coming-soon">Coming Soon</option><option value="available">Available</option><option value="sold-out">Sold out</option></select>
+          <select name="availability"><option value="coming-soon">Coming Soon</option><option value="available">Available</option><option value="out-of-stock">Out of Stock</option></select>
         </label>
-        <label>Review status
-          <select name="status"><option value="review">Under Review (not verified)</option><option value="tested">Tested (tested by JEONG)</option><option value="used">Used in Project (installed)</option></select>
+        <div class="checks">
+          <label><input type="checkbox" name="demo" checked> Preview item (not real inventory)</label>
+          <label><input type="checkbox" name="featured"> Feature on the store home</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Source</legend>
+        <label>Manufacturer<input name="manufacturer"></label>
+        <label>Seller<input name="seller"></label>
+        <label>Source type
+          <select name="sourceType"><option value="">Not decided</option><option value="original">JEONG Original Product</option><option value="retail">Third-Party Retail Product</option><option value="affiliate">Affiliate Product</option><option value="supplier">External Supplier</option></select>
         </label>
-        <p class="hint full">Choose Tested / Used in Project only for products actually used or tested. "Verification" below is then required.</p>
+        <div class="checks"><label><input type="checkbox" name="affiliate"> Affiliate relationship (always disclosed on the product page)</label></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Verification</legend>
+        <label>Verification status
+          <select name="verifyStatus"><option value="unverified">NOT YET VERIFIED</option><option value="docs">DOCUMENTATION REVIEWED</option><option value="tested">JEONG TESTED</option></select>
+        </label>
+        <p class="hint">Choose a status other than NOT YET VERIFIED only when a real record exists. Evidence is then required.</p>
+        <label class="full">Evidence (what was tested or reviewed, and where the record is)<textarea name="evidence" rows="2"></textarea></label>
       </fieldset>
 
       <fieldset>
@@ -77,39 +100,42 @@
       </fieldset>
 
       <fieldset>
-        <legend>Features &amp; JEONG Review</legend>
-        <label class="full">Key features (one per line)<textarea name="features" rows="3"></textarea></label>
-        <label>Pros (one per line)<textarea name="pros" rows="3"></textarea></label>
-        <label>Cons (one per line)<textarea name="cons" rows="3"></textarea></label>
-        <label class="full">Why we chose it<textarea name="reason" rows="2"></textarea></label>
-        <label class="full">Verification (where and how it was used)<textarea name="verification" rows="2"></textarea></label>
-      </fieldset>
-
-      <fieldset>
         <legend>Technical specifications</legend>
+        <p class="hint full">Leave a value empty when unknown — the page shows NOT PROVIDED / TBD. Do not guess.</p>
         <div id="specs" class="full"></div>
         <button type="button" id="add-spec" class="pop-btn add-spec">+ Add spec</button>
+        <label class="full">Compatibility requirements (one per line)<textarea name="requirements" rows="2"></textarea></label>
       </fieldset>
 
       <fieldset>
-        <legend>Compatibility &amp; related content</legend>
-        <label class="full">Compatibility / fitment (one per line)<textarea name="compatibility" rows="3"></textarea></label>
-        <label class="full">Cautions / unverified items (one per line)<textarea name="notes" rows="3"></textarea></label>
-        <label>Related project<input name="projectId" placeholder="K-01"></label>
+        <legend>Engineering notes (one per line)</legend>
+        <label>Measurements — measured by JEONG<textarea name="noteMeasure" rows="3"></textarea></label>
+        <label>Manufacturer claims — not verified by JEONG<textarea name="noteClaims" rows="3"></textarea></label>
+        <label>Assembly observations<textarea name="noteAssembly" rows="3"></textarea></label>
+        <label>Testing notes — tested by JEONG<textarea name="noteTesting" rows="3"></textarea></label>
+        <label class="full">Limitations<textarea name="noteLimit" rows="2"></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Compatibility &amp; documentation</legend>
+        <label class="full">Confirmed project compatibility — one per line: project-slug | evidence<textarea name="projects" rows="2" placeholder="k-01 | Installed and checked on the K-01 front axle"></textarea></label>
+        <label class="full">Documentation — one per line: label | kind (manual, drawing, cad, report, install) | url<textarea name="documentation" rows="2" placeholder="Installation guide | install | files/guide.pdf"></textarea></label>
         <label>Related research slugs<input name="relatedResearch" placeholder="comma separated"></label>
-        <label class="full">Related product slugs<input name="relatedProducts" placeholder="comma separated"></label>
+        <label>Related product slugs<input name="relatedProducts" placeholder="comma separated"></label>
       </fieldset>
 
       <button type="submit" class="pop-btn primary">Save</button>
     </form>
     <template id="spec-row">
       <div class="spec-row">
+        <input class="group" placeholder="Group (e.g. Dimensions)" aria-label="Spec group" list="spec-groups">
         <input class="label" placeholder="Item (e.g. Weight)" aria-label="Spec item">
         <input class="value" placeholder="Value (e.g. 1.2 kg)" aria-label="Spec value">
-        <select class="source" aria-label="Source"><option value="manufacturer">Manufacturer</option><option value="measured">Measured by JEONG</option></select>
+        <select class="source" aria-label="Source"><option value="manufacturer">Manufacturer</option><option value="jeong">Measured by JEONG</option></select>
         <button type="button" class="rm" aria-label="Remove spec row">×</button>
       </div>
     </template>
+    <datalist id="spec-groups"><option>Dimensions</option><option>Material</option><option>Weight</option><option>Mechanical interfaces</option><option>Manufacturer specifications</option><option>Source documentation</option></datalist>
   </div>
 
   <div id="result" class="notice" role="status" hidden><strong></strong><span></span><pre></pre></div>

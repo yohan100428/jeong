@@ -115,7 +115,7 @@ body:has(.projects) { overflow-x: clip; } /* 전체 폭 장식(그리드, 띠)�
 .pj-dot { position: absolute; left: 0; top: 50%; width: 23px; height: 23px; margin-top: -11.5px; border: 3px solid var(--line); border-radius: 50%; background: var(--bg); }
 .pj-stage-completed .pj-dot { background: var(--accent-hi); border-color: var(--accent-hi); }
 .pj-stage-completed::before { background: var(--accent-hi); }
-.pj-stage-in-progress .pj-dot { border-color: var(--lime); box-shadow: 0 0 0 5px rgba(198,255,61,.18); }
+.pj-stage-in-progress .pj-dot { border-color: var(--lime); box-shadow: 0 0 0 5px rgba(196,243,59,.18); }
 .pj-stage-no { color: var(--muted); font-size: .8rem; }
 .pj-stage b { font-size: 1.15rem; }
 .pj-stage-planned b { color: var(--muted); }

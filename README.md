@@ -15,10 +15,10 @@
   - `files/` 첨부파일 (PDF, CAD, 데이터)
   - `index.html` 목록/검색 · `doc.html?slug=...` 상세
 
-- `shop/` 부품 스토어 (Parts Store) — **결제 없음, Add to Cart/Buy Now 비활성**
-  - `products.js` **상품 데이터** — 새 상품은 여기에 객체 하나 추가 (검토 상태·사양 출처 규칙은 파일 상단 주석)
-  - `index.html` 목록/검색 · `item.html?slug=...` 상세 · 이미지는 `shop/images/<slug>/`
-  - 현재 3개 상품은 DEMO 샘플 (전부 Under Review, 후기 없음)
+- `shop/` 부품 스토어 (Parts Store) — **미리보기 단계: 결제·주문·재고 없음, 구매 버튼 비활성**
+  - `products.js` **상품 데이터 + 카테고리(8개 시스템)** — 새 상품은 객체 하나 추가. 검증·호환·제휴 표시 규칙은 파일 상단 주석
+  - `index.html` 스토어 홈 · `catalog.html` 카탈로그(사이드 필터·정렬·검색) · `item.html?slug=...` 상세 · 이미지는 `shop/images/<slug>/`
+  - 현재 3개 상품은 PREVIEW (가격 없음, 전부 NOT YET VERIFIED)
 - `projects/` 프로젝트 페이지
   - `projects.js` **프로젝트 데이터** — 새 프로젝트는 여기에 객체 하나 추가 (사양·단계·갤러리 규칙은 파일 상단 주석)
   - `index.html` 목록/필터 · `project.html?slug=...` 상세 (공용 템플릿) · 이미지는 `projects/images/<slug>/`
