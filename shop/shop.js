@@ -14,7 +14,7 @@ filters.innerHTML = ['All', ...PRODUCT_CATEGORIES]
 function render() {
   const hits = PRODUCTS.filter(p => productMatches(p, state.q, state.cat));
   filters.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b.dataset.cat === state.cat));
-  count.textContent = `상품 ${hits.length}개`;
+  count.textContent = `Products: ${hits.length}`;
 
   grid.innerHTML = hits.map(p => `
     <li><a class="card-p" href="item.html?slug=${encodeURIComponent(p.slug)}">
@@ -26,7 +26,7 @@ function render() {
         <div class="row"><b>${formatPrice(p)}</b><span class="more">View Details →</span></div>
       </div>
     </a></li>`).join('')
-    || '<li class="empty">검색 조건에 맞는 상품이 없습니다.<br><button type="button" class="reset">검색 조건 초기화</button></li>';
+    || '<li class="empty">No products match your search.<br><button type="button" class="reset">Reset search</button></li>';
 
   const p = new URLSearchParams();
   if (state.q) p.set('q', state.q);

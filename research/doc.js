@@ -21,7 +21,7 @@ function renderMarkdown(md) {
 
 function render() {
   if (!doc) {
-    root.innerHTML = '<h1 class="doc-title">자료를 찾을 수 없습니다.</h1><p class="sub">주소가 잘못되었거나 비공개 자료입니다.</p>';
+    root.innerHTML = '<h1 class="doc-title">Document not found.</h1><p class="sub">The address is wrong or the document is not public.</p>';
     return;
   }
   document.title = `${doc.title} | JEONG MOTORS Research`;
@@ -33,18 +33,18 @@ function render() {
     : esc(doc.projectId));
 
   root.innerHTML = `
-    <p class="meta">${esc(doc.category)} · ${esc(doc.documentType)}${doc.status === 'draft' ? ' <span class="badge">DEMO · 화면 검증용 샘플</span>' : ''}</p>
+    <p class="meta">${esc(doc.category)} · ${esc(doc.documentType)}${doc.status === 'draft' ? ' <span class="badge">DEMO · UI sample</span>' : ''}</p>
     <h1 class="doc-title">${esc(doc.title)}</h1>
     ${doc.titleEn ? `<p class="sub">${esc(doc.titleEn)}</p>` : ''}
     <dl class="info">
-      ${row('작성자', doc.author.join(', '))}
-      ${row('작성일', doc.createdAt)}
-      ${row('최종 수정일', doc.updatedAt)}
-      ${row('버전', doc.version && `v${doc.version}`)}
+      ${row('Author', doc.author.join(', '))}
+      ${row('Date', doc.createdAt)}
+      ${row('Updated', doc.updatedAt)}
+      ${row('Version', doc.version && `v${doc.version}`)}
     </dl>
     ${doc.abstract ? `<section class="block"><h2>Abstract</h2><p>${esc(doc.abstract)}</p></section>` : ''}
     ${doc.keywords.length ? `<section class="block"><h2>Keywords</h2><ul class="tags">${doc.keywords.map(k => `<li>${esc(k)}</li>`).join('')}</ul></section>` : ''}
-    ${doc.contentPath ? '<article class="prose block" id="body"><p class="sub">본문 불러오는 중…</p></article>' : ''}
+    ${doc.contentPath ? '<article class="prose block" id="body"><p class="sub">Loading…</p></article>' : ''}
     ${doc.attachments?.length ? `<section class="block"><h2>Attachments</h2><ul class="files">${doc.attachments.map(a =>
       `<li><a href="${esc(a.url)}" download>${esc(a.name)} <span>${esc(a.type)}</span></a></li>`).join('')}</ul></section>` : ''}
     ${project ? `<section class="block"><h2>Related Project</h2><p>${project}</p></section>` : ''}`;
@@ -55,7 +55,7 @@ function render() {
     fetch(doc.contentPath)
       .then(r => { if (!r.ok) throw r.status; return r.text(); })
       .then(md => { body.innerHTML = renderMarkdown(md); })
-      .catch(() => { body.innerHTML = '<p class="sub">본문을 불러오지 못했습니다. (로컬 파일로 열었다면 웹 서버로 실행하세요)</p>'; });
+      .catch(() => { body.innerHTML = '<p class="sub">Could not load the content. (If opened as a local file, run a web server.)</p>'; });
   }
 }
 render();

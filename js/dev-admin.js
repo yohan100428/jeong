@@ -46,13 +46,13 @@ body.admin .profile-btn { color: var(--accent-hi); }
   const actions = document.querySelector('.actions');
   profile.insertAdjacentHTML('beforebegin', '<span class="admin-badge" hidden>Administrator</span>');
   lang.insertAdjacentHTML('beforebegin', `
-    <button type="button" class="admin-switch" role="switch" aria-checked="false" aria-label="관리자 모드 (개발용)">
+    <button type="button" class="admin-switch" role="switch" aria-checked="false" aria-label="Admin mode (dev)">
       <span class="track" aria-hidden="true"><span class="thumb"></span></span><span class="label" aria-hidden="true">Admin</span>
     </button>`);
 
   // 관리자 메뉴 (페이지: admin/*.html)
   drawer.insertAdjacentHTML('beforeend', `
-    <nav class="admin-menu" aria-label="관리자 메뉴" hidden>
+    <nav class="admin-menu" aria-label="Admin menu" hidden>
       <p class="drawer-label">Admin</p>
       ${[['Admin Dashboard', 'index.html'], ['Research Management', 'research.html'], ['Upload Research', 'upload.html'],
          ['Product Management', 'products.html'], ['Add Product', 'product.html'], ['Content Management', 'content.html']]

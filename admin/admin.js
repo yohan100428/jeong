@@ -25,11 +25,11 @@ function notice(kind, title, msg = '', detail = '') {
   result.querySelector('pre').textContent = detail;
   result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-const MOCK_MSG = ' — 서버 연결 전이라 실제로 저장되지 않았습니다. 새로고침하면 원래대로 돌아옵니다.';
+const MOCK_MSG = ' — Not saved: no server connected yet. Reloading restores the original.';
 
 const list = s => s.split(',').map(x => x.trim()).filter(Boolean);
 const docUrl = slug => `../research/doc.html?slug=${encodeURIComponent(slug)}`;
-const statusLabel = s => (s === 'published' ? '공개' : '비공개');
+const statusLabel = s => (s === 'published' ? 'Published' : 'Draft');
 // slug: 영문 소문자·숫자·하이픈만. 한글만 있으면 빈 값 -> 직접 입력 필요
 const toSlug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -40,18 +40,18 @@ const pages = {
     const products = await productsApi.list();
     const pub = docs.filter(d => d.status === 'published').length;
     document.getElementById('stats').innerHTML = [
-      ['전체 자료', docs.length], ['공개', pub], ['비공개 (draft)', docs.length - pub], ['상품', products.length],
+      ['Documents', docs.length], ['Published', pub], ['Draft', docs.length - pub], ['Products', products.length],
     ].map(([k, v]) => `<div class="stat"><span>${k}</span><b>${v}</b></div>`).join('');
 
     const byCat = {};
     docs.forEach(d => { byCat[d.category] = (byCat[d.category] || 0) + 1; });
     document.getElementById('cats').innerHTML = Object.entries(byCat).sort((a, b) => b[1] - a[1])
-      .map(([c, n]) => `<li><span>${esc(c)}</span><b>${n}</b></li>`).join('') || '<li class="muted">자료 없음</li>';
+      .map(([c, n]) => `<li><span>${esc(c)}</span><b>${n}</b></li>`).join('') || '<li class="muted">No documents</li>';
 
     const day = d => d.updatedAt || d.createdAt;
     document.getElementById('recent').innerHTML = docs.sort((a, b) => day(b).localeCompare(day(a))).slice(0, 5)
       .map(d => `<li><a href="${docUrl(d.slug)}">${esc(d.title)}</a><span>${esc(day(d))} · ${statusLabel(d.status)}</span></li>`).join('')
-      || '<li class="muted">자료 없음</li>';
+      || '<li class="muted">No documents</li>';
   },
 
   // ---- Research Management: 목록 · 검색 · 공개 전환 · 수정 · 삭제 ----
@@ -62,17 +62,17 @@ const pages = {
     const count = document.getElementById('count');
 
     const render = () => {
-      const hits = docs.filter(d => researchMatches(d, q.value, '전체'));
-      count.textContent = `${hits.length}건`;
+      const hits = docs.filter(d => researchMatches(d, q.value, 'All'));
+      count.textContent = `Documents: ${hits.length}`;
       tbody.innerHTML = hits.map(d => `
         <tr data-slug="${esc(d.slug)}">
           <td><a href="${docUrl(d.slug)}">${esc(d.title)}</a><small>${esc(d.slug)}</small></td>
           <td>${esc(d.category)}</td>
           <td>${esc(d.documentType)}</td>
           <td>${esc(d.updatedAt || d.createdAt)}</td>
-          <td><button type="button" class="status ${d.status}" data-act="status" aria-label="공개 상태 전환 (현재 ${statusLabel(d.status)})">${statusLabel(d.status)}</button></td>
-          <td><div class="acts"><a href="upload.html?slug=${encodeURIComponent(d.slug)}">수정</a><button type="button" class="danger" data-act="delete">삭제</button></div></td>
-        </tr>`).join('') || '<tr><td colspan="6" class="empty">검색 조건에 맞는 자료가 없습니다.</td></tr>';
+          <td><button type="button" class="status ${d.status}" data-act="status" aria-label="Toggle visibility (now ${statusLabel(d.status)})">${statusLabel(d.status)}</button></td>
+          <td><div class="acts"><a href="upload.html?slug=${encodeURIComponent(d.slug)}">Edit</a><button type="button" class="danger" data-act="delete">Delete</button></div></td>
+        </tr>`).join('') || '<tr><td colspan="6" class="empty">No documents match your search.</td></tr>';
     };
 
     q.addEventListener('input', render);
@@ -86,13 +86,13 @@ const pages = {
         const next = doc.status === 'published' ? 'draft' : 'published';
         const r = await researchApi.setStatus(doc.slug, next);
         if (r.ok) { doc.status = next; notice('ok', `"${doc.title}" → ${statusLabel(next)}`, r.mock ? MOCK_MSG : ''); }
-        else notice('err', '상태 변경 실패', ` — ${r.error}`);
+        else notice('err', 'Status change failed', ` — ${r.error}`);
       }
       if (btn.dataset.act === 'delete') {
-        if (!confirm(`"${doc.title}" 을(를) 삭제할까요?`)) { btn.disabled = false; return; }
+        if (!confirm(`Delete "${doc.title}"?`)) { btn.disabled = false; return; }
         const r = await researchApi.remove(doc.slug);
-        if (r.ok) { docs = docs.filter(d => d !== doc); notice('ok', '삭제됨', r.mock ? MOCK_MSG : ''); }
-        else notice('err', '삭제 실패', ` — ${r.error}`);
+        if (r.ok) { docs = docs.filter(d => d !== doc); notice('ok', 'Deleted', r.mock ? MOCK_MSG : ''); }
+        else notice('err', 'Delete failed', ` — ${r.error}`);
       }
       render();
     });
@@ -108,12 +108,12 @@ const pages = {
     const editing = editSlug && docs.find(d => d.slug === editSlug);
 
     f.createdAt.value = new Date().toLocaleDateString('sv-SE'); // 오늘 (YYYY-MM-DD)
-    if (editSlug && !editing) notice('err', '자료를 찾을 수 없습니다', ` — ${editSlug}. 새 자료로 작성합니다.`);
+    if (editSlug && !editing) notice('err', 'Document not found', ` — ${editSlug}. Starting a new document.`);
     if (editing) {
       document.querySelector('.page-title').textContent = 'Edit Research';
       document.title = 'Edit Research | JEONG MOTORS';
-      document.querySelector('.sub').textContent = '연구자료 수정';
-      form.querySelector('[type=submit]').textContent = '수정 저장';
+      document.querySelector('.sub').textContent = 'Edit research document';
+      form.querySelector('[type=submit]').textContent = 'Save changes';
       for (const k of ['title', 'titleEn', 'category', 'documentType', 'createdAt', 'abstract', 'projectId', 'version', 'status', 'slug']) {
         if (editing[k] != null) f[k].value = editing[k];
       }
@@ -121,7 +121,7 @@ const pages = {
       f.keywords.value = editing.keywords.join(', ');
       f.slug.readOnly = true; // 주소가 바뀌면 기존 링크가 깨지므로 수정 불가
       if (editing.attachments?.length) {
-        document.getElementById('existing').textContent = `기존 첨부: ${editing.attachments.map(a => a.name).join(', ')} (새 파일은 추가됨)`;
+        document.getElementById('existing').textContent = `Existing attachments: ${editing.attachments.map(a => a.name).join(', ')} (new files are added)`;
       }
     }
 
@@ -136,7 +136,7 @@ const pages = {
       e.preventDefault();
       const slug = f.slug.value;
       if (!editing && docs.some(d => d.slug === slug)) {
-        f.slug.setCustomValidity('이미 사용 중인 slug입니다.');
+        f.slug.setCustomValidity('This slug is already in use.');
         f.slug.reportValidity();
         return;
       }
@@ -167,14 +167,14 @@ const pages = {
       const btn = form.querySelector('[type=submit]');
       const label = btn.textContent;
       btn.disabled = true;
-      btn.textContent = '저장 중…';
+      btn.textContent = 'Saving…';
       try {
         const r = editing ? await researchApi.update(slug, meta, files) : await researchApi.upload(meta, files);
-        if (!r.ok) notice('err', '저장 실패', ` — ${r.error}`);
-        else if (r.mock) notice('ok', editing ? '모의 수정 완료' : '모의 업로드 완료', ' — 서버 연결 전이라 실제로 저장되지 않았습니다. 전송될 데이터:', JSON.stringify(meta, null, 2));
-        else { notice('ok', editing ? '수정 완료' : '업로드 완료'); if (!editing) form.reset(); }
+        if (!r.ok) notice('err', 'Save failed', ` — ${r.error}`);
+        else if (r.mock) notice('ok', editing ? 'Mock update complete' : 'Mock upload complete', ' — Not saved: no server connected yet. Data that would be sent:', JSON.stringify(meta, null, 2));
+        else { notice('ok', editing ? 'Updated' : 'Uploaded'); if (!editing) form.reset(); }
       } catch {
-        notice('err', '저장 실패', ' — 네트워크 오류. 입력값은 그대로니 다시 시도하세요.');
+        notice('err', 'Save failed', ' — Network error. Your input is kept; try again.');
       } finally {
         btn.disabled = false;
         btn.textContent = label;
@@ -191,7 +191,7 @@ const pages = {
 
     const render = () => {
       const hits = items.filter(p => productMatches(p, q.value, 'All'));
-      count.textContent = `${hits.length}개`;
+      count.textContent = `Products: ${hits.length}`;
       tbody.innerHTML = hits.map(p => `
         <tr data-slug="${esc(p.slug)}">
           <td><a href="../shop/item.html?slug=${encodeURIComponent(p.slug)}">${esc(p.name)}</a><small>${esc(p.slug)}${p.demo ? ' · DEMO' : ''}</small></td>
@@ -199,8 +199,8 @@ const pages = {
           <td>${formatPrice(p)}</td>
           <td>${statusBadge(p)}</td>
           <td>${AVAILABILITY_LABEL[p.availability] || esc(p.availability)}</td>
-          <td><div class="acts"><a href="product.html?slug=${encodeURIComponent(p.slug)}">수정</a><button type="button" class="danger" data-act="delete">삭제</button></div></td>
-        </tr>`).join('') || '<tr><td colspan="6" class="empty">검색 조건에 맞는 상품이 없습니다.</td></tr>';
+          <td><div class="acts"><a href="product.html?slug=${encodeURIComponent(p.slug)}">Edit</a><button type="button" class="danger" data-act="delete">Delete</button></div></td>
+        </tr>`).join('') || '<tr><td colspan="6" class="empty">No products match your search.</td></tr>';
     };
 
     q.addEventListener('input', render);
@@ -208,11 +208,11 @@ const pages = {
       const btn = e.target.closest('[data-act=delete]');
       if (!btn) return;
       const item = items.find(p => p.slug === btn.closest('tr').dataset.slug);
-      if (!confirm(`"${item.name}" 을(를) 삭제할까요?`)) return;
+      if (!confirm(`Delete "${item.name}"?`)) return;
       btn.disabled = true;
       const r = await productsApi.remove(item.slug);
-      if (r.ok) { items = items.filter(p => p !== item); notice('ok', '삭제됨', r.mock ? MOCK_MSG : ''); }
-      else notice('err', '삭제 실패', ` — ${r.error}`);
+      if (r.ok) { items = items.filter(p => p !== item); notice('ok', 'Deleted', r.mock ? MOCK_MSG : ''); }
+      else notice('err', 'Delete failed', ` — ${r.error}`);
       render();
     });
     render();
@@ -239,12 +239,12 @@ const pages = {
     document.getElementById('add-spec').addEventListener('click', () => addSpec());
     specsBox.addEventListener('click', e => e.target.closest('.rm')?.closest('.spec-row').remove());
 
-    if (editSlug && !editing) notice('err', '상품을 찾을 수 없습니다', ` — ${editSlug}. 새 상품으로 작성합니다.`);
+    if (editSlug && !editing) notice('err', 'Product not found', ` — ${editSlug}. Starting a new product.`);
     if (editing) {
       document.querySelector('.page-title').textContent = 'Edit Product';
-      document.querySelector('.sub').textContent = '상품 수정';
+      document.querySelector('.sub').textContent = 'Edit product';
       document.title = 'Edit Product | JEONG MOTORS';
-      form.querySelector('[type=submit]').textContent = '수정 저장';
+      form.querySelector('[type=submit]').textContent = 'Save changes';
       for (const k of ['name', 'slug', 'summary', 'category', 'currency', 'status', 'availability', 'video', 'projectId']) {
         if (editing[k] != null) f[k].value = editing[k];
       }
@@ -262,7 +262,7 @@ const pages = {
       }
       f.slug.readOnly = true; // 주소가 바뀌면 기존 링크가 깨지므로 수정 불가
       const had = [...editing.images, ...(editing.actionImages || [])];
-      if (had.length) document.getElementById('existing').textContent = `기존 이미지 ${had.length}장 유지 (새 파일은 추가됨)`;
+      if (had.length) document.getElementById('existing').textContent = `${had.length} existing image(s) kept (new files are added)`;
     }
     (editing?.specs?.length ? editing.specs : [{}]).forEach(addSpec);
 
@@ -277,11 +277,11 @@ const pages = {
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const slug = f.slug.value;
-      if (!editing && items.some(p => p.slug === slug)) return invalid(f.slug, '이미 사용 중인 slug입니다.');
-      if (f.video.value && !youtubeId(f.video.value)) return invalid(f.video, 'YouTube 주소만 입력할 수 있습니다.');
+      if (!editing && items.some(p => p.slug === slug)) return invalid(f.slug, 'This slug is already in use.');
+      if (f.video.value && !youtubeId(f.video.value)) return invalid(f.video, 'Only YouTube URLs are allowed.');
       // 직접 써보지 않은 제품에 Tested/Used 표시 금지: 검증 내용 필수
       if (f.status.value !== 'review' && !f.verification.value.trim()) {
-        return invalid(f.verification, 'Tested / Used in Project 로 표시하려면 검증 내용을 적어야 합니다.');
+        return invalid(f.verification, 'To mark as Tested / Used in Project, fill in Verification.');
       }
 
       const imgFiles = [...f.images.files];
@@ -318,15 +318,15 @@ const pages = {
       const btn = form.querySelector('[type=submit]');
       const label = btn.textContent;
       btn.disabled = true;
-      btn.textContent = '저장 중…';
+      btn.textContent = 'Saving…';
       try {
         const files = { images: imgFiles, actionImages: actFiles };
         const r = editing ? await productsApi.update(slug, meta, files) : await productsApi.create(meta, files);
-        if (!r.ok) notice('err', '저장 실패', ` — ${r.error}`);
-        else if (r.mock) notice('ok', editing ? '모의 수정 완료' : '모의 등록 완료', ' — 서버 연결 전이라 실제로 저장되지 않았습니다. 전송될 데이터:', JSON.stringify(meta, null, 2));
-        else { notice('ok', editing ? '수정 완료' : '등록 완료'); if (!editing) form.reset(); }
+        if (!r.ok) notice('err', 'Save failed', ` — ${r.error}`);
+        else if (r.mock) notice('ok', editing ? 'Mock update complete' : 'Mock save complete', ' — Not saved: no server connected yet. Data that would be sent:', JSON.stringify(meta, null, 2));
+        else { notice('ok', editing ? 'Updated' : 'Saved'); if (!editing) form.reset(); }
       } catch {
-        notice('err', '저장 실패', ' — 네트워크 오류. 입력값은 그대로니 다시 시도하세요.');
+        notice('err', 'Save failed', ' — Network error. Your input is kept; try again.');
       } finally {
         btn.disabled = false;
         btn.textContent = label;
@@ -342,8 +342,8 @@ const pages = {
     for (const k in data) if (f[k]) f[k].value = data[k];
 
     const preview = () => {
-      document.getElementById('pv-slogan').textContent = f.heroSlogan.value;
-      document.getElementById('pv-btn').textContent = f.heroButton.value;
+      document.getElementById('pv-slogan').textContent = f.heroSloganEn.value; // 사이트 기본 언어 = 영어
+      document.getElementById('pv-btn').textContent = f.heroButtonEn.value;
     };
     form.addEventListener('input', preview);
     preview();
@@ -355,10 +355,10 @@ const pages = {
       btn.disabled = true;
       try {
         const r = await contentApi.save(next);
-        if (!r.ok) notice('err', '저장 실패', ` — ${r.error}`);
-        else notice('ok', r.mock ? '모의 저장 완료' : '저장 완료', r.mock ? ' — 서버 연결 전이라 홈 화면에 반영되지 않습니다. 전송될 데이터:' : '', r.mock ? JSON.stringify(next, null, 2) : '');
+        if (!r.ok) notice('err', 'Save failed', ` — ${r.error}`);
+        else notice('ok', r.mock ? 'Mock save complete' : 'Saved', r.mock ? ' — Not applied to the home page: no server connected yet. Data that would be sent:' : '', r.mock ? JSON.stringify(next, null, 2) : '');
       } catch {
-        notice('err', '저장 실패', ' — 네트워크 오류. 다시 시도하세요.');
+        notice('err', 'Save failed', ' — Network error. Try again.');
       } finally {
         btn.disabled = false;
       }

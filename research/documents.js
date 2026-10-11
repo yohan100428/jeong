@@ -2,7 +2,7 @@
 // 본문: research/content/<slug>.md · 첨부파일: research/files/
 // status: 'published' 만 공개 사이트에 노출. 'draft' 는 로컬(file://, localhost) 또는 ?draft=1 에서만 보임.
 
-const RESEARCH_CATEGORIES = ['공기역학', '기계공학', '동력계', '전자공학'];
+const RESEARCH_CATEGORIES = ['Aerodynamics', 'Mechanical', 'Powertrain', 'Electronics'];
 
 // 프로젝트 페이지가 생기면 여기에 연결: { 'K-01': '../projects/k01.html' }
 const PROJECT_PAGES = {};
@@ -11,10 +11,10 @@ const RESEARCH_DOCS = [
   {
     id: 'demo-001',
     slug: 'rear-wing-aoa-aero',
-    title: '리어윙 받음각에 따른 공력 특성 분석',
+    title: 'Aerodynamic Characteristics of a Rear Wing by Angle of Attack',
     author: ['JEONG MOTORS'],
-    category: '공기역학',
-    documentType: '실험 보고서',
+    category: 'Aerodynamics',
+    documentType: 'Test Report',
     createdAt: '2026-10-09',
     keywords: ['CFD', 'Aerodynamics'],
     version: '0.1',
@@ -23,10 +23,10 @@ const RESEARCH_DOCS = [
   {
     id: 'demo-002',
     slug: 'k01-steering-geometry',
-    title: 'K-01 조향계 기하학적 설계 검토',
+    title: 'K-01 Steering Geometry Design Review',
     author: ['JEONG MOTORS'],
-    category: '기계공학',
-    documentType: '기술 보고서',
+    category: 'Mechanical',
+    documentType: 'Technical Report',
     createdAt: '2026-10-09',
     keywords: ['K-01', 'Steering', 'Geometry'],
     projectId: 'K-01',
@@ -37,10 +37,10 @@ const RESEARCH_DOCS = [
   {
     id: 'demo-003',
     slug: 'k01-engine-cvt-compat',
-    title: 'K-01 엔진 및 CVT 호환성 검토',
+    title: 'K-01 Engine and CVT Compatibility Review',
     author: ['JEONG MOTORS'],
-    category: '동력계',
-    documentType: '기술 검토',
+    category: 'Powertrain',
+    documentType: 'Technical Review',
     createdAt: '2026-10-09',
     keywords: ['K-01', 'Powertrain', 'CVT'],
     projectId: 'K-01',
@@ -48,7 +48,7 @@ const RESEARCH_DOCS = [
     status: 'draft', // UI 검증용 샘플
   },
   /* 첨부파일 예시:
-  attachments: [{ name: '보고서 PDF', url: 'files/k01-steering.pdf', type: 'PDF' }],
+  attachments: [{ name: 'Report PDF', url: 'files/k01-steering.pdf', type: 'PDF' }],
   */
 ];
 
@@ -65,7 +65,7 @@ const DOCS = RESEARCH_DOCS
 // 검색: 공백으로 나눈 모든 단어가 포함돼야 일치. 대소문자 무시.
 // ponytail: 클라이언트 전체 스캔, 자료 수백 건 넘으면 서버/인덱스 검색으로 교체
 function researchMatches(doc, query, category) {
-  if (category && category !== '전체' && doc.category !== category) return false;
+  if (category && category !== 'All' && doc.category !== category) return false;
   const hay = [doc.title, doc.titleEn, doc.abstract, doc.category, doc.documentType, ...doc.author, ...doc.keywords]
     .filter(Boolean).join(' ').toLowerCase();
   return query.toLowerCase().split(/\s+/).filter(Boolean).every(t => hay.includes(t));

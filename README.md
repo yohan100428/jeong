@@ -2,6 +2,10 @@
 
 정적 사이트 (HTML/CSS/JS, 빌드 없음). `index.html` 더블클릭으로 바로 확인.
 
+## 언어 · 글꼴
+- 기본 언어는 영어. 헤더의 EN/KO 선택에서 KO 를 고르면 `data-ko="한국어"` 속성이 있는 요소만 한국어로 바뀜
+- 글꼴은 `fonts/Bungee-Regular.ttf` (라틴 전용). 한글은 Pretendard 로 대체 표시. 바꾸려면 `css/style.css` 의 `body` font
+
 ## 구조
 - `index.html` 메인 (상단 메뉴: 햄버거 · 로고 · 언어 · 프로필)
 - `css/style.css` 공용 스타일 · `js/main.js` 메뉴/언어 전환
