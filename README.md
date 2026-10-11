@@ -3,12 +3,12 @@
 정적 사이트 (HTML/CSS/JS, 빌드 없음). `index.html` 더블클릭으로 바로 확인.
 
 ## 언어 · 글꼴
-- 기본 언어는 영어. 헤더의 EN/KO 선택에서 KO 를 고르면 `data-ko="한국어"` 속성이 있는 요소만 한국어로 바뀜
-- 글꼴은 `fonts/Bungee-Regular.ttf` (라틴 전용). 한글은 Pretendard 로 대체 표시. 바꾸려면 `css/style.css` 의 `body` font
+- 사이트 문구는 영어만 사용 (개발 단계). 언어 전환 기능 없음
+- 글꼴은 `fonts/Bungee-Regular.ttf` (라틴 전용). 바꾸려면 `css/style.css` 의 `body` font
 
 ## 구조
 - `index.html` 메인 (상단 메뉴: 햄버거 · 로고 · 언어 · 프로필)
-- `css/style.css` 공용 스타일 · `js/main.js` 메뉴/언어 전환
+- `css/style.css` 공용 스타일 · `js/main.js` 메뉴/로그인 팝업
 - `research/` 연구자료실 (Research Library)
   - `documents.js` **자료 데이터** — 새 자료는 여기에 객체 하나 추가
   - `content/<slug>.md` 본문 (Markdown, `$수식$` LaTeX 지원)

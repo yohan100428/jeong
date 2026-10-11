@@ -82,10 +82,8 @@ const contentApi = {
   // 서버: GET /api/content  — 현재 홈 화면 문구를 그대로 반환 (서버 연결 시 index.html 도 이 값을 읽도록 변경)
   async get() {
     return {
-      heroSlogan: '브랜드 슬로건을 여기에 입력하세요.',
-      heroSloganEn: 'Enter your brand slogan here.',
-      heroButton: '연구자료 보기',
-      heroButtonEn: 'Research Library',
+      heroSlogan: 'Enter your brand slogan here.',
+      heroButton: 'Research Library',
       footer: '© 2026 JEONG MOTORS. All rights reserved.',
     };
   },

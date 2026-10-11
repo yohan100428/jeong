@@ -11,7 +11,7 @@
 //
 // 실제 인증 도입 시: adminMode.isAdmin 을 서버 권한 확인 결과로 교체.
 // 상태 변경 알림: window.addEventListener('adminchange', e => e.detail.isAdmin)
-// main.js 다음에 로드해야 함 (lang, profile, drawer 사용).
+// main.js 다음에 로드해야 함 (profile, drawer 사용).
 // =====================================================================
 
 document.head.insertAdjacentHTML('beforeend', `<style>
@@ -30,7 +30,6 @@ body.admin .profile-btn { color: var(--accent-hi); }
   .logo { font-size: 1.1rem; letter-spacing: .2em; }
   .actions { gap: 4px; }
   .actions .icon-btn { padding: 4px; }
-  .lang { padding: 4px 2px; }
   .admin-badge, .admin-switch .label { display: none; }
   .admin-switch .track { width: 30px; height: 18px; }
   .admin-switch .thumb { width: 14px; height: 14px; }
@@ -45,7 +44,7 @@ body.admin .profile-btn { color: var(--accent-hi); }
 
   const actions = document.querySelector('.actions');
   profile.insertAdjacentHTML('beforebegin', '<span class="admin-badge" hidden>Administrator</span>');
-  lang.insertAdjacentHTML('beforebegin', `
+  actions.insertAdjacentHTML('afterbegin', `
     <button type="button" class="admin-switch" role="switch" aria-checked="false" aria-label="Admin mode (dev)">
       <span class="track" aria-hidden="true"><span class="thumb"></span></span><span class="label" aria-hidden="true">Admin</span>
     </button>`);

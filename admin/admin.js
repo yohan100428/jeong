@@ -342,8 +342,8 @@ const pages = {
     for (const k in data) if (f[k]) f[k].value = data[k];
 
     const preview = () => {
-      document.getElementById('pv-slogan').textContent = f.heroSloganEn.value; // 사이트 기본 언어 = 영어
-      document.getElementById('pv-btn').textContent = f.heroButtonEn.value;
+      document.getElementById('pv-slogan').textContent = f.heroSlogan.value;
+      document.getElementById('pv-btn').textContent = f.heroButton.value;
     };
     form.addEventListener('input', preview);
     preview();

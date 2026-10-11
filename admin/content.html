@@ -6,7 +6,6 @@
 <title>Content Management | JEONG MOTORS</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="Content Management (Admin)">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../research/research.css">
 <link rel="stylesheet" href="../shop/shop.css">
@@ -20,10 +19,6 @@
     </button>
     <a class="logo" href="../index.html">JEONG</a>
     <div class="actions">
-      <select class="lang" aria-label="Language">
-        <option value="en">EN</option>
-        <option value="ko">KO</option>
-      </select>
       <button type="button" class="icon-btn profile-btn" aria-label="Profile" aria-haspopup="dialog" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
       </button>
@@ -36,11 +31,11 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <nav>
-    <a href="../index.html" data-ko="홈">Home</a>
-    <a href="../shop/index.html" data-ko="부품 스토어">Parts Store</a>
-    <span class="soon" aria-disabled="true"><span data-ko="프로젝트">Projects</span> <small data-ko="준비중">Soon</small></span>
-    <a href="../research/index.html" data-ko="논문">Research</a>
-    <span class="soon" aria-disabled="true"><span data-ko="문의">Contact</span> <small data-ko="준비중">Soon</small></span>
+    <a href="../index.html">Home</a>
+    <a href="../shop/index.html">Parts Store</a>
+    <span class="soon" aria-disabled="true"><span>Projects</span> <small>Soon</small></span>
+    <a href="../research/index.html">Research</a>
+    <span class="soon" aria-disabled="true"><span>Contact</span> <small>Soon</small></span>
   </nav>
 </dialog>
 
@@ -55,10 +50,8 @@
     <form id="content-form" class="upload">
       <fieldset>
         <legend>Home hero</legend>
-        <label>Slogan (KO)<input name="heroSlogan"></label>
-        <label>Slogan (EN)<input name="heroSloganEn"></label>
-        <label>Button label (KO)<input name="heroButton"></label>
-        <label>Button label (EN)<input name="heroButtonEn"></label>
+        <label>Slogan<input name="heroSlogan"></label>
+        <label>Button label<input name="heroButton"></label>
         <label class="full">Footer copyright<input name="footer"></label>
       </fieldset>
       <fieldset>

@@ -6,20 +6,6 @@ const drawer = document.getElementById('drawer');
 document.querySelector('.menu-btn').addEventListener('click', () => drawer.showModal());
 drawer.addEventListener('click', e => { if (e.target === drawer || e.target.closest('a, .close')) drawer.close(); });
 
-// 언어 전환: 기본 영어. data-ko 속성이 있는 요소만 한국어로 바뀜
-const lang = document.querySelector('.lang');
-function setLang(l) {
-  document.documentElement.lang = l;
-  document.querySelectorAll('[data-ko]').forEach(el => {
-    el.dataset.en ??= el.textContent;
-    el.textContent = l === 'ko' ? el.dataset.ko : el.dataset.en;
-  });
-  lang.value = l;
-  try { localStorage.setItem('lang', l); } catch {}
-}
-lang.addEventListener('change', () => setLang(lang.value));
-try { if (localStorage.getItem('lang') === 'ko') setLang('ko'); } catch {}
-
 // ---- 로그인 (모의) ----
 // ponytail: 아무 값이나 통과하는 가짜 로그인, 이름만 localStorage 에 저장. 실제 인증 붙일 때 auth 만 서버 세션으로 교체.
 const auth = {
