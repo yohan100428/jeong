@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership | JEONG MOTORS</title>
+<meta name="description" content="JEONG MOTORS Membership — Join the Garage. Open Access is free; GARAGE+ is coming soon.">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&display=swap">
+<link rel="stylesheet" href="membership.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <button class="icon-btn menu-btn" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a class="logo" href="../index.html">JEONG</a>
+    <div class="actions">
+      <button type="button" class="icon-btn profile-btn" aria-label="Profile" aria-haspopup="dialog" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog id="drawer" aria-label="Menu">
+  <button class="icon-btn close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../shop/index.html">Parts Store</a>
+    <span class="soon" aria-disabled="true"><span>Projects</span> <small>Soon</small></span>
+    <a href="../research/index.html">Research</a>
+    <a href="index.html">Membership</a>
+    <span class="soon" aria-disabled="true"><span>Contact</span> <small>Soon</small></span>
+  </nav>
+</dialog>
+
+<main class="wrap membership">
+  <section class="m-hero">
+    <p class="m-label">JEONG MEMBERSHIP / EARLY ACCESS</p>
+    <h1>JOIN THE <span>GARAGE.</span></h1>
+    <svg class="m-scribble" viewBox="0 0 360 18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true"><path d="M4 12c40-10 70 8 110-2s70-8 110 0 80 6 132-4"/></svg>
+    <p class="lead">More than a membership. Build, learn, and grow with JEONG.</p>
+    <div class="m-sticker" aria-hidden="true">DRIVING<br>IS JOY.</div>
+  </section>
+
+  <fieldset class="billing">
+    <legend class="sr-only">Billing period</legend>
+    <input type="radio" name="billing" id="bill-m" value="monthly" checked><label for="bill-m">MONTHLY</label>
+    <input type="radio" name="billing" id="bill-y" value="yearly"><label for="bill-y">YEARLY</label>
+  </fieldset>
+
+  <h2 class="sr-only">Plans</h2>
+  <div id="plans" class="plans"></div>
+
+  <section class="m-open">
+    <h2>KNOWLEDGE STAYS OPEN.</h2>
+    <p>Great engineering should be shared. Our core research and selected technical resources remain free. Membership helps us build better tools and expand what's possible.</p>
+  </section>
+
+  <section class="m-faq">
+    <h2>FAQ</h2>
+    <details name="faq">
+      <summary>What stays free?</summary>
+      <p>Public research papers, open engineering documentation, selected 2D drawings and public development logs stay free under Open Access.</p>
+    </details>
+    <details name="faq">
+      <summary>What is included in GARAGE+?</summary>
+      <p>The proposed benefits are an extended 3D CAD library, premium engineering tools, advanced software features, downloadable project resources and exclusive engineering updates. This list is not final and may change before launch.</p>
+    </details>
+    <details name="faq">
+      <summary>When will membership launch?</summary>
+      <p>There is no launch date yet. GARAGE+ is in early planning, and pricing has not been announced.</p>
+    </details>
+    <details name="faq">
+      <summary>Can I change my plan later?</summary>
+      <p>Open Access needs no commitment. How plan changes will work for GARAGE+ will be confirmed before it launches.</p>
+    </details>
+  </section>
+
+  <p class="m-motto">DRIVING IS <span>JOY.</span></p>
+</main>
+
+<footer><div class="wrap">© 2026 JEONG MOTORS. All rights reserved.</div></footer>
+<script src="../js/main.js"></script>
+<script src="../js/dev-admin.js"></script> <!-- 임시: 개발용 관리자 모드, 삭제 예정 -->
+<script src="membership.js"></script>
+</body>
+</html>

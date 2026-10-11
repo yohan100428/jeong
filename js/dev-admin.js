@@ -5,7 +5,7 @@
 // 삭제 방법:
 //   1) 이 파일 삭제
 //   2) 각 페이지의 <script src=".../js/dev-admin.js"></script> 한 줄 삭제
-//      (index.html, login.html, research/index.html, research/doc.html, admin/*.html)
+//      (index.html, login.html, research/index.html, research/*.html, shop/*.html, membership/index.html, admin/*.html)
 //   삭제 후 admin/ 화면은 자동으로 숨겨짐 (실제 인증 붙이면 admin/admin.js 의 applyGate 교체)
 //   main.js 는 window.adminMode 가 없으면 알아서 무시하므로 수정 불필요.
 //

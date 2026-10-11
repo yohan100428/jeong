@@ -19,6 +19,9 @@
   - `products.js` **상품 데이터** — 새 상품은 여기에 객체 하나 추가 (검토 상태·사양 출처 규칙은 파일 상단 주석)
   - `index.html` 목록/검색 · `item.html?slug=...` 상세 · 이미지는 `shop/images/<slug>/`
   - 현재 3개 상품은 DEMO 샘플 (전부 Under Review, 후기 없음)
+- `membership/` 멤버십(구독) 페이지 — **UI 프로토타입, 결제·가입 처리 없음**
+  - `membership.js` 맨 위 `PLANS` 가 요금제 데이터 (가격·혜택·버튼). 결제 연결 지점은 파일 상단 주석
+  - 진입: 햄버거 메뉴 Membership, 프로필 팝업의 Membership
 - `admin/` 관리자 화면 (관리자 모드에서만 보임, **화면만 동작 · 저장 안 됨**)
   - `index.html` 대시보드 · `research.html` 자료 관리(공개 전환·수정·삭제) · `upload.html` 자료 업로드/수정 · `products.html` 상품 관리 · `product.html` 상품 등록/수정 · `content.html` 홈 문구
   - `api.js` **서버 연결 지점** — 서버 붙일 때 이 파일만 교체 (할 일·API 주소는 파일 상단 주석)

@@ -93,6 +93,9 @@ header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: 
 .pop-btn:hover { border-color: var(--accent-hi); }
 .pop-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 .pop-btn.primary:hover { border-color: var(--accent-hi); }
+.pop-link { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: .9rem; }
+.pop-link span { color: var(--muted); font-family: var(--font-sub); font-size: .8rem; white-space: nowrap; }
+.pop-link:hover, .pop-link:hover span { color: var(--accent-hi); }
 
 /* 로그인 페이지 */
 .login { display: grid; place-items: center; min-height: calc(100vh - 220px); padding-block: 48px; }

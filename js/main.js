@@ -18,6 +18,7 @@ const auth = {
 document.body.insertAdjacentHTML('beforeend', `
   <div id="profile-pop" class="profile-pop" popover role="dialog" aria-label="Account">
     <p class="pop-name"></p><p class="pop-sub"></p><div class="pop-action"></div>
+    <a class="pop-link" href="${new URL('membership/index.html', ROOT).href}">Membership <span>Join →</span></a>
   </div>`);
 const pop = document.getElementById('profile-pop');
 profile.popoverTargetElement = pop;

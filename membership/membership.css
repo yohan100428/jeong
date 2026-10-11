@@ -1,0 +1,80 @@
+/* Membership — 스트리트/펑키 톤. 사이트 공용 토큰(style.css) + 이 페이지 전용 포인트 색 */
+.membership {
+  --lime: #C6FF3D;                                   /* Electric Lime: 아껴서 사용 */
+  --font-tech: "Chakra Petch", ui-monospace, monospace; /* 기술 라벨·가격 */
+  max-width: var(--max);
+  padding-block: 72px 96px;
+  overflow-x: clip;
+}
+.membership p, .membership li, .membership summary + p { font-family: var(--font-sub); }
+
+/* Hero — 살짝 비대칭 */
+.m-hero { position: relative; padding: 0 min(22vw, 260px) 0 0; }
+.m-label { display: inline-block; margin: 0 0 20px; padding: 6px 12px; border: 2px solid var(--lime); border-radius: 6px; color: var(--lime); font-family: var(--font-tech) !important; font-weight: 700; font-size: .8rem; letter-spacing: .12em; transform: rotate(-2deg); }
+.m-hero h1 { margin: 0; font-size: clamp(2.8rem, 10vw, 7rem); line-height: .95; letter-spacing: -.01em; }
+.m-hero h1 span { color: var(--accent-hi); }
+.m-scribble { display: block; width: min(360px, 60%); height: 18px; margin-top: 10px; color: var(--lime); }
+.m-hero .lead { max-width: 46ch; margin: 28px 0 0; color: var(--muted); font-size: 1.15rem; }
+.m-sticker { position: absolute; right: 0; top: 12px; width: min(20vw, 220px); aspect-ratio: 1; display: grid; place-items: center; text-align: center; padding: 16px; border: 3px solid var(--fg); border-radius: 50%; background: var(--accent); font-size: clamp(.7rem, 1.8vw, 1.15rem); line-height: 1.15; transform: rotate(12deg); box-shadow: 6px 6px 0 var(--lime); }
+
+/* 결제 주기 토글 (radio + label: 키보드 기본 지원) */
+.billing { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; margin: 72px 0 0; padding: 4px; border: 3px solid var(--fg); border-radius: 999px; background: var(--card); min-inline-size: 0; }
+.billing::before { content: ""; position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 999px; background: var(--accent); transition: transform .25s cubic-bezier(.22,1,.36,1); }
+.billing:has(#bill-y:checked)::before { transform: translateX(100%); }
+.billing input { position: absolute; opacity: 0; pointer-events: none; }
+.billing label { position: relative; padding: 10px 28px; text-align: center; font-family: var(--font-tech); font-weight: 700; letter-spacing: .1em; font-size: .9rem; color: var(--muted); cursor: pointer; transition: color .2s; }
+.billing input:checked + label { color: #fff; }
+.billing input:focus-visible + label { outline: 2px solid var(--lime); outline-offset: 2px; border-radius: 999px; }
+
+/* 요금제 카드: 두꺼운 테두리 + 하드 섀도 */
+.plans { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; margin-top: 32px; align-items: start; }
+.plan { position: relative; display: flex; flex-direction: column; padding: 32px 28px; background: var(--card); border: 3px solid var(--line); border-radius: 24px; transition: transform .2s, box-shadow .2s, border-color .2s; }
+.plan:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--line); }
+.plan.featured { border-color: var(--accent-hi); margin-top: -12px; }
+.plan.featured:hover { box-shadow: 8px 8px 0 var(--accent); }
+.plan-tag { position: absolute; top: -16px; right: 20px; padding: 6px 12px; background: var(--lime); color: #111; border-radius: 6px; font-family: var(--font-tech); font-weight: 700; font-size: .75rem; letter-spacing: .1em; transform: rotate(3deg); }
+.plan-no { margin: 0; color: var(--muted); font-family: var(--font-tech) !important; font-weight: 700; letter-spacing: .15em; font-size: .8rem; }
+.plan h3 { margin: 6px 0 20px; font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1; }
+.plan-price { margin: 0; font-family: var(--font-tech) !important; font-weight: 700; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1; }
+.plan.featured .plan-price { color: var(--accent-hi); }
+.plan-note { margin: 8px 0 0; color: var(--muted); font-family: var(--font-tech) !important; font-size: .85rem; }
+.plan-list-title { margin: 28px 0 8px; padding-top: 20px; border-top: 2px dashed var(--line); color: var(--muted); font-family: var(--font-tech) !important; font-weight: 700; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+.plan ul { list-style: none; margin: 0 0 28px; padding: 0; }
+.plan li { position: relative; padding: 7px 0 7px 26px; }
+.plan li::before { content: ""; position: absolute; left: 2px; top: 14px; width: 12px; height: 6px; border-left: 3px solid var(--accent-hi); border-bottom: 3px solid var(--accent-hi); transform: rotate(-45deg); }
+.plan-btn { margin-top: auto; padding: 14px; border: 3px solid var(--fg); border-radius: 14px; background: none; color: var(--fg); font: inherit; font-size: 1rem; text-align: center; cursor: pointer; transition: background .2s, color .2s, transform .1s; }
+.plan-btn:hover { background: var(--fg); color: var(--bg); }
+.plan-btn:active { transform: scale(.98); }
+.plan.featured .plan-btn { background: var(--accent); border-color: var(--accent-hi); }
+.plan.featured .plan-btn:hover { background: var(--accent-hi); color: #111; }
+.plan-msg { margin: 12px 0 0; color: var(--muted); font-size: .85rem; }
+
+/* 철학 */
+.m-open { margin-top: 112px; padding: 48px 32px; border: 3px solid var(--fg); border-radius: 24px; background: var(--accent); transform: rotate(-.6deg); }
+.m-open h2 { margin: 0; font-size: clamp(1.8rem, 6vw, 3.6rem); line-height: 1; }
+.m-open p { max-width: 60ch; margin: 20px 0 0; font-size: 1.1rem; color: #E9E2F0; }
+
+/* FAQ (native details) */
+.m-faq { margin-top: 112px; padding-block: 0; }
+.m-faq h2 { margin: 0 0 20px; font-size: clamp(1.6rem, 5vw, 2.4rem); }
+.m-faq details { border: 3px solid var(--line); border-radius: 16px; background: var(--card); margin-bottom: 12px; transition: border-color .2s; }
+.m-faq details[open], .m-faq details:hover { border-color: var(--accent-hi); }
+.m-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 22px; cursor: pointer; list-style: none; }
+.m-faq summary::-webkit-details-marker { display: none; }
+.m-faq summary::after { content: "+"; font-family: var(--font-tech); font-size: 1.6rem; line-height: 1; color: var(--lime); transition: transform .2s; }
+.m-faq details[open] summary::after { transform: rotate(45deg); }
+.m-faq details p { margin: 0; padding: 0 22px 20px; color: var(--muted); max-width: 70ch; }
+
+.m-motto { margin: 96px 0 0; text-align: center; font-family: Bungee, sans-serif !important; font-size: clamp(1.2rem, 4vw, 2rem); color: var(--muted); }
+.m-motto span { color: var(--lime); }
+
+@media (max-width: 760px) {
+  .membership { padding-block: 48px 72px; }
+  .m-hero { padding-right: 0; }
+  .m-sticker { position: static; width: 120px; margin: 28px 0 0 auto; font-size: .7rem; }
+  .billing { margin-top: 48px; }
+  .plans { grid-template-columns: 1fr; gap: 36px; }
+  .plan.featured { margin-top: 0; }
+  .m-open, .m-faq { margin-top: 72px; }
+  .m-open { padding: 32px 22px; }
+}
