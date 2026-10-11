@@ -159,6 +159,9 @@ body:has(.shop) { overflow-x: clip; }
 .acc summary::after { content: "+"; color: var(--lime); font-size: 1.4rem; line-height: 1; transition: transform .2s; }
 .acc[open] summary::after { transform: rotate(45deg); }
 .acc .bullets, .acc .table-wrap { margin: 0 20px 18px; }
+.fig { margin: 0 0 20px; border: 3px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--card); }
+.fig img { width: 100%; }
+.fig figcaption { padding: 12px 18px; color: var(--muted); font-family: var(--font-sub); font-size: .9rem; }
 .table-wrap { overflow-x: auto; }
 .spec { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .spec th, .spec td { padding: 11px 8px; border-top: 2px dashed var(--line); text-align: left; }

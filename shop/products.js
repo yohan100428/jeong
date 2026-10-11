@@ -31,112 +31,50 @@ const PRODUCT_CATEGORIES = [
 
 const PRODUCTS = [
   {
-    id: 'demo-p001',
+    id: 'p001',
     sku: 'JG-PRV-0001',          // JEONG 부품 번호 (PRV = 미리보기)
-    slug: 'demo-rack-pinion-gearbox',
-    demo: true,                  // UI 검증용 미리보기 — 실제 판매 상품 아님
+    slug: 'cvt-drive-kit',
+    demo: true,                  // 미리보기 — 아직 판매하지 않음 (판매 시작 시 false + availability 변경)
     featured: true,              // 스토어 홈 "FROM THE GARAGE" 에 노출
-    addedAt: '2026-10-09',       // 'Newest' 정렬용
-    name: 'Rack and Pinion Steering Gearbox',
-    summary: 'Steering gearbox for small vehicles.',
-    description: 'Preview entry used to check the store layout. Details will be replaced when a real product is listed.',
-    category: 'steering',
+    addedAt: '2026-10-11',       // 'Newest' 정렬용
+    name: 'CVT Drive Kit',
+    summary: 'Belt-driven continuously variable transmission kit.',
+    description: 'Driver and driven pulleys, drive belt, backplate, cover and mounting hardware, as pictured.',
+    category: 'drivetrain',      // CVT = 변속기 -> DRIVETRAIN
     productType: 'Component',    // Component | Tool | Resource
     manufacturer: '',            // 비우면 "Not specified"
     seller: '',
     sourceType: '',
     affiliate: false,
-    price: null,                 // null = 가격 미정 (미리보기는 가격 표시 안 함)
+    price: null,                 // null = 가격 미정
     currency: 'KRW',
-    images: [],
+    images: [                    // 첫 장 = 대표 이미지 (카드·상세 상단)
+      'images/cvt-drive-kit/cvt-1.jpg', // 조립 상태 + 커버
+      'images/cvt-drive-kit/cvt-2.jpg', // 구성품 펼친 모습
+    ],
+    figures: [                   // 사양 섹션 상단에 설명과 함께 보여줄 그림
+      { src: 'images/cvt-drive-kit/cvt-2.jpg', caption: 'Kit contents as pictured: pulleys, belt, backplate, cover, sprocket and hardware.' },
+    ],
     availability: 'coming-soon',
     verification: { status: 'unverified', evidence: '' },
-    specs: [                     // group: 아코디언 묶음 이름
-      { group: 'Manufacturer specifications', label: 'Type', value: 'Rack and pinion', source: 'manufacturer' },
-      { group: 'Manufacturer specifications', label: 'Rack travel', value: '', source: 'manufacturer' },
-      { group: 'Dimensions', label: 'Overall length', value: '', source: 'manufacturer' },
-      { group: 'Weight', label: 'Weight', value: '', source: 'manufacturer' },
-      { group: 'Material', label: 'Housing material', value: '', source: 'manufacturer' },
+    specs: [                     // group: 아코디언 묶음 이름. 모르는 값은 '' (NOT PROVIDED 로 표시)
+      { group: 'Manufacturer specifications', label: 'Type', value: 'Belt-driven CVT', source: 'manufacturer' },
+      { group: 'Manufacturer specifications', label: 'Ratio range', value: '', source: 'manufacturer' },
+      { group: 'Mechanical interfaces', label: 'Driver bore', value: '', source: 'manufacturer' },
+      { group: 'Mechanical interfaces', label: 'Driven bore', value: '', source: 'manufacturer' },
+      { group: 'Mechanical interfaces', label: 'Output sprocket', value: '', source: 'manufacturer' },
+      { group: 'Dimensions', label: 'Belt width', value: '', source: 'manufacturer' },
+      { group: 'Dimensions', label: 'Center distance', value: '', source: 'manufacturer' },
+      { group: 'Weight', label: 'Kit weight', value: '', source: 'manufacturer' },
     ],
-    requirements: ['K-01 fitment has not been verified.'], // 호환·장착 조건
-    notes: [                     // kind: measurement | assembly | testing | limitation
-      { kind: 'limitation', text: 'Preview data. Values are placeholders, not real specifications.', source: 'jeong' },
-    ],
+    requirements: ['Engine compatibility has not been verified.', 'K-01 fitment has not been verified.'], // 호환·장착 조건
+    notes: [],                   // { kind: measurement | assembly | testing | limitation, text, source: 'jeong' | 'manufacturer' }
     projects: [],                // 확인된 호환만: { slug: 'k-01', evidence: '...' }
     documentation: [],           // { label, kind: 'manual'|'drawing'|'cad'|'report'|'install', url }
-    relatedResearch: ['k01-steering-geometry'], // research/documents.js 의 slug (공개된 자료만 링크)
-    relatedProducts: ['demo-digital-torque-wrench'],
+    relatedResearch: ['k01-engine-cvt-compat'], // research/documents.js 의 slug (공개된 자료만 링크)
+    relatedProducts: [],
     video: '',                   // YouTube URL. 비우면 영상 영역 숨김
     actionImages: [],            // 실제 사용 사진
-  },
-  {
-    id: 'demo-p002',
-    sku: 'JG-PRV-0002',
-    slug: 'demo-cvt-drive-belt',
-    demo: true,
-    featured: true,
-    addedAt: '2026-10-09',
-    name: 'CVT Drive Belt',
-    summary: 'CVT belt for small engines.',
-    description: 'Preview entry used to check the store layout. Details will be replaced when a real product is listed.',
-    category: 'powertrain',
-    productType: 'Component',
-    manufacturer: '',
-    seller: '',
-    sourceType: '',
-    affiliate: false,
-    price: null,
-    currency: 'KRW',
-    images: [],
-    availability: 'coming-soon',
-    verification: { status: 'unverified', evidence: '' },
-    specs: [
-      { group: 'Dimensions', label: 'Belt width', value: '', source: 'manufacturer' },
-      { group: 'Dimensions', label: 'Circumference', value: '', source: 'manufacturer' },
-      { group: 'Material', label: 'Material', value: '', source: 'manufacturer' },
-    ],
-    requirements: ['Engine compatibility has not been verified.'],
-    notes: [{ kind: 'limitation', text: 'Preview data. Values are placeholders, not real specifications.', source: 'jeong' }],
-    projects: [],
-    documentation: [],
-    relatedResearch: ['k01-engine-cvt-compat'],
-    relatedProducts: [],
-    video: '',
-    actionImages: [],
-  },
-  {
-    id: 'demo-p003',
-    sku: 'JG-PRV-0003',
-    slug: 'demo-digital-torque-wrench',
-    demo: true,
-    featured: true,
-    addedAt: '2026-10-10',
-    name: 'Digital Torque Wrench',
-    summary: 'Tool for managing fastening torque.',
-    description: 'Preview entry used to check the store layout. Details will be replaced when a real product is listed.',
-    category: 'tools',
-    productType: 'Tool',
-    manufacturer: '',
-    seller: '',
-    sourceType: '',
-    affiliate: false,
-    price: null,
-    currency: 'KRW',
-    images: [],
-    availability: 'coming-soon',
-    verification: { status: 'unverified', evidence: '' },
-    specs: [
-      { group: 'Manufacturer specifications', label: 'Measuring range', value: '', source: 'manufacturer' },
-      { group: 'Manufacturer specifications', label: 'Accuracy', value: '', source: 'manufacturer' },
-    ],
-    requirements: [],
-    notes: [{ kind: 'limitation', text: 'Preview data. Values are placeholders, not real specifications.', source: 'jeong' }],
-    projects: [],
-    documentation: [],
-    relatedResearch: [],
-    relatedProducts: ['demo-rack-pinion-gearbox'],
-    video: '',
-    actionImages: [],
   },
 ];
 

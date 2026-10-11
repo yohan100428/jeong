@@ -3,16 +3,21 @@ const assert = require('assert');
 const { PRODUCTS: p, PRODUCT_CATEGORIES, catalogFilter: f, catalogSort: s, formatPrice, youtubeId } = require('./products.js');
 const ids = list => list.map(x => x.id);
 
-// 필터
-assert.deepStrictEqual(ids(f(p, {})), ['demo-p001', 'demo-p002', 'demo-p003']);
-assert.deepStrictEqual(ids(f(p, { q: 'CVT' })), ['demo-p002']);                 // 대소문자 무시
-assert.deepStrictEqual(ids(f(p, { q: 'jg-prv-0003' })), ['demo-p003']);         // 부품 번호 검색
-assert.deepStrictEqual(ids(f(p, { cat: 'tools' })), ['demo-p003']);
-assert.deepStrictEqual(ids(f(p, { q: 'wrench', cat: 'steering' })), []);        // 검색 + 카테고리 동시
-assert.deepStrictEqual(ids(f(p, { types: ['Tool'] })), ['demo-p003']);
-assert.deepStrictEqual(ids(f(p, { verification: ['tested'] })), []);            // 검증된 상품 아직 없음
-assert.deepStrictEqual(ids(f(p, { availability: ['coming-soon'] })).length, 3);
-assert.deepStrictEqual(ids(f(p, { min: 1 })), []);                              // 가격 조건 -> 가격 미정 제외
+// 필터 (실제 상품 수와 무관하게 가짜 목록으로 로직 확인)
+const mk = (id, name, category, productType, extra = {}) => ({ id, name, sku: `SKU-${id}`, summary: '', manufacturer: '', category, productType,
+  availability: 'coming-soon', verification: { status: 'unverified' }, price: null, ...extra });
+const fake = [mk('a', 'Steering Gearbox', 'steering', 'Component'), mk('b', 'CVT Drive Kit', 'drivetrain', 'Component'),
+  mk('c', 'Torque Wrench', 'tools', 'Tool', { verification: { status: 'tested' }, availability: 'available' })];
+assert.deepStrictEqual(ids(f(fake, {})), ['a', 'b', 'c']);
+assert.deepStrictEqual(ids(f(fake, { q: 'cvt' })), ['b']);                       // 대소문자 무시
+assert.deepStrictEqual(ids(f(fake, { q: 'sku-c' })), ['c']);                     // 부품 번호 검색
+assert.deepStrictEqual(ids(f(fake, { cat: 'tools' })), ['c']);
+assert.deepStrictEqual(ids(f(fake, { q: 'wrench', cat: 'steering' })), []);      // 검색 + 카테고리 동시
+assert.deepStrictEqual(ids(f(fake, { types: ['Tool'] })), ['c']);
+assert.deepStrictEqual(ids(f(fake, { verification: ['tested'] })), ['c']);
+assert.deepStrictEqual(ids(f(fake, { availability: ['coming-soon'] })), ['a', 'b']);
+assert.deepStrictEqual(ids(f(fake, { min: 1 })), []);                            // 가격 조건 -> 가격 미정 제외
+assert.deepStrictEqual(ids(f(p, { cat: 'drivetrain' })), ['p001']);              // 실제 데이터: CVT 는 DRIVETRAIN
 
 // 정렬 (가짜 가격으로 로직만 확인)
 const priced = [{ id: 'a', name: 'B', price: 300 }, { id: 'b', name: 'A', price: null }, { id: 'c', name: 'C', price: 100, featured: true, addedAt: '2026-01-02' }];
@@ -36,6 +41,7 @@ for (const x of p) {
   for (const pr of x.projects) assert.ok(pr.evidence, `${x.slug}: 프로젝트 호환에는 evidence 필수`);
   for (const d of x.documentation) assert.ok(d.url, `${x.slug}: 문서에는 실제 url 필수`);
   if (x.sourceType === 'affiliate') assert.strictEqual(x.affiliate, true, `${x.slug}: 제휴 상품은 affiliate 공개 필수`);
+  for (const img of [...x.images, ...(x.figures || []).map(g => g.src)]) assert.ok(require('fs').existsSync(require('path').join(__dirname, img)), `${x.slug}: 이미지 파일 없음 ${img}`);
   if (x.demo) assert.notStrictEqual(x.availability, 'available', `${x.slug}: 미리보기 상품은 판매중으로 표시 불가`);
 }
 

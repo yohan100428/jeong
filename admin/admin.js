@@ -328,6 +328,7 @@ const pages = {
         price: f.price.value === '' ? null : Number(f.price.value),
         currency: f.currency.value,
         images: [...(editing?.images || []), ...imgFiles.map(path)],
+        figures: editing?.figures || [], // 폼에 없는 항목: 기존 값 유지
         availability: f.availability.value,
         verification: { status: f.verifyStatus.value, evidence: f.evidence.value.trim() },
         specs: [...specsBox.querySelectorAll('.spec-row')]

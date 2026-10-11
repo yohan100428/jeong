@@ -60,7 +60,8 @@ function render() {
   const groups = [...new Set(p.specs.map(s => s.group || 'Specifications'))];
   const specRow = s => `<tr><th scope="row">${esc(s.label)}</th><td>${s.value ? esc(s.value) : `<span class="na">${s.source === 'jeong' ? 'TBD' : 'NOT PROVIDED'}</span>`}</td>
     <td><span class="src src-${s.source}">${s.source === 'jeong' ? 'JEONG MEASURED' : 'MANUFACTURER'}</span></td></tr>`;
-  const specs = section('01 / SPECIFICATIONS', 'THE SPECS.',
+  const figures = (p.figures || []).map(g => `<figure class="fig"><img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy"><figcaption>${esc(g.caption)}</figcaption></figure>`).join('');
+  const specs = section('01 / SPECIFICATIONS', 'THE SPECS.', figures +
     (groups.length ? groups.map(g => `
       <details class="acc" open>
         <summary>${esc(g)}</summary>
