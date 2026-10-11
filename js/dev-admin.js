@@ -15,7 +15,7 @@
 // =====================================================================
 
 document.head.insertAdjacentHTML('beforeend', `<style>
-.admin-switch { display: flex; align-items: center; gap: 8px; padding: 6px 4px; background: none; border: 0; color: var(--muted); font: inherit; font-size: .8rem; cursor: pointer; }
+.admin-switch { display: flex; align-items: center; gap: 8px; padding: 6px 4px; background: none; border: 0; color: var(--muted); font-family: var(--font-sub); font: inherit; font-size: .8rem; cursor: pointer; }
 .admin-switch .track { position: relative; width: 36px; height: 20px; border-radius: 999px; background: #3A3640; transition: background .2s; }
 .admin-switch .thumb { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; }
 .admin-switch[aria-checked="true"] { color: var(--fg); }

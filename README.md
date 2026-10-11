@@ -4,7 +4,7 @@
 
 ## 언어 · 글꼴
 - 사이트 문구는 영어만 사용 (개발 단계). 언어 전환 기능 없음
-- 글꼴은 `fonts/Bungee-Regular.ttf` (라틴 전용). 바꾸려면 `css/style.css` 의 `body` font
+- 글꼴: 기본 `fonts/Bungee-Regular.ttf`, 작은 회색 글씨는 `fonts/SpaceGrotesk-VariableFont_wght.ttf` (`css/style.css` 의 `--font-sub`)
 
 ## 구조
 - `index.html` 메인 (상단 메뉴: 햄버거 · 로고 · 언어 · 프로필)
