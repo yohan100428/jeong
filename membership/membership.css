@@ -1,7 +1,5 @@
 /* Membership — 스트리트/펑키 톤. 사이트 공용 토큰(style.css) + 이 페이지 전용 포인트 색 */
 .membership {
-  --lime: #C6FF3D;                                   /* Electric Lime: 아껴서 사용 */
-  --font-tech: "Chakra Petch", ui-monospace, monospace; /* 기술 라벨·가격 */
   max-width: var(--max);
   padding-block: 72px 96px;
   overflow-x: clip;

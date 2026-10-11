@@ -3,6 +3,8 @@
 @font-face { font-family: "Space Grotesk"; src: url("../fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype"); font-weight: 300 700; font-display: swap; }
 
 :root {
+  --lime: #C6FF3D;  /* Electric Lime: 포인트용, 아껴서 사용 */
+  --font-tech: "Chakra Petch", ui-monospace, monospace; /* 기술 라벨·가격·번호 (해당 페이지에서 Google Fonts 로드) */
   --font-sub: "Space Grotesk", system-ui, sans-serif; /* 작은 회색 글씨(보조 설명)용 */
   /* 브랜드 테마: 블랙 + Tyrian Purple */
   --bg: #0B0A0D;

@@ -5,7 +5,7 @@
 const RESEARCH_CATEGORIES = ['Aerodynamics', 'Mechanical', 'Powertrain', 'Electronics'];
 
 // 프로젝트 페이지가 생기면 여기에 연결: { 'K-01': '../projects/k01.html' }
-const PROJECT_PAGES = {};
+const PROJECT_PAGES = { 'K-01': '../projects/project.html?slug=k-01' };
 
 const RESEARCH_DOCS = [
   {
