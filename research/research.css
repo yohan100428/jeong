@@ -69,7 +69,20 @@
 .prose pre code { background: none; padding: 0; }
 .prose .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
 
+/* PDF 읽기 영역 (doc.js loadPdf) */
+#doc .block > p { font-family: var(--font-sub); }
+#reader { scroll-margin-top: 88px; }
+.pdf-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 16px; }
+.block .pdf-bar .pdf-btn { padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: none; color: var(--fg); font-family: var(--font-tech); font-weight: 700; font-size: .72rem; letter-spacing: .08em; text-decoration: none; cursor: pointer; }
+.block .pdf-bar .pdf-btn:hover { border-color: var(--lime); color: var(--lime); }
+.block .pdf-bar .pdf-btn.fill { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.block .pdf-bar .pdf-btn.fill:hover { background: var(--lime); border-color: var(--lime); color: #111; }
+#pdf-count { margin-left: auto; color: var(--muted); font-family: var(--font-tech); font-weight: 700; font-size: .72rem; letter-spacing: .08em; }
+.pdf-view { display: grid; gap: 12px; padding: 12px; overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.pdf-view canvas { display: block; width: calc(100% * var(--zoom, 1)); max-width: none; height: auto; background: #fff; }
+
 @media (max-width: 600px) {
+  .pdf-view { padding: 6px; margin-inline: -8px; }
   .research { padding-block: 48px 72px; }
   .search { margin-top: 36px; }
   .item { padding: 20px 44px 20px 4px; }

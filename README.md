@@ -17,6 +17,7 @@
   - `content/<slug>.md` 본문 (Markdown, `$수식$` LaTeX 지원)
   - `files/` 첨부파일 (PDF, CAD, 데이터)
   - `index.html` 연구자료실 (Hero · 아카이브 검색/탭/정렬/목록·격자 · Open Engineering · 관련 프로젝트) · `doc.html?slug=...` 상세
+  - PDF 논문: PDF 를 `research/` 에 넣고 `documents.js` 에 `editions` 로 등록 (방법은 파일 상단 주석). 상세 페이지에서 바로 읽기·다운로드. 첫 논문 `JM-RP-0001` (`jm-rp-0001.html`)
   - `lab.css` 는 index.html 전용, `research.css` 는 상세·관리자 등이 함께 쓰는 공용 스타일
 
 - `shop/` 부품 스토어 (Parts Store) — **미리보기 단계: 결제·주문·재고 없음, 구매 버튼 비활성**

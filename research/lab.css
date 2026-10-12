@@ -81,6 +81,12 @@ body:has(.lab) { overflow-x: clip; }
 .rl-id { color: var(--lime); }
 .rl-card h3 { margin: 0; font-weight: 700; font-size: 1.25rem; line-height: 1.3; transition: color .15s; } /* 긴 제목은 읽기 쉬운 글꼴로 */
 .rl-card:hover h3 { color: var(--accent-hi); }
+.rl-card h3 a { color: inherit; }
+.rl-card h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* 카드 전체 클릭 */
+.rl-orig { margin: 0; color: var(--muted); font-size: .92rem; }
+.rl-acts { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 0; justify-self: start; }
+.rl-act { padding: 9px 14px; border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-tech); font-weight: 700; font-size: .68rem; letter-spacing: .08em; color: var(--fg); transition: border-color .15s, color .15s; }
+.rl-act:hover { border-color: var(--lime); color: var(--lime); }
 .rl-abs { margin: 0; color: var(--muted); font-size: .95rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .rl-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; color: var(--muted); font-size: .7rem; text-transform: uppercase; }
 .rl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 0; }

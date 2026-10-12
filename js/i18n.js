@@ -28,6 +28,9 @@ const KO = {
   'Temporary dev sign-in — any value works.': '개발용 임시 로그인 — 아무 값이나 입력하면 됩니다.', 'ID or email': '아이디 또는 이메일', 'Password': '비밀번호',
 
   // ---- 연구자료실 ----
+  'READ PAPER': '논문 읽기', 'DOWNLOAD PDF': 'PDF 다운로드', 'OPEN ORIGINAL PDF': '원본 PDF 새 탭에서 열기', 'Read Paper': '논문 읽기',
+  'Document ID': '문서 번호', 'Year': '연도', 'Access': '이용', 'Zoom in': '확대', 'Zoom out': '축소',
+  'The online reader could not be loaded in this browser.': '이 브라우저에서 온라인 보기를 불러오지 못했습니다.', 'Open the PDF directly': 'PDF 바로 열기',
   'Independent research, experimental engineering, and technical knowledge. Documented, tested, and shared.': '독립 연구, 실험적 엔지니어링, 기술 지식. 기록하고, 시험하고, 공유합니다.',
   'Build it better.': '더 낫게 다시 만든다.',
   'EXPLORE RESEARCH': '연구자료 보기', 'OPEN ENGINEERING': '오픈 엔지니어링',
@@ -190,6 +193,9 @@ const KO = {
 // 숫자·이름이 들어가는 문구. 위 사전에 없을 때만 순서대로 검사
 const KO_PATTERNS = [
   [/^Results: (\d+)$/, '검색 결과 $1건'],
+  [/^Pages: (\d+)$/, '$1쪽'],
+  [/^Page (\d+)$/, '$1쪽'],
+  [/^(.+) · No other language edition is available\.$/, '$1 · 다른 언어판은 아직 없습니다.'],
   [/^Documents: (\d+)$/, '자료 $1건'],
   [/^Products: (\d+)$/, '상품 $1개'],
   [/^(\d+) items?$/, '상품 $1개'],

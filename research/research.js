@@ -34,16 +34,25 @@ const statusTag = d => d.status === 'published'
   : '<span class="rl-tag rl-tag-draft">DRAFT · LOCAL PREVIEW</span>';
 const accessTag = d => `<span class="rl-tag">${d.access === 'garage' ? 'GARAGE+' : 'OPEN ACCESS'}</span>`;
 
-const card = d => `
-  <li><a class="rl-card" href="doc.html?slug=${encodeURIComponent(d.slug)}${draftQs}">
+const langTags = d => (d.editions || []).map(e => `<span class="rl-tag">${esc(e.name.toUpperCase())} / ${esc(e.lang)}</span>`).join('');
+
+// 카드 전체가 제목 링크로 눌림 (h3 a::after). PDF 가 있으면 읽기·다운로드 버튼 추가
+const card = d => {
+  const url = esc(docUrl(d) + (d.page ? '' : draftQs));
+  const pdf = d.editions?.[0];
+  return `
+  <li><div class="rl-card">
     ${d.cover ? `<img class="rl-cover" src="${esc(d.cover)}" alt="" loading="lazy">` : ''}
     <p class="rl-top"><span class="rl-id">${esc(d.id.toUpperCase())}</span><span>${esc(d.category)}</span><span>${esc(d.createdAt)}</span></p>
-    <h3>${esc(d.title)}</h3>
+    <h3><a href="${url}">${esc(d.title)}</a></h3>
+    ${d.titleOriginal ? `<p class="rl-orig">${esc(d.titleOriginal)}</p>` : ''}
     ${d.abstract ? `<p class="rl-abs">${esc(d.abstract)}</p>` : ''}
     <p class="rl-meta"><span>${esc(d.documentType)}</span><span>${esc(d.author.join(', '))}</span>${d.projectId ? `<span>PROJECT ${esc(d.projectId)}</span>` : ''}</p>
-    <p class="rl-tags">${statusTag(d)}${accessTag(d)}</p>
+    <p class="rl-tags">${statusTag(d)}${accessTag(d)}${langTags(d)}</p>
+    ${pdf ? `<p class="rl-acts"><a class="rl-act" href="${url}#reader">READ PAPER</a><a class="rl-act" href="${esc(pdf.url)}" download="${esc(pdf.url)}">DOWNLOAD PDF</a></p>` : ''}
     <span class="rl-arrow" aria-hidden="true">→</span>
-  </a></li>`;
+  </div></li>`;
+};
 
 // 자료가 하나도 없을 때 (가짜 논문으로 채우지 않음)
 const EMPTY_ARCHIVE = `
