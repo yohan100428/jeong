@@ -39,7 +39,7 @@
 </dialog>
 
 <main class="wrap lab">
-  <!-- Hero: 그림 왼쪽 · 글 오른쪽 (다른 페이지와 반대 구성). 모바일은 글 먼저, 그림 아래 -->
+  <!-- Hero: 그림 왼쪽 · 글 오른쪽 (다른 페이지와 반대 구성), 세로 구분선 없이 여백으로 분리. 모바일은 글 먼저, 그림 아래 -->
   <section class="rl-hero">
     <div class="rl-copy">
       <p class="rl-label">JEONG / RESEARCH DIVISION</p>
@@ -52,41 +52,79 @@
       </div>
     </div>
 
-    <!-- 그림: 더블 위시본 서스펜션 지오메트리 하나에 집중 + 위쪽 유선 3줄 (ResearchHeroIllustration).
-         순수 SVG 라 직접 수정 가능. 선·표식은 장식이며 실제 측정값이나 실험 결과가 아님 -->
+    <!-- 그림: 연구 포스터 구성 (ResearchHeroIllustration) — 큰 수식 · 에어포일과 힘 벡터 · 양력 곡선 그래프.
+         순수 SVG 라 직접 수정 가능. 수식·기호·곡선은 분위기를 위한 장식이며 실제 연구 결과나 측정값이 아님 -->
     <div class="rl-art" aria-hidden="true">
-      <svg class="research-hero-illustration" viewBox="20 150 540 380" fill="none">
-        <!-- 유선 (공기 흐름) -->
-        <g stroke="#A57BC4" stroke-width="1.5" stroke-linecap="round" opacity=".6">
-          <path d="M40 192C150 182 230 150 330 156C420 161 480 184 540 190"/>
-          <path d="M40 240C150 230 230 200 330 206C420 211 480 232 540 238"/>
-        </g>
-        <path class="rhi-flow" d="M40 216C150 206 230 174 330 180C420 185 480 208 540 214" stroke="#C4F33B" stroke-width="2" stroke-linecap="round" stroke-dasharray="16 10"/>
+      <svg class="research-hero-illustration" viewBox="20 20 530 500" fill="none">
+        <defs>
+          <marker id="rhi-arr-l" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#C4F33B"/></marker>
+          <marker id="rhi-arr-w" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#F3F0F5"/></marker>
+          <marker id="rhi-arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#A8A3B0"/></marker>
+        </defs>
 
-        <!-- 서스펜션 지오메트리 (정면도) -->
-        <path d="M60 462H530" stroke="#A8A3B0" stroke-width="2"/>
-        <g class="rhi-notes" stroke="#A57BC4" stroke-width="1" stroke-dasharray="5 6" opacity=".7"><path d="M214 346L60 358.5M214 432L60 437.2"/></g>
-        <path d="M120 300L214 320V444L120 454Z" fill="#5E3A76" stroke="#A57BC4" stroke-width="2" stroke-linejoin="round"/>
-        <rect x="392" y="292" width="76" height="170" rx="22" fill="#30183B" stroke="#F3F0F5" stroke-width="2.5"/>
-        <rect x="405" y="322" width="50" height="110" rx="8" stroke="#A57BC4" stroke-width="2"/>
-        <path class="rhi-notes" d="M430 276V478" stroke="#F3F0F5" stroke-width="1" stroke-dasharray="10 4 2 4" opacity=".6"/>
-        <path d="M384.3 292L391.7 466" stroke="#C4F33B" stroke-width="1.5" stroke-dasharray="6 5"/>
-        <path d="M386 332L390 426" stroke="#A57BC4" stroke-width="7" stroke-linecap="round"/>
-        <g stroke="#F3F0F5" stroke-width="3.5" stroke-linecap="round"><path d="M214 346L386 332M214 432L390 426"/></g>
-        <g stroke="#A57BC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M346 427L306 388M258 342L230 316"/>
-          <path d="M306 388 L310.2 376.8 L291.5 389.4 L303.3 370.2 L284.7 382.8 L296.5 363.6 L277.8 376.2 L289.6 357.1 L271 369.7 L282.8 350.5 L264.1 363.1 L275.9 343.9 L257.2 356.5 L269 337.3 L258 342" stroke="#F3F0F5" stroke-width="2.5"/>
+        <!-- 겹치는 보라 면 두 장 (하나의 큰 면 대신) -->
+        <g class="rhi-panels">
+          <polygon points="36,70 404,34 452,318 92,372" fill="#30183B"/>
+          <polygon points="262,262 528,236 520,470 286,492" fill="#7D5398" fill-opacity=".14" stroke="#A57BC4" stroke-opacity=".4" stroke-width="1.5"/>
         </g>
-        <g fill="#17141C" stroke="#A57BC4" stroke-width="2">
-          <circle cx="214" cy="346" r="6"/><circle cx="214" cy="432" r="6"/><circle cx="230" cy="316" r="5"/><circle cx="346" cy="427" r="5"/>
-        </g>
-        <circle class="rhi-marker" cx="386" cy="332" r="6" fill="#17141C" stroke="#C4F33B" stroke-width="2.5"/>
-        <circle class="rhi-marker" cx="390" cy="426" r="6" fill="#17141C" stroke="#C4F33B" stroke-width="2.5"/>
 
-        <!-- 장식: 치수선 모양 (숫자 없음), 라벨 하나 -->
+        <!-- 1. 큰 수식 (양력 계수) -->
+        <g class="rhi-math" fill="#F3F0F5">
+          <text x="64" y="130" font-size="36">C<tspan dy="9" font-size="19" fill="#A57BC4">L</tspan></text>
+          <text x="112" y="130" font-size="30" font-style="normal">=</text>
+          <text x="206" y="112" font-size="27" text-anchor="middle">L</text>
+          <path d="M146 122H266" stroke="#F3F0F5" stroke-width="1.6"/>
+          <text x="206" y="152" font-size="25" text-anchor="middle">½ρV<tspan dy="-10" font-size="14">2</tspan><tspan dy="10">S</tspan></text>
+        </g>
+
+        <!-- 2. 에어포일 단면 + 유선 + 힘 벡터 (기준점 Q = 350,150) -->
+        <g class="rhi-notes" stroke="#A57BC4" stroke-width="1.2" stroke-linecap="round" opacity=".55">
+          <path d="M250 96C300 86 340 70 392 76C450 82 490 106 530 114"/>
+          <path d="M250 178C300 182 340 190 400 186C450 182 490 172 530 166"/>
+          <path d="M350 30A120 120 0 0 1 350 270" stroke-dasharray="3 7"/>
+        </g>
+        <path d="M262 150H536" stroke="#A8A3B0" stroke-width="1" stroke-dasharray="10 4 2 4"/>
+        <g transform="rotate(10 350 150)">
+          <path d="M280 150H520" stroke="#F3F0F5" stroke-width="1" stroke-dasharray="5 5" opacity=".7"/>
+          <path d="M302 150C302 134 340 124 380 126C430 129 470 140 492 150C460 153 410 158 370 159C330 160 302 160 302 150Z" fill="#7D5398" stroke="#F3F0F5" stroke-width="2" stroke-linejoin="round"/>
+        </g>
+        <path d="M500 150A150 150 0 0 1 497.7 176" stroke="#F3F0F5" stroke-width="1.5"/>
+        <g class="rhi-notes" stroke="#A57BC4" stroke-width="1" stroke-dasharray="4 5"><path d="M350 62H432V150M350 150L432 62"/><path d="M350 116A34 34 0 0 1 373.2 125.1" stroke-dasharray="none"/></g>
+        <path d="M350 150H430" stroke="#F3F0F5" stroke-width="2.5" marker-end="url(#rhi-arr-w)"/>
+        <path class="rhi-lift" d="M350 150V66" stroke="#C4F33B" stroke-width="3" marker-end="url(#rhi-arr-l)"/>
+        <circle class="rhi-marker" cx="350" cy="150" r="5" fill="#17141C" stroke="#C4F33B" stroke-width="2.5"/>
+        <g class="rhi-math">
+          <text x="330" y="78" font-size="22" fill="#C4F33B">L</text>
+          <text x="438" y="144" font-size="20" fill="#F3F0F5">D</text>
+          <text x="507" y="170" font-size="20" fill="#F3F0F5">α</text>
+          <text class="rhi-notes" x="362" y="106" font-size="16" fill="#A57BC4">θ</text>
+        </g>
+
+        <!-- 3. 그래프: 양력 곡선 모양 (숫자 없음) -->
+        <g stroke="#A8A3B0" stroke-width="1.5">
+          <path d="M96 430H516" marker-end="url(#rhi-arr-g)"/><path d="M96 430V240" marker-end="url(#rhi-arr-g)"/>
+          <path class="rhi-notes" d="M149 430v6M202 430v6M255 430v6M308 430v6M361 430v6M414 430v6M467 430v6M96 274h-6M96 313h-6M96 352h-6M96 391h-6" stroke-width="1"/>
+        </g>
+        <path class="rhi-notes" d="M290 300L392 238" stroke="#A57BC4" stroke-width="1.5" stroke-dasharray="6 6"/>
+        <path d="M96 418L290 300C326 278 352 264 380 266C408 268 430 286 456 312" stroke="#F3F0F5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <g class="rhi-notes" fill="#17141C" stroke="#F3F0F5" stroke-width="1.5"><circle cx="161" cy="378.5" r="4"/><circle cx="226" cy="339" r="4"/><circle cx="290" cy="300" r="4"/></g>
+        <circle class="rhi-marker" cx="380" cy="266" r="5.5" fill="#C4F33B"/>
+        <g class="rhi-math" fill="#A8A3B0">
+          <text x="60" y="252" font-size="20" fill="#F3F0F5">C<tspan dy="6" font-size="13">L</tspan></text>
+          <text x="512" y="456" font-size="20" fill="#F3F0F5">α</text>
+          <text x="392" y="258" font-size="14">C<tspan dy="4" font-size="10">L,max</tspan></text>
+        </g>
+
+        <!-- 4. 작은 수식·기호 (보조) -->
         <g class="rhi-notes">
-          <path d="M214 496H430M214 488v16M430 488v16" stroke="#A8A3B0" stroke-width="1.2"/>
-          <text class="rhi-text" x="60" y="512" fill="#A8A3B0">RESEARCH / 001</text>
+          <path d="M290 452H380M290 446v12M380 446v12" stroke="#A8A3B0" stroke-width="1.2"/>
+          <g class="rhi-math" fill="#A8A3B0">
+            <text x="322" y="476" font-size="16">Δx</text>
+            <text x="64" y="204" font-size="21" fill="#F3F0F5">ΣF = 0</text>
+            <text x="64" y="230" font-size="16">F = ma</text>
+            <text x="408" y="392" font-size="17">τ = r × F</text>
+          </g>
+          <text class="rhi-text" x="96" y="504" fill="#A8A3B0">RESEARCH / 001</text>
         </g>
       </svg>
     </div>

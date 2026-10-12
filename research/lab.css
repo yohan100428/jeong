@@ -14,27 +14,27 @@ body:has(.lab) { overflow-x: clip; }
 .rl-btn.fill { background: var(--lime); border-color: var(--lime); color: #111; }
 .rl-btn.fill:hover { background: var(--fg); border-color: var(--fg); }
 
-/* ---- Hero: 그림 왼쪽 · 글 오른쪽. 차분하고 정돈된 구성 (연구실 60 : 스트리트 40) ---- */
-.rl-hero { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; padding: 16px 0 72px; isolation: isolate; }
+/* ---- Hero: 연구 포스터 구성. 그림 왼쪽 · 글 오른쪽, 구분선 없이 여백과 정렬로 분리 (연구 70 : 스트리트 30) ---- */
+.rl-hero { position: relative; display: grid; grid-template-columns: 1.12fr 1fr; gap: 72px; align-items: center; padding: 8px 0 72px; isolation: isolate; }
 .rl-hero::before { content: ""; position: absolute; inset: -72px -50vw 0; z-index: -3; /* 기술 격자 */
   background: linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 48px, linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 48px 100%;
   opacity: .4; mask-image: linear-gradient(180deg, #000 30%, transparent); -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent); }
-.rl-copy { order: 2; padding-left: 28px; border-left: 2px solid var(--line); } /* 얇은 세로선으로 글 묶음 정리 */
-.rl-label { display: inline-block; margin: 0 0 24px; color: var(--lime); font-size: .8rem; }
-.rl-hero h1 { margin: 0; font-size: clamp(2.6rem, 6.4vw, 5.2rem); line-height: .94; white-space: nowrap; }
-.rl-second { margin: 20px 0 0; font-weight: 500; font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1.2; color: var(--accent-hi); }
-.rl-hero .rl-lead { max-width: 42ch; margin: 28px 0 0; color: var(--muted); font-size: 1.1rem; }
+/* 글 묶음: 모든 요소가 같은 왼쪽 축에 맞춰짐 */
+.rl-copy { order: 2; text-align: left; }
+.rl-copy > * { margin-left: 0; }
+.rl-label { display: block; margin: 0 0 22px; color: var(--lime); font-size: .8rem; }
+.rl-hero h1 { margin: 0 0 0 -.04em; font-size: clamp(2.6rem, 6.4vw, 5.2rem); line-height: .94; white-space: nowrap; }
+.rl-second { margin: 18px 0 0; font-weight: 500; font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1.2; color: var(--accent-hi); }
+.rl-hero .rl-lead { max-width: 40ch; margin: 28px 0 0; color: var(--muted); font-size: 1.1rem; }
 .rl-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
-/* 그림 + 각진 보라 패널 (패널 안을 비워 여백 확보) */
-.rl-art { order: 1; position: relative; padding: 7% 4% 7% 2%; }
-.rl-art::before { content: ""; position: absolute; inset: 0 4% 0 -4%; z-index: -1; background: #30183B; clip-path: polygon(0 0, 82% 0, 100% 100%, 18% 100%); animation: rl-drift 26s ease-in-out infinite alternate; }
+.rl-art { order: 1; position: relative; }
 .research-hero-illustration { display: block; width: 100%; height: auto; overflow: visible; }
+.rhi-math { font-family: "Cambria Math", Cambria, "Times New Roman", Times, serif; font-style: italic; } /* 수식은 시스템 세리프 기울임 */
 .rhi-text { font-family: var(--font-tech); font-weight: 700; font-size: 11px; letter-spacing: .14em; }
-.rhi-flow { animation: rl-dash 26s linear infinite; }
+.rhi-panels { animation: rl-drift 26s ease-in-out infinite alternate; }
 .rhi-marker { transform-box: fill-box; transform-origin: center; transition: transform .2s; }
 .rhi-marker:hover { transform: scale(1.8); }
-@keyframes rl-drift { to { transform: translate(8px, -6px); } }
-@keyframes rl-dash { to { stroke-dashoffset: -260; } }
+@keyframes rl-drift { to { transform: translate(6px, -5px); } }
 
 /* ---- 섹션 공통 ---- */
 .rl-sec { margin-top: 104px; scroll-margin-top: 88px; }
@@ -130,7 +130,7 @@ body:has(.lab) { overflow-x: clip; }
 @media (max-width: 900px) {
   .lab { padding-block: 48px 72px; }
   .rl-hero { gap: 32px; }
-  .rhi-notes { display: none; } /* 태블릿 이하: 보조 선·라벨 생략 */
+  .rhi-notes { display: none; } /* 태블릿 이하: 보조 수식·구성선·눈금 생략 */
   .rl-sec { margin-top: 72px; }
   .rl-blocks { grid-template-columns: 1fr; }
   .lab .rl-open { padding: 32px 22px; }
@@ -140,6 +140,6 @@ body:has(.lab) { overflow-x: clip; }
 @media (max-width: 720px) {
   .rl-hero { grid-template-columns: 1fr; gap: 36px; padding-bottom: 48px; } /* 모바일: 글 먼저, 그림은 아래 */
   .rl-hero h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
-  .rl-copy { order: 1; padding-left: 18px; }
+  .rl-copy { order: 1; }
   .rl-art { order: 2; max-width: 480px; }
 }
