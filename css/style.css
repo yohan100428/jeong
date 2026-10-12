@@ -122,4 +122,5 @@ header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: 
 .flag:hover { opacity: .8; }
 .flag[aria-pressed="true"] { opacity: 1; border-color: var(--accent-hi); }
 /* 좁은 화면: 현재 언어 국기 하나만 (누르면 전환) */
+@media (max-width: 600px) { header .wrap { padding-inline: 12px; } .logo { font-size: 1.1rem; letter-spacing: .2em; } .actions { gap: 4px; } .actions .icon-btn { padding: 4px; } }
 @media (max-width: 600px) { .flag[aria-pressed="false"] { display: none; } .flag[aria-pressed="true"] { border-color: transparent; } }

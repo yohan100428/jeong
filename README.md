@@ -30,10 +30,6 @@
 - `membership/` 멤버십(구독) 페이지 — **UI 프로토타입, 결제·가입 처리 없음**
   - `membership.js` 맨 위 `PLANS` 가 요금제 데이터 (가격·혜택·버튼). 결제 연결 지점은 파일 상단 주석
   - 진입: 햄버거 메뉴 Membership, 프로필 팝업의 Membership
-- `admin/` 관리자 화면 (관리자 모드에서만 보임, **화면만 동작 · 저장 안 됨**)
-  - `index.html` 대시보드 · `research.html` 자료 관리(공개 전환·수정·삭제) · `upload.html` 자료 업로드/수정 · `products.html` 상품 관리 · `product.html` 상품 등록/수정 · `content.html` 홈 문구
-  - `api.js` **서버 연결 지점** — 서버 붙일 때 이 파일만 교체 (할 일·API 주소는 파일 상단 주석)
-  - `admin.js` 화면 로직 · `admin.css` 스타일
 
 ## 로컬 확인
 본문(.md) 불러오기는 웹 서버가 필요:
@@ -50,11 +46,6 @@ python -m http.server 8000
 ## 로그인 (임시)
 - 프로필 버튼 → 팝업 → 로그인 → `login.html` → 아무 값 입력 → 원래 보던 페이지로 복귀
 - 비밀번호 검사 없음, 이름만 브라우저에 저장. 실제 인증 붙일 때 `js/main.js` 의 `auth` 교체
-
-## 개발용 관리자 모드 (임시, 삭제 예정)
-- 언어 선택 왼쪽 `Admin` 스위치. ON: Administrator 배지 + 햄버거 메뉴에 관리자 메뉴(Coming Soon)
-- 실제 권한 없음 (화면 개발용 모의 상태)
-- 전부 `js/dev-admin.js` 한 파일. 삭제 = 그 파일 + 각 페이지의 `dev-admin.js` script 줄 삭제
 
 ## 테스트
 ```

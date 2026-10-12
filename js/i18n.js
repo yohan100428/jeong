@@ -22,9 +22,7 @@ const KO = {
   'Contact': '문의', 'Soon': '준비 중', 'Open menu': '메뉴 열기', 'Menu': '메뉴', 'Close': '닫기', 'Profile': '프로필',
   'Language': '언어', 'Account': '계정', 'Sign in required': '로그인이 필요합니다', 'Member': '일반 회원',
   'Sign in with your JEONG MOTORS account.': 'JEONG MOTORS 계정으로 로그인하세요.', 'Sign out': '로그아웃', 'Sign in': '로그인',
-  'Join →': '가입 →', 'Admin': '관리자', 'Administrator': '관리자', 'Admin mode (dev)': '관리자 모드 (개발용)', 'Admin menu': '관리자 메뉴',
-  'Admin Dashboard': '관리자 대시보드', 'Research Management': '연구자료 관리', 'Upload Research': '연구자료 업로드',
-  'Product Management': '상품 관리', 'Add Product': '상품 등록', 'Content Management': '콘텐츠 관리',
+  'Join →': '가입 →',
   // ---- 홈 · 로그인 ----
   'Enter your brand slogan here.': '브랜드 슬로건을 여기에 입력하세요.', 'Research Library': '연구자료실',
   'Temporary dev sign-in — any value works.': '개발용 임시 로그인 — 아무 값이나 입력하면 됩니다.', 'ID or email': '아이디 또는 이메일', 'Password': '비밀번호',
@@ -142,7 +140,7 @@ const KO = {
   'Open Access needs no commitment. How plan changes will work for GARAGE+ will be confirmed before it launches.': 'Open Access 는 약정이 없습니다. GARAGE+ 의 요금제 변경 방식은 출시 전에 확정됩니다.',
 
   // ---- 관리자 ----
-  'Dashboard': '대시보드', 'Upload': '업로드', 'Products': '상품', 'Content': '콘텐츠', 'Available in admin mode only.': '관리자 모드에서만 사용할 수 있습니다.',
+  'Dashboard': '대시보드', 'Upload': '업로드', 'Products': '상품', 'Content': '콘텐츠',
   'Research and product overview': '연구자료 · 상품 현황', 'By field': '분야별', 'Recent documents': '최근 자료', 'Published': '공개', 'Draft': '비공개',
   'No documents': '자료 없음', '+ Upload research': '+ 연구자료 업로드', '+ Add product': '+ 상품 등록',
   'Manage research': '연구자료 관리', 'Manage products': '상품 관리', 'Manage content': '콘텐츠 관리',

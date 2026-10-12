@@ -28,7 +28,7 @@ function renderProfile() {
   profile.classList.toggle('signed-in', !!u);
   profile.setAttribute('aria-label', u ? `Profile (${u.name})` : 'Profile');
   pop.querySelector('.pop-name').textContent = u ? u.name : 'Sign in required';
-  pop.querySelector('.pop-sub').textContent = u ? (window.adminMode?.isAdmin ? 'Administrator' : 'Member') : 'Sign in with your JEONG MOTORS account.';
+  pop.querySelector('.pop-sub').textContent = u ? 'Member' : 'Sign in with your JEONG MOTORS account.';
   // 로그인 후 지금 보던 페이지로 돌아오도록 next 전달
   pop.querySelector('.pop-action').innerHTML = u
     ? '<button type="button" class="pop-btn" data-logout>Sign out</button>'
