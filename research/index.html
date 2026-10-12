@@ -41,6 +41,36 @@
 <main class="wrap lab">
   <!-- Hero: 그림 왼쪽 · 글 오른쪽 (다른 페이지와 반대 구성), 세로 구분선 없이 여백으로 분리. 모바일은 글 먼저, 그림 아래 -->
   <section class="rl-hero">
+    <!-- 배경 층 (장식): 그림 뒤 깊이감 + 글 뒤 아주 옅은 보조 그래픽. 전경보다 훨씬 낮은 대비 유지.
+         수식 조각은 분위기용이며 실제 연구 내용이 아님 -->
+    <svg class="rl-bg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+      <!-- 왼쪽: 그림 뒤 -->
+      <polygon points="-20,130 520,36 610,480 70,566" fill="#4B2064" opacity=".13"/>
+      <polygon points="360,300 720,262 706,566 392,596" fill="#7D5398" opacity=".05"/>
+      <g stroke="#A57BC4" stroke-width="1">
+        <circle cx="300" cy="300" r="330" opacity=".13"/>
+        <circle cx="300" cy="300" r="408" opacity=".08" stroke-dasharray="3 9"/>
+        <path d="M-20 300H660M300 10V590" opacity=".09" stroke-dasharray="14 6 2 6"/>
+        <path d="M-20 214C240 130 520 160 760 252S1100 356 1220 300" opacity=".1"/>
+        <path d="M-20 256C240 176 520 204 760 296S1100 396 1220 344" opacity=".07"/>
+        <path d="M-20 172C240 86 520 116 760 208S1100 316 1220 256" opacity=".05"/>
+      </g>
+      <g class="rhi-math" fill="#A57BC4">
+        <text x="6" y="118" font-size="96" opacity=".06">ρV²</text>
+        <text x="520" y="250" font-size="190" opacity=".05">∫</text>
+      </g>
+      <!-- 오른쪽: 글 뒤 (거의 보이지 않게) -->
+      <g class="rl-bg-right">
+        <text class="rhi-math" x="930" y="470" font-size="360" fill="#F3F0F5" opacity=".028">Σ</text>
+        <g stroke="#A8A3B0" stroke-width="1">
+          <path d="M640 600L1200 176" opacity=".07"/><path d="M720 0L1200 424" opacity=".045"/>
+          <path d="M698 86h12M704 80v12M1118 132h12M1124 126v12M1146 468h12M1152 462v12M830 548h12M836 542v12M958 60h12M964 54v12" opacity=".3"/>
+          <path d="M726 528L852 482M852 482l-11 -1M852 482l-6 9" opacity=".18"/>
+        </g>
+        <g fill="#A8A3B0" opacity=".16"><circle cx="1010" cy="220" r="1.6"/><circle cx="1010" cy="240" r="1.6"/><circle cx="1010" cy="260" r="1.6"/><circle cx="1010" cy="280" r="1.6"/><circle cx="1030" cy="220" r="1.6"/><circle cx="1030" cy="240" r="1.6"/><circle cx="1030" cy="260" r="1.6"/><circle cx="1030" cy="280" r="1.6"/><circle cx="1050" cy="220" r="1.6"/><circle cx="1050" cy="240" r="1.6"/><circle cx="1050" cy="260" r="1.6"/><circle cx="1050" cy="280" r="1.6"/><circle cx="1070" cy="220" r="1.6"/><circle cx="1070" cy="240" r="1.6"/><circle cx="1070" cy="260" r="1.6"/><circle cx="1070" cy="280" r="1.6"/><circle cx="1090" cy="220" r="1.6"/><circle cx="1090" cy="240" r="1.6"/><circle cx="1090" cy="260" r="1.6"/><circle cx="1090" cy="280" r="1.6"/><circle cx="1110" cy="220" r="1.6"/><circle cx="1110" cy="240" r="1.6"/><circle cx="1110" cy="260" r="1.6"/><circle cx="1110" cy="280" r="1.6"/></g>
+      </g>
+    </svg>
+    <span class="rl-drop" aria-hidden="true"></span> <!-- 아래 아카이브로 이어지는 안내선 -->
     <div class="rl-copy">
       <p class="rl-label">JEONG / RESEARCH DIVISION</p>
       <h1>BREAK IT<br>DOWN.</h1>

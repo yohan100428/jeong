@@ -16,9 +16,21 @@ body:has(.lab) { overflow-x: clip; }
 
 /* ---- Hero: 연구 포스터 구성. 그림 왼쪽 · 글 오른쪽, 구분선 없이 여백과 정렬로 분리 (연구 70 : 스트리트 30) ---- */
 .rl-hero { position: relative; display: grid; grid-template-columns: 1.12fr 1fr; gap: 72px; align-items: center; padding: 8px 0 72px; isolation: isolate; }
-.rl-hero::before { content: ""; position: absolute; inset: -72px -50vw 0; z-index: -3; /* 기술 격자 */
-  background: linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 48px, linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 48px 100%;
-  opacity: .4; mask-image: linear-gradient(180deg, #000 30%, transparent); -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent); }
+/* 깊이 3단: 페이지 배경(격자) < 보조 배경(.rl-bg) < 전경(그림·글) */
+/* 격자: 화면 전체에 균일하지 않게 — Hero 가운데가 또렷하고 바깥은 어둡고 조용하게. 가운데에 아주 옅은 보라 기운 */
+.rl-hero::before { content: ""; position: absolute; inset: -72px -50vw 0; z-index: -3;
+  background: radial-gradient(ellipse 34% 62% at 46% 46%, rgba(75, 32, 100, .2), transparent 72%),
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 48px, linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 48px 100%;
+  mask-image: radial-gradient(ellipse 42% 78% at 50% 44%, #000 28%, rgba(0,0,0,.42) 62%, rgba(0,0,0,.12) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 42% 78% at 50% 44%, #000 28%, rgba(0,0,0,.42) 62%, rgba(0,0,0,.12) 100%); }
+/* 보조 배경 그래픽 (index.html 의 svg.rl-bg) */
+.rl-bg { position: absolute; inset: -24px -40px 0; width: calc(100% + 80px); height: calc(100% + 24px); z-index: -2; pointer-events: none; overflow: visible; }
+/* 바닥 기준선: 눈금 달린 가로선으로 Hero 를 받쳐 줌 */
+.rl-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 30px; height: 8px; z-index: -1; opacity: .34;
+  background: linear-gradient(#A8A3B0, #A8A3B0) 0 0 / 100% 1px no-repeat, repeating-linear-gradient(90deg, #A8A3B0 0 1px, transparent 1px 64px) 0 1px / 100% 7px no-repeat; }
+/* 기준선에서 아래 섹션으로 내려가는 짧은 점선 + 작은 라임 표식 */
+.rl-drop { position: absolute; left: 0; bottom: -52px; height: 82px; border-left: 1px dashed rgba(168, 163, 176, .5); }
+.rl-drop::before { content: ""; position: absolute; left: -4px; top: -4px; width: 7px; height: 7px; background: var(--lime); }
 /* 글 묶음: 모든 요소가 같은 왼쪽 축에 맞춰짐 */
 .rl-copy { order: 2; text-align: left; }
 .rl-copy > * { margin-left: 0; }
@@ -131,6 +143,7 @@ body:has(.lab) { overflow-x: clip; }
   .lab { padding-block: 48px 72px; }
   .rl-hero { gap: 32px; }
   .rhi-notes { display: none; } /* 태블릿 이하: 보조 수식·구성선·눈금 생략 */
+  .rl-bg-right { display: none; } /* 글 뒤 장식은 넓은 화면에서만 */
   .rl-sec { margin-top: 72px; }
   .rl-blocks { grid-template-columns: 1fr; }
   .lab .rl-open { padding: 32px 22px; }
@@ -138,6 +151,9 @@ body:has(.lab) { overflow-x: clip; }
   .rl-arrow { right: 16px; }
 }
 @media (max-width: 720px) {
+  .rl-bg { display: none; } /* 모바일: 보조 배경 생략 (격자·기준선만) */
+  .rl-hero::after { bottom: 16px; }
+  .rl-drop { bottom: -40px; height: 56px; }
   .rl-hero { grid-template-columns: 1fr; gap: 36px; padding-bottom: 48px; } /* 모바일: 글 먼저, 그림은 아래 */
   .rl-hero h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
   .rl-copy { order: 1; }
