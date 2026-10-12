@@ -7,7 +7,7 @@
 - 번역은 `js/i18n.js` 사전 한 곳에서 관리 (`'영어 원문': '번역'`). HTML·JS 코드는 영어로 작성하고, 한국어일 때 화면 문구만 바꿔 끼움
   - 번역 대상: 메뉴·버튼·입력 항목·필터·상태·안내 문구. 고유명사, 큰 제목 슬로건, 상품·프로젝트·연구자료 데이터는 영어 유지
   - 새 문구를 추가했는데 한국어로 안 바뀌면 사전에 한 줄 추가
-- 글꼴: 기본 `fonts/Bungee-Regular.ttf`, 작은 회색 글씨는 `fonts/SpaceGrotesk-VariableFont_wght.ttf` (`css/style.css` 의 `--font-sub`), 한글은 Pretendard (한국어일 때만 불러옴)
+- 글꼴 2종 (둘 다 한글·영문 지원): 제목·버튼은 Black Han Sans, 설명·라벨은 Gmarket Sans. `fonts/*.woff2` (원본 ttf 는 `fonts/original/`, 저장소 제외). 설정은 `css/style.css` 맨 위
 
 ## 구조
 - `index.html` 메인 (상단 메뉴: 햄버거 · 로고 · 언어 · 프로필)

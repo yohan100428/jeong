@@ -63,7 +63,7 @@
 .m-faq details[open] summary::after { transform: rotate(45deg); }
 .m-faq details p { margin: 0; padding: 0 22px 20px; color: var(--muted); max-width: 70ch; }
 
-.m-motto { margin: 96px 0 0; text-align: center; font-family: Bungee, sans-serif !important; font-size: clamp(1.2rem, 4vw, 2rem); color: var(--muted); }
+.m-motto { margin: 96px 0 0; text-align: center; font-family: var(--font-display) !important; font-size: clamp(1.2rem, 4vw, 2rem); color: var(--muted); }
 .m-motto span { color: var(--lime); }
 
 @media (max-width: 760px) {

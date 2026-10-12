@@ -236,8 +236,6 @@ function translateNode(node) {
 }
 
 if (LANG === 'ko') {
-  // 한글 글꼴 (Bungee·Space Grotesk 는 라틴 전용). 한국어일 때만 불러옴
-  document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">');
   translateNode(document.body);
   // 스크립트가 나중에 그리는 내용(목록, 알림, 팝업)도 번역
   new MutationObserver(muts => {
