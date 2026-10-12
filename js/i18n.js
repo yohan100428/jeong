@@ -31,6 +31,7 @@ const KO = {
 
   // ---- 연구자료실 ----
   'Independent research, experimental engineering, and technical knowledge. Documented, tested, and shared.': '독립 연구, 실험적 엔지니어링, 기술 지식. 기록하고, 시험하고, 공유합니다.',
+  'Build it better.': '더 낫게 다시 만든다.',
   'EXPLORE RESEARCH': '연구자료 보기', 'OPEN ENGINEERING': '오픈 엔지니어링',
   'Explore research papers, technical reports, experiments, and engineering documentation.': '연구 논문, 기술 보고서, 실험, 엔지니어링 문서를 살펴보세요.',
   'Search research': '연구자료 검색', 'Search research, documents, keywords...': '연구자료, 문서, 키워드 검색...', 'Clear search': '검색어 지우기',
