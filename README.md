@@ -16,7 +16,8 @@
   - `documents.js` **자료 데이터** — 새 자료는 여기에 객체 하나 추가
   - `content/<slug>.md` 본문 (Markdown, `$수식$` LaTeX 지원)
   - `files/` 첨부파일 (PDF, CAD, 데이터)
-  - `index.html` 목록/검색 · `doc.html?slug=...` 상세
+  - `index.html` 연구자료실 (Hero · 아카이브 검색/탭/정렬/목록·격자 · Open Engineering · 관련 프로젝트) · `doc.html?slug=...` 상세
+  - `lab.css` 는 index.html 전용, `research.css` 는 상세·관리자 등이 함께 쓰는 공용 스타일
 
 - `shop/` 부품 스토어 (Parts Store) — **미리보기 단계: 결제·주문·재고 없음, 구매 버튼 비활성**
   - `products.js` **상품 데이터 + 카테고리(8개 시스템)** — 새 상품은 객체 하나 추가. 검증·호환·제휴 표시 규칙은 파일 상단 주석

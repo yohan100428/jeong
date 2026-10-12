@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Engineering Research | JEONG MOTORS</title>
-<meta name="description" content="JEONG MOTORS Research Library — technical papers, experiments and engineering reports">
+<meta name="description" content="JEONG MOTORS Engineering Research — independent research, experimental engineering and open technical documentation.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="research.css">
+<link rel="stylesheet" href="lab.css">
 </head>
 <body>
 <header>
@@ -37,18 +38,148 @@
   </nav>
 </dialog>
 
-<main class="wrap research">
-  <h1 class="page-title">Engineering Research</h1>
-  <p class="sub">Technical papers, experiments and engineering reports.</p>
+<main class="wrap lab">
+  <!-- Hero -->
+  <section class="rl-hero">
+    <p class="rl-label">JEONG / RESEARCH DIVISION</p>
+    <h1>BREAK IT <em>DOWN.</em><span>BUILD IT BETTER.</span></h1>
+    <p class="rl-lead">Independent research, experimental engineering, and technical knowledge. Documented, tested, and shared.</p>
+    <div class="rl-cta">
+      <a class="rl-btn fill" href="#archive">EXPLORE RESEARCH</a>
+      <a class="rl-btn" href="#open">OPEN ENGINEERING</a>
+    </div>
+    <!-- Hero 그림: 에어포일 단면 + 유선, 서스펜션 지오메트리 (ResearchHeroIllustration). 순수 SVG 라 직접 수정 가능.
+         선·표식·글자는 장식이며 실제 측정값이나 실험 결과가 아님 -->
+    <div class="rl-art" aria-hidden="true">
+      <svg class="research-hero-illustration" viewBox="0 0 560 520" fill="none">
+        <defs>
+          <pattern id="rhi-dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#A57BC4"/></pattern>
+        </defs>
 
-  <div class="search">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <label for="search" class="sr-only">Search research</label>
-    <input id="search" type="search" placeholder="Search titles, keywords..." autocomplete="off">
-  </div>
-  <div id="filters" class="filters" role="group" aria-label="Research field"></div>
-  <p id="count" class="count" aria-live="polite"></p>
-  <ul id="list" class="list"></ul>
+        <!-- 배경: CAD 등고선, 점 패턴, 모서리 괄호 -->
+        <g class="rhi-notes">
+          <g stroke="#A57BC4" stroke-width="1" opacity=".22">
+            <ellipse cx="290" cy="146" rx="236" ry="92"/><ellipse cx="290" cy="146" rx="196" ry="70"/><ellipse cx="290" cy="146" rx="156" ry="48"/>
+          </g>
+          <rect x="30" y="250" width="72" height="42" fill="url(#rhi-dots)" opacity=".5"/>
+          <g stroke="#A8A3B0" stroke-width="2" opacity=".7"><path d="M14 44V14h30M516 14h30v30M546 476v30h-30M44 506H14v-30"/></g>
+        </g>
+
+        <!-- 그림 1: 에어포일 단면과 유선 -->
+        <g class="rhi-wing">
+          <g stroke="#A57BC4" stroke-width="1.5" stroke-linecap="round" opacity=".8">
+            <path d="M40 96C130 86 170 44 262 46C370 48 430 86 520 92"/>
+            <path d="M40 176C130 186 180 200 270 198C360 196 440 180 520 168"/>
+            <path d="M40 202C140 214 190 230 280 228C370 226 450 206 520 192"/>
+            <path d="M512 86l8 6-8 6M512 162l8 6-8 6M512 186l8 6-8 6"/>
+          </g>
+          <path class="rhi-flow" d="M40 122C120 112 150 72 260 74C360 76 420 112 520 120" stroke="#C4F33B" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="16 10"/>
+          <path d="M108 158C108 132 170 108 260 110C340 112 410 134 452 156C380 160 300 170 220 172C150 174 108 172 108 158Z" fill="#7D5398" stroke="#A57BC4" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M130 156C134 140 184 124 258 126C318 128 372 142 408 154" stroke="#30183B" stroke-width="1.5" opacity=".7"/>
+          <path d="M96 158H466" stroke="#F3F0F5" stroke-width="1" stroke-dasharray="10 4 2 4" opacity=".7"/>
+          <circle class="rhi-marker" cx="108" cy="158" r="4.5" fill="#C4F33B"/>
+          <circle class="rhi-marker" cx="452" cy="156" r="4.5" fill="#17141C" stroke="#C4F33B" stroke-width="2"/>
+        </g>
+
+        <!-- 그림 2: 더블 위시본 서스펜션 지오메트리 (정면도) -->
+        <g class="rhi-susp">
+          <path d="M60 462H530" stroke="#A8A3B0" stroke-width="2"/>
+          <path d="M70 462l-10 12M86 462l-10 12M102 462l-10 12M118 462l-10 12M134 462l-10 12M150 462l-10 12M166 462l-10 12M182 462l-10 12M198 462l-10 12M214 462l-10 12M230 462l-10 12M246 462l-10 12M262 462l-10 12M278 462l-10 12M294 462l-10 12M310 462l-10 12M326 462l-10 12M342 462l-10 12M358 462l-10 12M374 462l-10 12M390 462l-10 12M406 462l-10 12M422 462l-10 12M438 462l-10 12M454 462l-10 12M470 462l-10 12M486 462l-10 12M502 462l-10 12M518 462l-10 12" stroke="#A8A3B0" stroke-width="1" opacity=".5"/>
+          <!-- 암 연장선 (가상 교점 방향) -->
+          <g stroke="#A57BC4" stroke-width="1" stroke-dasharray="5 6" opacity=".7"><path d="M214 346L60 358.5M214 432L60 437.2"/></g>
+          <!-- 차체, 타이어·림 단면 -->
+          <path d="M120 300L214 320V444L120 454Z" fill="#5E3A76" stroke="#A57BC4" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M138 326L196 338V428L138 436Z" stroke="#30183B" stroke-width="1.5" opacity=".7"/>
+          <rect x="392" y="292" width="76" height="170" rx="22" fill="#30183B" stroke="#F3F0F5" stroke-width="2.5"/>
+          <rect x="405" y="322" width="50" height="110" rx="8" stroke="#A57BC4" stroke-width="2"/>
+          <path d="M430 276V478" stroke="#F3F0F5" stroke-width="1" stroke-dasharray="10 4 2 4" opacity=".7"/>
+          <!-- 조향축 (위·아래 볼 조인트를 잇는 선) -->
+          <path d="M384.3 292L391.7 466" stroke="#C4F33B" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <!-- 업라이트, 위·아래 위시본 -->
+          <path d="M386 332L390 426" stroke="#A57BC4" stroke-width="7" stroke-linecap="round"/>
+          <g stroke="#F3F0F5" stroke-width="3.5" stroke-linecap="round"><path d="M214 346L386 332M214 432L390 426"/></g>
+          <!-- 스프링·댐퍼 -->
+          <g stroke="#A57BC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M346 427L306 388M258 342L230 316"/>
+            <path d="M306 388 L310.2 376.8 L291.5 389.4 L303.3 370.2 L284.7 382.8 L296.5 363.6 L277.8 376.2 L289.6 357.1 L271 369.7 L282.8 350.5 L264.1 363.1 L275.9 343.9 L257.2 356.5 L269 337.3 L258 342" stroke="#F3F0F5" stroke-width="2.5"/>
+          </g>
+          <g fill="#17141C" stroke="#A57BC4" stroke-width="2">
+            <circle cx="214" cy="346" r="6"/><circle cx="214" cy="432" r="6"/><circle cx="230" cy="316" r="5"/><circle cx="346" cy="427" r="5"/>
+          </g>
+          <circle class="rhi-marker" cx="386" cy="332" r="6" fill="#17141C" stroke="#C4F33B" stroke-width="2.5"/>
+          <circle class="rhi-marker" cx="390" cy="426" r="6" fill="#17141C" stroke="#C4F33B" stroke-width="2.5"/>
+        </g>
+
+        <!-- 치수선 모양 장식 (숫자 없음), 라벨 -->
+        <g class="rhi-notes">
+          <g stroke="#A8A3B0" stroke-width="1.2"><path d="M214 490H430M214 482v16M430 482v16M322 484v12"/></g>
+          <g stroke="#A8A3B0" stroke-width="1" opacity=".8"><path d="M452 156L500 216H528"/><path d="M214 346L176 268H150"/></g>
+          <g class="rhi-text" fill="#A8A3B0">
+            <text x="24" y="66" fill="#C4F33B">RESEARCH / 001</text>
+            <text x="536" y="66" text-anchor="end">ENGINEERING LAB</text>
+            <text x="528" y="232" text-anchor="end">FIG. 01</text>
+            <text x="150" y="262">FIG. 02</text>
+            <text x="536" y="512" text-anchor="end" fill="#F3F0F5">DESIGN / TEST / ANALYZE</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Archive -->
+  <section class="rl-sec" id="archive">
+    <p class="rl-sec-no">01 / ARCHIVE</p>
+    <h2>THE ARCHIVE.</h2>
+    <p class="rl-lead">Explore research papers, technical reports, experiments, and engineering documentation.</p>
+
+    <div class="rl-panel">
+      <p class="rl-db"><span>JEONG RESEARCH DATABASE</span><span>OPEN ACCESS</span></p>
+      <div class="rl-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label for="search" class="sr-only">Search research</label>
+        <input id="search" type="search" placeholder="Search research, documents, keywords..." autocomplete="off">
+        <button type="button" id="clear" class="rl-clear" aria-label="Clear search" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div id="filters" class="rl-tabs" role="group" aria-label="Research field"></div>
+    </div>
+
+    <div class="rl-tools">
+      <p id="count" class="rl-count" aria-live="polite"></p>
+      <div>
+        <label>Sort <select id="sort"></select></label>
+        <div id="views" class="rl-view" role="group" aria-label="View">
+          <button type="button" data-view="list" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+          <button type="button" data-view="grid" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <ul id="list" class="rl-list"></ul>
+  </section>
+
+  <!-- Open Engineering -->
+  <section class="rl-sec rl-open" id="open">
+    <p class="rl-sec-no">OPEN KNOWLEDGE / JEONG MOTORS</p>
+    <h2>KNOWLEDGE IS MEANT TO MOVE.</h2>
+    <p class="rl-lead">We believe engineering knowledge should be explored, questioned, and shared. Our core research and selected technical resources will remain openly accessible.</p>
+    <ul class="rl-blocks">
+      <li><a class="rl-block" href="#archive"><small>01 / RESEARCH</small><b>RESEARCH</b><p>Technical papers and engineering investigations.</p><span class="rl-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="rl-block" href="../projects/index.html?group=experiments"><small>02 / EXPERIMENTS</small><b>EXPERIMENTS</b><p>Testing methods, observations, and validation records.</p><span class="rl-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="rl-block" href="../projects/project.html?slug=k-01#documents"><small>03 / DOCUMENTATION</small><b>DOCUMENTATION</b><p>Drawings, design notes, and engineering resources.</p><span class="rl-arrow" aria-hidden="true">→</span></a></li>
+    </ul>
+  </section>
+
+  <!-- Related projects -->
+  <section class="rl-sec">
+    <p class="rl-sec-no">02 / PROJECTS</p>
+    <h2>FROM THEORY TO MACHINE.</h2>
+    <p class="rl-lead">Research feeds the machines we build. See how it connects to JEONG vehicle development.</p>
+    <ul id="related" class="rl-projects"></ul>
+    <a class="rl-btn" href="../projects/index.html">ALL PROJECTS →</a>
+  </section>
+
+  <p class="rl-motto">DRIVING IS <span>JOY.</span></p>
 </main>
 
 <footer><div class="wrap">© 2026 JEONG MOTORS. All rights reserved.</div></footer>
@@ -56,6 +187,7 @@
 <script src="../js/main.js"></script>
 <script src="../js/dev-admin.js"></script> <!-- 임시: 개발용 관리자 모드, 삭제 예정 -->
 <script src="documents.js"></script>
+<script src="../projects/projects.js"></script> <!-- 관련 프로젝트 표시용 -->
 <script src="research.js"></script>
 </body>
 </html>
