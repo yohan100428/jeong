@@ -89,7 +89,7 @@ const pages = {
         else notice('err', 'Status change failed', ` — ${r.error}`);
       }
       if (btn.dataset.act === 'delete') {
-        if (!confirm(`Delete "${doc.title}"?`)) { btn.disabled = false; return; }
+        if (!confirm(t(`Delete "${doc.title}"?`))) { btn.disabled = false; return; }
         const r = await researchApi.remove(doc.slug);
         if (r.ok) { docs = docs.filter(d => d !== doc); notice('ok', 'Deleted', r.mock ? MOCK_MSG : ''); }
         else notice('err', 'Delete failed', ` — ${r.error}`);
@@ -136,7 +136,7 @@ const pages = {
       e.preventDefault();
       const slug = f.slug.value;
       if (!editing && docs.some(d => d.slug === slug)) {
-        f.slug.setCustomValidity('This slug is already in use.');
+        f.slug.setCustomValidity(t('This slug is already in use.'));
         f.slug.reportValidity();
         return;
       }
@@ -172,7 +172,7 @@ const pages = {
         const r = editing ? await researchApi.update(slug, meta, files) : await researchApi.upload(meta, files);
         if (!r.ok) notice('err', 'Save failed', ` — ${r.error}`);
         else if (r.mock) notice('ok', editing ? 'Mock update complete' : 'Mock upload complete', ' — Not saved: no server connected yet. Data that would be sent:', JSON.stringify(meta, null, 2));
-        else { notice('ok', editing ? 'Updated' : 'Uploaded'); if (!editing) form.reset(); }
+        else { notice('ok', editing ? 'Update complete' : 'Uploaded'); if (!editing) form.reset(); }
       } catch {
         notice('err', 'Save failed', ' — Network error. Your input is kept; try again.');
       } finally {
@@ -208,7 +208,7 @@ const pages = {
       const btn = e.target.closest('[data-act=delete]');
       if (!btn) return;
       const item = items.find(p => p.slug === btn.closest('tr').dataset.slug);
-      if (!confirm(`Delete "${item.name}"?`)) return;
+      if (!confirm(t(`Delete "${item.name}"?`))) return;
       btn.disabled = true;
       const r = await productsApi.remove(item.slug);
       if (r.ok) { items = items.filter(p => p !== item); notice('ok', 'Deleted', r.mock ? MOCK_MSG : ''); }
@@ -281,7 +281,7 @@ const pages = {
       if (e.target === f.slug) slugEdited = true;
       if (!slugEdited && e.target === f.name) f.slug.value = toSlug(f.name.value);
     });
-    const invalid = (el, msg) => { el.setCustomValidity(msg); el.reportValidity(); };
+    const invalid = (el, msg) => { el.setCustomValidity(t(msg)); el.reportValidity(); };
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
@@ -353,7 +353,7 @@ const pages = {
         const r = editing ? await productsApi.update(slug, meta, files) : await productsApi.create(meta, files);
         if (!r.ok) notice('err', 'Save failed', ` — ${r.error}`);
         else if (r.mock) notice('ok', editing ? 'Mock update complete' : 'Mock save complete', ' — Not saved: no server connected yet. Data that would be sent:', JSON.stringify(meta, null, 2));
-        else { notice('ok', editing ? 'Updated' : 'Saved'); if (!editing) form.reset(); }
+        else { notice('ok', editing ? 'Update complete' : 'Saved'); if (!editing) form.reset(); }
       } catch {
         notice('err', 'Save failed', ' — Network error. Your input is kept; try again.');
       } finally {

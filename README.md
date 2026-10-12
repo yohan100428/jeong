@@ -3,12 +3,15 @@
 정적 사이트 (HTML/CSS/JS, 빌드 없음). `index.html` 더블클릭으로 바로 확인.
 
 ## 언어 · 글꼴
-- 사이트 문구는 영어만 사용 (개발 단계). 언어 전환 기능 없음
-- 글꼴: 기본 `fonts/Bungee-Regular.ttf`, 작은 회색 글씨는 `fonts/SpaceGrotesk-VariableFont_wght.ttf` (`css/style.css` 의 `--font-sub`)
+- 영어 / 한국어 전환: 헤더의 국기 버튼. 기본값은 브라우저 언어(한국어면 한국어), 선택은 브라우저에 저장
+- 번역은 `js/i18n.js` 사전 한 곳에서 관리 (`'영어 원문': '번역'`). HTML·JS 코드는 영어로 작성하고, 한국어일 때 화면 문구만 바꿔 끼움
+  - 번역 대상: 메뉴·버튼·입력 항목·필터·상태·안내 문구. 고유명사, 큰 제목 슬로건, 상품·프로젝트·연구자료 데이터는 영어 유지
+  - 새 문구를 추가했는데 한국어로 안 바뀌면 사전에 한 줄 추가
+- 글꼴: 기본 `fonts/Bungee-Regular.ttf`, 작은 회색 글씨는 `fonts/SpaceGrotesk-VariableFont_wght.ttf` (`css/style.css` 의 `--font-sub`), 한글은 Pretendard (한국어일 때만 불러옴)
 
 ## 구조
 - `index.html` 메인 (상단 메뉴: 햄버거 · 로고 · 언어 · 프로필)
-- `css/style.css` 공용 스타일 · `js/main.js` 메뉴/로그인 팝업
+- `css/style.css` 공용 스타일 · `js/main.js` 메뉴/로그인 팝업 · `js/i18n.js` 언어 전환
 - `research/` 연구자료실 (Research Library)
   - `documents.js` **자료 데이터** — 새 자료는 여기에 객체 하나 추가
   - `content/<slug>.md` 본문 (Markdown, `$수식$` LaTeX 지원)
