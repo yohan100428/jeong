@@ -48,7 +48,76 @@
       <a class="btn-fill" href="catalog.html">EXPLORE THE GARAGE</a>
       <a class="btn-line" href="#tested">OUR PHILOSOPHY</a>
     </div>
-    <div class="s-gear" aria-hidden="true"></div>
+    <!-- Hero 그림: 브레이크 로터 + 캘리퍼 (PartsHeroIllustration). 순수 SVG 라 도형·색을 직접 수정 가능.
+         글자·치수선은 장식이며 실제 사양이나 테스트 결과가 아님 -->
+    <div class="s-art" aria-hidden="true">
+      <svg class="parts-hero-illustration" viewBox="0 0 520 540" fill="none">
+        <defs>
+          <pattern id="phi-dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#A57BC4"/></pattern>
+        </defs>
+
+        <!-- 배경 장식: 점 패턴, 모서리 괄호, 중심 십자선 -->
+        <g class="phi-notes">
+          <rect x="398" y="424" width="92" height="52" fill="url(#phi-dots)" opacity=".5"/>
+          <g stroke="#A8A3B0" stroke-width="2" opacity=".7">
+            <path d="M14 44V14h30M476 14h30v30M506 496v30h-30M44 526H14v-30"/>
+          </g>
+          <g stroke="#A57BC4" stroke-width="1" opacity=".55" stroke-dasharray="4 6">
+            <path d="M250 40V510M24 275H476"/>
+          </g>
+        </g>
+
+        <!-- 로터: 마찰면 -> 통풍 슬롯·드릴 홀 -> 등고선 -->
+        <g class="phi-rotor">
+          <circle cx="250" cy="275" r="192" fill="#7D5398" stroke="#A57BC4" stroke-width="3"/>
+          <g stroke="#30183B" stroke-width="7" stroke-linecap="round"><path d="M384 275 L423.8 302.5"/><path d="M366 342 L386.8 385.8"/><path d="M317 391 L313.1 439.3"/><path d="M250 409 L222.5 448.8"/><path d="M183 391 L139.2 411.8"/><path d="M134 342 L85.7 338.1"/><path d="M116 275 L76.2 247.5"/><path d="M134 208 L113.2 164.2"/><path d="M183 159 L186.9 110.7"/><path d="M250 141 L277.5 101.2"/><path d="M317 159 L360.8 138.2"/><path d="M366 208 L414.3 211.9"/></g>
+          <g fill="#30183B"><circle cx="398.4" cy="323.2" r="4.5"/><circle cx="354.4" cy="390.9" r="4.5"/><circle cx="282.4" cy="427.6" r="4.5"/><circle cx="201.8" cy="423.4" r="4.5"/><circle cx="134.1" cy="379.4" r="4.5"/><circle cx="97.4" cy="307.4" r="4.5"/><circle cx="101.6" cy="226.8" r="4.5"/><circle cx="145.6" cy="159.1" r="4.5"/><circle cx="217.6" cy="122.4" r="4.5"/><circle cx="298.2" cy="126.6" r="4.5"/><circle cx="365.9" cy="170.6" r="4.5"/><circle cx="402.6" cy="242.6" r="4.5"/></g>
+          <circle cx="250" cy="275" r="184" stroke="#A57BC4" stroke-width="1" opacity=".6"/>
+          <circle cx="250" cy="275" r="120" fill="#30183B" stroke="#A57BC4" stroke-width="2"/>
+          <!-- 허브(햇): 장착 홀 5개, 리브, 중심 보어 -->
+          <circle cx="250" cy="275" r="100" fill="#5E3A76" stroke="#A57BC4" stroke-width="2"/>
+          <circle cx="250" cy="275" r="86" stroke="#30183B" stroke-width="1.5" opacity=".8"/>
+          <g stroke="#30183B" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M270 247.5 L294.7 213.5"/><path d="M282.3 285.5 L322.3 298.5"/><path d="M250 309 L250 351"/><path d="M217.7 285.5 L177.7 298.5"/><path d="M230 247.5 L205.3 213.5"/></g>
+          <g fill="#17141C" stroke="#A57BC4" stroke-width="2"><circle cx="250" cy="220" r="10.5"/><circle cx="302.3" cy="258" r="10.5"/><circle cx="282.3" cy="319.5" r="10.5"/><circle cx="217.7" cy="319.5" r="10.5"/><circle cx="197.7" cy="258" r="10.5"/></g>
+          <circle cx="250" cy="275" r="30" fill="#17141C" stroke="#A57BC4" stroke-width="3"/>
+          <circle cx="250" cy="275" r="22" stroke="#A8A3B0" stroke-width="1" opacity=".6"/>
+        </g>
+
+        <!-- 캘리퍼: 각진 몸체, 패드 창, 피스톤 2개, 장착 볼트 -->
+        <g class="phi-caliper">
+          <path d="M346.7 93.1 L383.6 97.7 L446 170.8 L471.7 263.4 L454.9 296.5 L380.7 293.4 L367.7 266.8 L354.2 219.6 L322.6 182 L307.9 156.4Z" fill="#A57BC4" stroke="#F3F0F5" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M380.5 107.9 L437.2 175.5 L461.5 260.2" stroke="#30183B" stroke-width="1.5" opacity=".7"/>
+          <path d="M395.7 143.9 L440.2 227.6 L394.2 233.7 L364.9 178.6Z" fill="#30183B" stroke="#F3F0F5" stroke-width="1.5" stroke-linejoin="round"/>
+          <g fill="#7D5398" stroke="#30183B" stroke-width="2.5"><circle cx="360.6" cy="143.2" r="15"/><circle cx="421.1" cy="257" r="15"/></g>
+          <g fill="#30183B"><circle cx="360.6" cy="143.2" r="6"/><circle cx="421.1" cy="257" r="6"/></g>
+          <g fill="#F3F0F5" stroke="#30183B" stroke-width="1.5"><circle cx="323.4" cy="170.1" r="5"/><circle cx="378" cy="272.8" r="5"/></g>
+        </g>
+
+        <!-- 라임 강조: 가장자리 호 (천천히 흐르는 점선), 표식 점 -->
+        <path class="phi-accent" d="M154.2 455.1 A204 204 0 0 1 48 303.4" stroke="#C4F33B" stroke-width="4" stroke-linecap="round" stroke-dasharray="14 10"/>
+        <g class="phi-notes">
+          <!-- 치수선 모양 장식 (숫자 없음) -->
+          <g stroke="#A8A3B0" stroke-width="1.2">
+            <path d="M58 498H442M58 490v16M442 490v16M250 492v12"/>
+          </g>
+          <!-- 지시선 + 표식 -->
+          <g stroke="#C4F33B" stroke-width="1.5">
+            <path d="M77.8 194.7L40 124H22"/>
+            <path d="M175.7 208.1L120 86H96"/>
+          </g>
+          <circle class="phi-marker" cx="77.8" cy="194.7" r="5" fill="#C4F33B"/>
+          <circle class="phi-marker" cx="175.7" cy="208.1" r="5" fill="#17141C" stroke="#C4F33B" stroke-width="2"/>
+          <circle class="phi-marker" cx="250" cy="275" r="4" fill="#C4F33B"/>
+          <g class="phi-text" fill="#A8A3B0">
+            <text x="22" y="114" fill="#C4F33B">BRK / SYSTEM 01</text>
+            <text x="96" y="78">MECHANICAL DIVISION</text>
+            <text x="58" y="522">PERFORMANCE COMPONENTS</text>
+            <text x="442" y="522" text-anchor="end" fill="#F3F0F5">JEONG / PARTS</text>
+            <text x="490" y="60" text-anchor="end">01</text>
+          </g>
+        </g>
+      </svg>
+    </div>
   </section>
 
   <!-- B. Categories -->
