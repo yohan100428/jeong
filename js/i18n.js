@@ -112,7 +112,7 @@ const KO = {
   'Sourcing for this item has not been decided yet.': '이 상품의 공급 방식은 아직 정해지지 않았습니다.',
 
   // ---- 프로젝트 ----
-  'SCROLL TO EXPLORE': '아래로 내려 살펴보기', 'CURRENT STAGE': '현재 단계',
+  'SCROLL TO EXPLORE ↓': '아래로 내려 살펴보기 ↓',
   'From experimental machines to ambitious performance engineering. Explore the projects shaping JEONG MOTORS.': '실험적인 기계부터 야심 찬 퍼포먼스 엔지니어링까지. JEONG MOTORS 를 만들어 가는 프로젝트를 살펴보세요.',
   'Project category': '프로젝트 분류', 'ALL PROJECTS': '전체 프로젝트', 'VEHICLES': '차량', 'EXPERIMENTS': '실험',
   'IN DEVELOPMENT': '개발 중', 'COMPLETED': '완료', 'PAUSED': '중단', 'COVER IMAGE PENDING': '커버 이미지 준비 중', 'Cover image pending': '커버 이미지 준비 중',

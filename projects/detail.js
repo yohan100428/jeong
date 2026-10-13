@@ -31,30 +31,16 @@ function render() {
         <a href="#gallery">Gallery</a><a href="#log">Build log</a><a href="#documents">Documents</a>
       </nav>`;
 
-  // A. 3D 쇼룸 정보 레이어 (모델이 있는 프로젝트만). 뷰어(#viewer) 가장자리에 놓이고 클릭은 모델로 통과.
-  //    표시 값은 전부 projects.js 데이터 — 성능 수치·점수 같은 것은 만들지 않음
-  const stageNo = p.timeline.findIndex(t => t.status === 'in-progress');
+  // A. 3D 쇼룸 정보 레이어 (모델이 있는 프로젝트만): 이름·상태·조작 안내만. 차량이 주인공이므로 더 넣지 말 것.
+  //    뷰어(#viewer) 가장자리에 놓이고 클릭은 모델로 통과
   if (p.model) document.getElementById('showroom').innerHTML = `
     <div class="pj-show-id">
-      <p class="pj-show-label">JEONG MOTORS / ${esc(p.category)}</p>
+      <p class="pj-show-label">PROJECT ${esc(p.id)} / ${esc(p.category)}</p>
       <h1>${esc(p.name)}</h1>
-      ${p.tagline ? `<p class="pj-show-tag">${esc(p.tagline)}</p>` : ''}
-      ${projectStatus(p)}
+      <p class="pj-show-status">${PROJECT_STATUS[p.status] || esc(p.status)}</p>
     </div>
-    <p class="pj-show-no"><span>PROJECT</span><b>${esc(p.id)}</b></p>
-    <div class="pj-show-foot">
-      <p>${esc(p.name)} / 3D MODEL</p>
-      <p class="pj-show-hint"><span class="mv-mouse">DRAG TO ROTATE · CTRL + SCROLL TO ZOOM</span><span class="mv-touch">DRAG TO ROTATE · PINCH TO ZOOM</span></p>
-    </div>
-    <div class="pj-show-data">
-      <dl>
-        <div><dt>CATEGORY</dt><dd>${esc(p.category)}</dd></div>
-        <div><dt>STATUS</dt><dd>${PROJECT_STATUS[p.status] || esc(p.status)}</dd></div>
-        ${stageNo >= 0 ? `<div><dt>CURRENT STAGE</dt><dd>${String(stageNo + 1).padStart(2, '0')} / ${String(p.timeline.length).padStart(2, '0')} · ${esc(p.timeline[stageNo].stage)}</dd></div>` : ''}
-      </dl>
-      <p>${esc(p.description)}</p>
-    </div>
-    <a class="pj-show-scroll" href="#details">SCROLL TO EXPLORE</a>`;
+    <p class="pj-show-hint"><span class="mv-mouse">DRAG TO ROTATE · CTRL + SCROLL TO ZOOM</span><span class="mv-touch">DRAG TO ROTATE · PINCH TO ZOOM</span></p>
+    <a class="pj-show-scroll" href="#details">SCROLL TO EXPLORE ↓</a>`;
 
   // A-2. Hero. 모델이 있으면 이름·상태는 쇼룸에 이미 있으므로 소개 문단만 (제목·커버 자리표시 반복 안 함)
   const hero = p.model ? `

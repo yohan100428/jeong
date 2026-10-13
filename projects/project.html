@@ -42,21 +42,10 @@
 </dialog>
 
 <!-- 3D 뷰어: 프로젝트에 model 이 등록돼 있으면 들어오자마자 보임 (viewer.js → ../js/model-viewer.js).
-     화면에는 모델과 배경의 큰 프로젝트 이름만. 끌어서 돌려 볼 수 있고, 설명은 아래로 내리면 나옴.
+     화면에는 모델과 작은 프로젝트 이름·조작 안내만. 끌어서 돌려 볼 수 있고, 설명은 아래로 내리면 나옴.
      model 이 없는 프로젝트는 이 영역이 숨겨진 채로 기존 화면 그대로 -->
 <section class="mv-viewer" id="viewer" aria-label="3D model viewer" hidden>
-  <p class="mv-bg" aria-hidden="true"></p>
-  <!-- 쇼룸 장식: 모델 뒤에 깔리는 레이싱 라인·반투명 면 (순수 장식, 조작에 관여하지 않음) -->
-  <svg class="pj-show-deco" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
-    <polygon points="1060,0 1600,0 1600,900 830,900" fill="#4B2064" opacity=".12"/>
-    <polygon points="1290,0 1600,0 1600,900 1110,900" fill="#4B2064" opacity=".12"/>
-    <path d="M880 -120C1280 180 1500 470 1720 560" stroke="#B993D9" stroke-width="90" opacity=".045"/>
-    <path d="M-50 612C420 580 880 668 1650 548" stroke="#4B2064" stroke-width="30" opacity=".3"/>
-    <path d="M-50 572C400 532 900 612 1650 482" stroke="#B993D9" stroke-width="1.5" opacity=".32"/>
-    <path d="M-50 652C500 650 900 712 1650 622" stroke="#B993D9" stroke-width="1" opacity=".16"/>
-    <path d="M0 716H1600" stroke="#ECEAF0" stroke-width="1" opacity=".07"/>
-    <path d="M120 716h72" stroke="#C4F33B" stroke-width="2" opacity=".85"/>
-  </svg>
+  <p class="mv-bg" aria-hidden="true"></p> <!-- viewer.js 가 채우는 요소. 상세 페이지에서는 CSS 로 숨김 -->
   <!-- 쇼룸 정보 레이어: detail.js 가 projects.js 데이터로 채움. 가장자리에만 배치, 가운데 모델은 그대로 끌 수 있음 -->
   <div class="pj-show" id="showroom"></div>
   <div class="mv-status" data-mv-status role="status"><p>LOADING 3D MODEL...</p></div>

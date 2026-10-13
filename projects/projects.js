@@ -27,7 +27,6 @@ const PROJECTS = [
     slug: 'k-01',
     name: 'K-01',
     category: 'Experimental Vehicle',
-    tagline: 'ENGINEERING IN MOTION', // 3D 쇼룸의 부제 (선택)
     groups: ['vehicles', 'experiments'], // 필터: vehicles | research | experiments
     status: 'in-development',            // in-development | concept | completed | paused
     description: 'An independent lightweight vehicle engineering project, exploring chassis design, mechanical systems, and accessible performance.',
