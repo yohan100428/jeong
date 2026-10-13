@@ -9,7 +9,7 @@
 //       'photo' 실제 사진 | 'component' 부품 사진 | 'cad' CAD 화면 | 'drawing' 도면 | 'concept' 컨셉 렌더 | 'video' 영상(youtube 주소)
 //   - documents[]: research 에 연구자료 slug 를 넣으면 공개된 자료만 자동 링크. 없는 파일 링크 금지
 //       access: 'open' OPEN ACCESS | 'garage' GARAGE+ | 'soon' COMING SOON
-//   - model: 상세 페이지 맨 위 3D 뷰어 (선택). { url: '../models/<file>.glb', name, note }. 공개해도 되는 파일만
+//   - model: 상세 페이지 맨 위 3D 뷰어 (선택). { url: '../models/<file>.glb', autoRotate, cameraPosition }. 공개해도 되는 파일만
 //   - 비어 있는 항목(gallery, logs 등)은 "아직 없음"으로 표시됨. 가짜 내용으로 채우지 말 것
 // =====================================================================
 
@@ -33,8 +33,8 @@ const PROJECTS = [
     cover: '',      // 이미지 경로. 비우면 자리표시 그래픽
     coverKind: '',  // cover 가 있을 때 필수: gallery kind 와 동일 ('photo', 'concept' ...)
     updatedAt: '',  // 실제 갱신일 (YYYY-MM-DD). 비우면 표시 안 함
-    // 3D 모델: 원본 FBX 를 웹용으로 변환한 파일 (형상 단순화 + 압축). name · note 는 화면에 보이는 문구
-    model: { url: '../models/k-01-model.glb', name: 'K-01 / 3D MODEL', note: 'Simplified for web viewing. Work in progress — details may change.' },
+    // 3D 모델: 원본 FBX 를 웹용으로 변환한 파일 (형상 단순화 + 압축). 자동 회전 없이 살짝 비스듬한 옆모습으로 시작
+    model: { url: '../models/k-01-model.glb', autoRotate: false, cameraPosition: [1, .22, .5] },
     overview: {
       objectives: ['Explore lightweight chassis design', 'Develop the mechanical systems', 'Keep performance accessible'],
       philosophy: 'Accessible performance and open engineering. We do not just show the machine — we document how it is built.',

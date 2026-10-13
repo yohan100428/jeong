@@ -9,6 +9,9 @@
 .mv-viewer canvas:active { cursor: grabbing; }
 .mv-viewer.mv-ready canvas { opacity: 1; }
 .mv-viewer > :not(canvas) { position: relative; pointer-events: none; } /* 글 위에서도 모델을 끌 수 있게 */
+/* 배경의 큰 글자 (모델 뒤) */
+.mv-viewer { isolation: isolate; }
+.mv-viewer > .mv-bg { position: absolute; inset: 0; z-index: -1; display: grid; place-items: center; margin: 0; font-family: var(--font-display); font-size: min(34vw, 62svh); line-height: 1; white-space: nowrap; color: rgba(185, 147, 217, .1); user-select: none; }
 .mv-tech { font-family: var(--font-tech); font-weight: 700; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; }
 .mv-top { grid-area: top; align-self: start; color: var(--muted); }
 .mv-id { grid-area: id; }

@@ -96,7 +96,7 @@ export function engineeringModelViewer(el, options = {}) {
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       const vFov = camera.fov * Math.PI / 360, hFov = Math.atan(Math.tan(vFov) * camera.aspect);
-      const dist = radius / Math.sin(Math.min(vFov, hFov)) * .88;
+      const dist = radius / Math.sin(Math.min(vFov, hFov)) * (camera.aspect < 1 ? 1.02 : .88); // 세로 화면은 여유를 더 둠
       controls.minDistance = dist * .25;
       controls.maxDistance = dist * 2.2;
       if (reset || !touched) {
