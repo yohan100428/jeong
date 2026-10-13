@@ -176,6 +176,91 @@ body:has(.projects) { overflow-x: clip; } /* 전체 폭 장식(그리드, 띠)�
 .pj-motto { margin: 96px 0 0; text-align: center; font-family: var(--font-display) !important; font-size: clamp(1.2rem, 4vw, 2rem); color: var(--muted); }
 .pj-motto span { color: var(--lime); }
 
+/* =====================================================================
+   상세 페이지 전용 (main.pj-detail · #viewer 안의 .pj-show*). 목록 페이지에는 적용되지 않음.
+   콘셉트: 레이싱 게임의 머신 선택 화면 — 3D 모델이 주인공, 정보는 가장자리에 얇고 정밀하게.
+   3D 뷰어 자체(js/model-viewer.js, viewer.js)는 건드리지 않고 그 위·뒤에 레이어만 얹음
+   ===================================================================== */
+/* 모델 뒤 장식 + 아래 내용으로 이어지는 어두운 바닥 */
+.mv-viewer > .pj-show-deco { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
+.mv-viewer:has(.pj-show)::after { content: ""; position: absolute; inset: auto 0 0; height: 22%; z-index: -1; background: linear-gradient(0deg, var(--bg), transparent); pointer-events: none; }
+/* 정보 레이어: 전체가 클릭 통과 (모델을 끌 수 있게). 링크만 클릭 가능 */
+.mv-viewer > .pj-show { position: absolute; inset: 0; display: grid; grid-template: "id no" auto ". ." 1fr "foot data" auto / 1fr auto; gap: 16px 32px; align-items: end;
+  padding: clamp(20px, 3vw, 40px) max(20px, calc((100vw - 1280px) / 2)) clamp(28px, 4vw, 48px); pointer-events: none; }
+.pj-show:empty { display: none; }
+.pj-show p, .pj-show dl, .pj-show h1 { margin: 0; }
+.pj-show-label, .pj-show-tag, .pj-show-no, .pj-show-foot, .pj-show-data dt, .pj-show-data dd, .pj-show-scroll { font-family: var(--font-tech); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.pj-show > * { animation: pj-show-in .7s cubic-bezier(.22, 1, .36, 1) both; }
+.pj-show-id { grid-area: id; align-self: start; }
+.pj-show-label { color: var(--muted); font-size: .72rem; }
+.pj-show h1 { margin: 10px 0 0 -.03em; font-size: clamp(3.4rem, min(9vw, 15svh), 8rem); line-height: .86; }
+.pj-show-tag { margin-top: 12px !important; color: var(--accent-hi); font-size: .82rem; }
+.pj-show-id .pj-status { margin-top: 16px; }
+.pj-show-no { grid-area: no; align-self: start; display: grid; justify-items: end; padding-bottom: 10px; border-bottom: 1px solid rgba(236, 234, 240, .28); color: var(--muted); font-size: .66rem; animation-delay: .08s; }
+.pj-show-no b { color: var(--fg); font-size: 2.2rem; letter-spacing: .06em; line-height: 1.1; }
+.pj-show-foot { grid-area: foot; display: grid; gap: 6px; font-size: .74rem; animation-delay: .16s; }
+.pj-show-hint { color: var(--muted); font-size: .62rem; }
+.pj-show-data { grid-area: data; width: min(340px, 32vw); padding: 14px 18px 16px; border-top: 2px solid var(--accent-hi); background: rgba(11, 10, 13, .58); backdrop-filter: blur(6px); animation-delay: .24s; }
+.pj-show-data div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 7px 0; border-bottom: 1px solid rgba(236, 234, 240, .1); }
+.pj-show-data div:last-child { border-bottom: 0; }
+.pj-show-data dt { color: var(--muted); font-size: .6rem; }
+.pj-show-data dd { margin: 0; font-size: .7rem; letter-spacing: .1em; text-align: right; }
+.pj-show-data p { display: none; margin-top: 10px; padding-top: 12px; border-top: 1px solid rgba(236, 234, 240, .1); color: var(--muted); font-family: var(--font-sub); font-size: .84rem; line-height: 1.5; }
+@media (min-width: 1500px) and (min-height: 860px) { .pj-show-data p { display: block; } } /* 넓은 화면에서만 개요 문단 (좁으면 모델을 가릴 수 있음) */
+.pj-show-scroll { position: absolute; left: 50%; bottom: clamp(20px, 3vw, 36px); translate: -50% 0; display: grid; justify-items: center; gap: 8px; padding: 8px 12px; color: var(--muted); font-size: .62rem; pointer-events: auto; transition: color .2s; animation-delay: .32s; }
+.pj-show-scroll::after { content: ""; width: 1px; height: 30px; background: linear-gradient(var(--lime), transparent); animation: pj-show-drop 1.8s ease-in-out infinite; transform-origin: top; }
+.pj-show-scroll:hover { color: var(--fg); }
+@keyframes pj-show-in { from { opacity: 0; transform: translateY(10px); } }
+@keyframes pj-show-drop { 0% { transform: scaleY(0); } 60%, 100% { transform: scaleY(1); opacity: 0; } 30% { opacity: 1; } }
+
+/* 쇼룸 아래 소개 (모델이 있는 프로젝트): 제목 반복 없이 문단 + 섹션 링크 */
+.pj-intro-lead { max-width: 30em; margin: 14px 0 0; color: var(--fg); font-size: clamp(1.3rem, 2.6vw, 2rem); line-height: 1.4; }
+.pj-detail .pj-jump { gap: 0; margin-top: 36px; padding: 0; border-bottom: 1px solid var(--line); }
+.pj-detail .pj-jump a { position: relative; padding: 14px 18px; border: 0; border-radius: 0; }
+.pj-detail .pj-jump a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .25s; } /* 선형 하이라이트 */
+.pj-detail .pj-jump a:hover::after, .pj-detail .pj-jump a:focus-visible::after { transform: scaleX(1); }
+
+/* 섹션 공통: 두꺼운 둥근 테두리 대신 얇은 선과 각진 면 */
+.pj-detail .pj-sec > h2 { position: relative; border-bottom: 1px solid var(--line); }
+.pj-detail .pj-sec > h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 72px; height: 2px; background: var(--accent-hi); }
+.pj-detail :is(.pj-panel, .pj-log, .pj-shot, .pj-docs li > *, .pj-nav a, .pj-pending, .pj-type, .pj-access) { border-width: 1px; border-radius: 2px; }
+.pj-detail .pj-panel div { border-bottom: 1px solid var(--line); }
+.pj-detail .pj-panel { border-top: 2px solid var(--accent-hi); }
+.pj-detail .pj-log { border-left: 2px solid var(--accent-hi); }
+.pj-detail :is(.pj-docs a, .pj-shot, .pj-nav-all):hover { border-color: var(--accent-hi); }
+
+/* Specs: 카드 묶음 대신 사양표 한 장. 라벨은 작게, 값은 크게, 확정 여부는 오른쪽 */
+.pj-detail .pj-specs { display: block; border-top: 1px solid var(--line); }
+.pj-detail .pj-spec { display: block; padding: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; transition: background .2s; }
+.pj-detail .pj-spec:hover { background: var(--hover); }
+.pj-detail div.pj-spec, .pj-detail .pj-spec summary { display: grid; grid-template-columns: minmax(150px, 1fr) 2fr auto; align-items: baseline; justify-items: start; gap: 6px 20px; padding: 18px 8px; }
+.pj-detail .pj-spec b { font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
+.pj-detail .pj-spec:has(.pj-type-tbd) b { color: var(--muted); }
+.pj-detail .pj-spec > p { margin: 0; padding: 0 8px 18px; }
+
+/* Timeline: R&D 진행 트랙 (가로). 완료 = 보라, 진행 중 = 라임, 예정 = 흐리게. 날짜는 데이터에 있을 때만 */
+@media (min-width: 801px) {
+  .pj-detail .pj-timeline { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; }
+  .pj-detail .pj-stage { display: grid; grid-template-columns: 1fr; align-content: start; gap: 6px; padding: 44px 16px 0 0; }
+  .pj-detail .pj-stage::before, .pj-detail .pj-stage:first-child::before, .pj-detail .pj-stage:last-child::before { left: 0; right: 0; top: 11px; bottom: auto; width: auto; height: 2px; }
+  .pj-detail .pj-stage:last-child::before { right: 50%; }
+  .pj-detail .pj-dot { top: 0; margin-top: 0; }
+  .pj-detail .pj-stage p { grid-column: 1; }
+}
+.pj-detail .pj-stage-in-progress::before { background: linear-gradient(90deg, var(--lime), var(--line) 60%); }
+.pj-detail .pj-stage-in-progress .pj-dot { animation: pj-pulse 2.4s ease-in-out infinite; } /* 진행 중 단계의 미세한 강조 */
+@keyframes pj-pulse { 50% { box-shadow: 0 0 0 9px rgba(196, 243, 59, .08); } }
+
+@media (max-width: 700px) {
+  /* 모바일: 옆 패널을 위아래로 재배치해 가운데 모델 영역 확보 */
+  .mv-viewer > .pj-show { grid-template: "id" auto "." 1fr "data" auto "foot" auto / 1fr; gap: 12px; padding-bottom: 100px; }
+  .pj-show-no { display: none; }
+  .pj-show-data { width: auto; padding: 6px 0 0; background: none; backdrop-filter: none; border-top-width: 1px; }
+  .pj-show-data div { padding: 5px 0; }
+  .pj-detail div.pj-spec, .pj-detail .pj-spec summary { grid-template-columns: 1fr auto; }
+  .pj-detail .pj-spec b { grid-column: 1 / -1; grid-row: 2; }
+}
+
 @media (max-width: 800px) {
   .projects { padding-block: 48px 72px; }
   .pj-hero::after { opacity: .3; }
