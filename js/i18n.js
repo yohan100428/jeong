@@ -31,7 +31,7 @@ const KO = {
   'Independent automotive engineering.': '독립 자동차 엔지니어링.', 'DISCOVER JEONG': 'JEONG 알아보기',
   'We design, build, and test our own machines, and share what we learn along the way.': '우리는 직접 설계하고, 만들고, 시험합니다. 그리고 그 과정에서 배운 것을 나눕니다.',
   // ---- 3D 뷰어 (프로젝트 페이지. 모델 이름은 번역하지 않음) ----
-  'DRAG TO ROTATE · CTRL + SCROLL TO ZOOM': '끌어서 회전 · Ctrl + 스크롤로 확대', 'PROJECTS ↓': '프로젝트 ↓',
+  'DRAG TO ROTATE · CTRL + SCROLL TO ZOOM': '끌어서 회전 · Ctrl + 스크롤로 확대', 'DETAILS ↓': '설명 ↓', 'Simplified for web viewing. Work in progress — details may change.': '웹에서 보기 좋게 단순화한 모델입니다. 작업 중이며 세부 형상은 바뀔 수 있습니다.',
   'DRAG TO ROTATE · PINCH TO ZOOM': '끌어서 회전 · 두 손가락으로 확대',
   'MODEL INFO': '모델 정보', 'ROTATE': '자동 회전', 'RESET VIEW': '시점 초기화', 'FULLSCREEN': '전체 화면', 'RETRY': '다시 시도', 'Footer': '하단 메뉴',
   'File': '파일', 'Triangles': '삼각형 수', 'Size': '크기', '3D model viewer': '3D 모델 뷰어', 'LOADING 3D MODEL...': '3D 모델 불러오는 중...',

@@ -1,10 +1,16 @@
-// 프로젝트 페이지 맨 위 3D 뷰어. 뷰어 본체는 js/model-viewer.js (재사용 가능).
-// 모델 교체: 파일을 models/ 에 넣고 modelUrl 만 수정 (index.html 의 모델 이름·정보 문구도 함께).
-// 공개해도 되는 파일만 models/ 에 둘 것 — 이 폴더는 누구나 내려받을 수 있음.
+// 프로젝트 상세 맨 위 3D 뷰어. projects.js 의 프로젝트에 model 이 있을 때만 보임.
+//   model: { url: '../models/<file>.glb', name: '화면에 보일 이름', note: '모델 정보에 보일 안내 (선택)', ...뷰어 옵션 }
+// 뷰어 본체는 ../js/model-viewer.js. models/ 폴더는 누구나 내려받을 수 있으므로 공개해도 되는 파일만 둘 것.
 import { engineeringModelViewer } from '../js/model-viewer.js';
 
-const viewer = engineeringModelViewer(document.getElementById('viewer'), {
-  modelUrl: '../models/SC19_FrontWing_CenterSection_UpdatedAero.stl', // 예시 프런트 윙 형상 (완성된 JEONG 차량이 아님)
-  modelName: 'FRONT WING / CENTER SECTION',
-});
-addEventListener('pagehide', e => { if (!e.persisted) viewer.dispose(); });
+const p = PROJECTS.find(x => x.slug === new URLSearchParams(location.search).get('slug'));
+const el = document.getElementById('viewer');
+if (p?.model?.url) {
+  const { url, name, note, ...options } = p.model;
+  el.querySelector('.mv-name').textContent = name || p.name;
+  el.querySelector('.note').textContent = note || '';
+  el.querySelector('.note').hidden = !note;
+  el.hidden = false;
+  const viewer = engineeringModelViewer(el, { modelUrl: url, ...options });
+  addEventListener('pagehide', e => { if (!e.persisted) viewer.dispose(); });
+}

@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../research/research.css">
 <link rel="stylesheet" href="projects.css">
+<link rel="stylesheet" href="../css/model-viewer.css">
+<!-- Three.js (3D 뷰어용) — 버전 고정. js/model-viewer.js 가 사용 -->
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
 </head>
 <body>
 <header>
@@ -38,7 +41,32 @@
   </nav>
 </dialog>
 
-<main class="wrap projects">
+<!-- 3D 뷰어: 프로젝트에 model 이 등록돼 있으면 들어오자마자 보임 (viewer.js → ../js/model-viewer.js).
+     설명은 아래로 내리면 나옴. model 이 없는 프로젝트는 이 영역이 숨겨진 채로 기존 화면 그대로 -->
+<section class="mv-viewer" id="viewer" aria-label="3D model viewer" hidden>
+  <p class="mv-tech mv-top">JEONG MOTORS / 3D MODEL</p>
+  <div class="mv-id">
+    <p class="mv-tech mv-name"></p>
+    <p class="mv-tech mv-hint"><span class="mv-mouse">DRAG TO ROTATE · CTRL + SCROLL TO ZOOM</span><span class="mv-touch">DRAG TO ROTATE · PINCH TO ZOOM</span></p>
+    <details class="mv-info">
+      <summary class="mv-tech">MODEL INFO</summary>
+      <dl>
+        <dt>Triangles</dt><dd data-mv-tris>—</dd>
+        <dt>Size</dt><dd data-mv-size>—</dd>
+        <dd class="note"></dd>
+      </dl>
+    </details>
+  </div>
+  <div class="mv-ctrl mv-tech">
+    <button type="button" data-mv-rotate aria-pressed="false">ROTATE</button>
+    <button type="button" data-mv-reset>RESET VIEW</button>
+    <button type="button" data-mv-fullscreen>FULLSCREEN</button>
+    <a class="mv-down" href="#details">DETAILS ↓</a>
+  </div>
+  <div class="mv-status" data-mv-status role="status"><p>LOADING 3D MODEL...</p></div>
+</section>
+
+<main class="wrap projects" id="details">
   <a class="back" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
     All projects
@@ -64,5 +92,6 @@
 <script src="../research/documents.js"></script>
 <script src="projects.js"></script>
 <script src="detail.js"></script>
+<script type="module" src="viewer.js"></script>
 </body>
 </html>

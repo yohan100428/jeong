@@ -1,1 +1,4 @@
 fonts/original/
+
+# 원본 3D 파일(용량 큼) — 사이트에는 models/ 의 변환본만 올림
+*.fbx

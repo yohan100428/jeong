@@ -12,7 +12,8 @@
 ## 구조
 - `index.html` 홈 — Hero(DRIVING IS JOY.) + 소개 한 문단 + 하단 메뉴만. 스타일 `css/home.css`
   - Hero 배경 영상·포스터: `js/home.js` 맨 위 `HERO_MEDIA` 설정 (지금은 CSS 기본 배경)
-- `js/model-viewer.js` + `css/model-viewer.css` 재사용 가능한 3D(STL) 뷰어 (Three.js, CDN). 지금은 프로젝트 페이지 맨 위에서 사용
+- `js/model-viewer.js` + `css/model-viewer.css` 재사용 가능한 3D 뷰어 (GLB · STL, Three.js CDN). 프로젝트 상세 맨 위에서 사용 — `projects/projects.js` 의 프로젝트에 `model` 을 넣으면 표시
+  - FBX 등 큰 CAD 는 GLB 로 변환해서 올림: `npx fbx2gltf --binary -i in.fbx -o raw` → `npx @gltf-transform/cli optimize raw.glb out.glb --compress meshopt --simplify true --simplify-ratio 0.25` (Cloudflare Pages 는 파일당 25MB 제한)
   - `models/` 공개용 3D 파일. **누구나 내려받을 수 있으므로 비공개 CAD 는 넣지 말 것**
 - `css/style.css` 공용 스타일 · `js/main.js` 메뉴/로그인 팝업 · `js/i18n.js` 언어 전환
 - `research/` 연구자료실 (Research Library)
@@ -29,7 +30,7 @@
   - 현재 상품은 CVT Drive Kit 1개 (DRIVETRAIN, PREVIEW: 가격 없음 · NOT YET VERIFIED)
 - `projects/` 프로젝트 페이지
   - `projects.js` **프로젝트 데이터** — 새 프로젝트는 여기에 객체 하나 추가 (사양·단계·갤러리 규칙은 파일 상단 주석)
-  - `index.html` 맨 위 3D 뷰어(`viewer.js` 에서 `modelUrl` 만 바꾸면 모델 교체) → 아래로 내리면 소개·목록/필터 · `project.html?slug=...` 상세 (공용 템플릿) · 이미지는 `projects/images/<slug>/`
+  - `index.html` 목록/필터 · `project.html?slug=...` 상세 (공용 템플릿) · 이미지는 `projects/images/<slug>/`
   - 사양은 전부 TBD, 갤러리·빌드 로그는 비어 있음 (실제 내용이 생기면 데이터만 채우면 됨)
 - `membership/` 멤버십(구독) 페이지 — **UI 프로토타입, 결제·가입 처리 없음**
   - `membership.js` 맨 위 `PLANS` 가 요금제 데이터 (가격·혜택·버튼). 결제 연결 지점은 파일 상단 주석
