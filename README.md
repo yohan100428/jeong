@@ -10,8 +10,9 @@
 - 글꼴 2종 (둘 다 한글·영문 지원): 제목·버튼은 Black Han Sans, 설명·라벨은 Gmarket Sans. `fonts/*.woff2` (원본 ttf 는 `fonts/original/`, 저장소 제외). 설정은 `css/style.css` 맨 위
 
 ## 구조
-- `index.html` 홈 — Hero(DRIVING IS JOY.) + 소개 한 문단 + 하단 메뉴만. 다른 페이지 미리보기는 두지 않음. 스타일 `css/home.css`
-  - Hero 배경 영상·포스터: `js/home.js` 맨 위 `HERO_MEDIA` 설정 (지금은 CSS 기본 배경)
+- `index.html` 홈 — 실제 STL 모델을 돌려 볼 수 있는 3D 뷰어 + 한 줄 하단 메뉴. 스타일 `css/home.css`
+  - `js/model-viewer.js` 재사용 가능한 3D 뷰어 (Three.js, CDN). `js/home.js` 에서 `modelUrl` 만 바꾸면 모델 교체
+  - `models/` 공개용 3D 파일. **누구나 내려받을 수 있으므로 비공개 CAD 는 넣지 말 것**
 - `css/style.css` 공용 스타일 · `js/main.js` 메뉴/로그인 팝업 · `js/i18n.js` 언어 전환
 - `research/` 연구자료실 (Research Library)
   - `documents.js` **자료 데이터** — 새 자료는 여기에 객체 하나 추가

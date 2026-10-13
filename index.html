@@ -11,6 +11,8 @@
 <meta property="og:url" content="https://jeong-4n8.pages.dev/">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/home.css">
+<!-- Three.js (3D 뷰어용) — 버전 고정. js/model-viewer.js 가 사용 -->
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
 </head>
 <body>
 <header>
@@ -42,34 +44,48 @@
 </dialog>
 
 <main class="home">
-  <!-- Hero: 화면 전체. 배경은 HeroMedia (js/home.js 의 HERO_MEDIA) — 지금은 CSS 기본 배경 -->
-  <section class="hm-hero" id="home">
-    <div class="hm-media" id="hero-media" aria-hidden="true"></div>
-    <p class="hm-tech hm-label">JEONG MOTORS</p>
-    <h1>DRIVING IS JOY<em>.</em></h1>
-    <p class="hm-hero-sub">Independent automotive engineering.</p>
-    <a class="hm-btn" href="projects/index.html">DISCOVER JEONG <span aria-hidden="true">→</span></a>
-  </section>
-
-  <!-- 소개 한 문단. 자세한 내용은 각 페이지에 있으므로 홈에는 미리보기 섹션을 두지 않음 -->
-  <section class="hm-about">
-    <p>We design, build, and test our own machines, and share what we learn along the way.</p>
+  <!-- 3D 뷰어 (js/home.js → js/model-viewer.js). 실제 STL 파일을 실시간으로 그림. 모델은 예시 프런트 윙 형상이며 완성된 JEONG 차량이 아님 -->
+  <section class="hm-viewer" id="viewer" aria-label="3D model viewer">
+    <div class="hm-top">
+      <p class="hm-tech">JEONG MOTORS / ENGINEERING SHOWCASE</p>
+      <h1>DRIVING IS JOY<em>.</em></h1>
+      <p>Engineering in motion.</p>
+    </div>
+    <div class="hm-id">
+      <p class="hm-tech">FRONT WING / CENTER SECTION</p>
+      <p class="hm-tech hm-hint"><span class="hm-mouse">DRAG TO ROTATE · SCROLL TO ZOOM</span><span class="hm-touch">DRAG TO ROTATE · PINCH TO ZOOM</span></p>
+      <details class="mv-info">
+        <summary class="hm-tech">MODEL INFO</summary>
+        <dl>
+          <dt>File</dt><dd>SC19_FrontWing_CenterSection_UpdatedAero.stl</dd>
+          <dt>Triangles</dt><dd data-mv-tris>—</dd>
+          <dt>Size</dt><dd data-mv-size>—</dd>
+          <dd class="note">Example front-wing geometry shown as an engineering showcase. Not a completed JEONG vehicle.</dd>
+        </dl>
+      </details>
+    </div>
+    <div class="mv-ctrl hm-tech">
+      <button type="button" data-mv-rotate aria-pressed="false">ROTATE</button>
+      <button type="button" data-mv-reset>RESET VIEW</button>
+      <button type="button" data-mv-fullscreen>FULLSCREEN</button>
+    </div>
+    <div class="mv-status" data-mv-status role="status"><p>LOADING 3D MODEL...</p></div>
+    <noscript><p class="hm-tech">The 3D viewer needs JavaScript.</p></noscript>
   </section>
 </main>
 
 <!-- SNS 링크는 계정이 정해지면 nav 에 추가 -->
 <footer class="hm-foot">
-  <span class="hm-word">JEONG MOTORS</span>
   <nav aria-label="Footer">
     <a href="projects/index.html">Projects</a>
     <a href="research/index.html">Research</a>
     <a href="shop/index.html">Parts Store</a>
     <a href="membership/index.html">Membership</a>
   </nav>
-  <p class="hm-copy">© 2026 JEONG MOTORS. All rights reserved.</p>
+  <p>© 2026 JEONG MOTORS. All rights reserved.</p>
 </footer>
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
-<script src="js/home.js"></script>
+<script type="module" src="js/home.js"></script>
 </body>
 </html>

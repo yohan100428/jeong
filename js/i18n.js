@@ -27,9 +27,13 @@ const KO = {
   'Enter your brand slogan here.': '브랜드 슬로건을 여기에 입력하세요.', 'Research Library': '연구자료실',
   'Temporary dev sign-in — any value works.': '개발용 임시 로그인 — 아무 값이나 입력하면 됩니다.', 'ID or email': '아이디 또는 이메일', 'Password': '비밀번호',
 
-  // ---- 홈 (큰 제목 슬로건은 번역하지 않음) ----
-  'Independent automotive engineering.': '독립 자동차 엔지니어링.', 'DISCOVER JEONG': 'JEONG 알아보기', 'Footer': '하단 메뉴',
-  'We design, build, and test our own machines, and share what we learn along the way.': '우리는 직접 설계하고, 만들고, 시험합니다. 그리고 그 과정에서 배운 것을 나눕니다.',
+  // ---- 홈: 3D 뷰어 (큰 제목 슬로건·모델 이름은 번역하지 않음) ----
+  'Engineering in motion.': '움직이는 엔지니어링.', 'DRAG TO ROTATE · SCROLL TO ZOOM': '끌어서 회전 · 스크롤로 확대', 'DRAG TO ROTATE · PINCH TO ZOOM': '끌어서 회전 · 두 손가락으로 확대',
+  'MODEL INFO': '모델 정보', 'ROTATE': '자동 회전', 'RESET VIEW': '시점 초기화', 'FULLSCREEN': '전체 화면', 'RETRY': '다시 시도', 'Footer': '하단 메뉴',
+  'File': '파일', 'Triangles': '삼각형 수', 'Size': '크기', '3D model viewer': '3D 모델 뷰어', 'LOADING 3D MODEL...': '3D 모델 불러오는 중...',
+  'Example front-wing geometry shown as an engineering showcase. Not a completed JEONG vehicle.': '엔지니어링 예시로 보여 주는 프런트 윙 형상입니다. 완성된 JEONG 차량이 아닙니다.',
+  'The 3D viewer could not be loaded.': '3D 뷰어를 불러오지 못했습니다.', 'The 3D model could not be loaded.': '3D 모델을 불러오지 못했습니다.',
+  '3D view is not available on this device.': '이 기기에서는 3D 보기를 사용할 수 없습니다.', 'The 3D viewer needs JavaScript.': '3D 뷰어는 JavaScript 가 필요합니다.',
   // ---- 연구자료실 ----
   'READ PAPER': '논문 읽기', 'DOWNLOAD PDF': 'PDF 다운로드', 'OPEN ORIGINAL PDF': '원본 PDF 새 탭에서 열기', 'Read Paper': '논문 읽기',
   'Document ID': '문서 번호', 'Year': '연도', 'Access': '이용', 'Zoom in': '확대', 'Zoom out': '축소',
@@ -197,6 +201,7 @@ const KO = {
 const KO_PATTERNS = [
   [/^Results: (\d+)$/, '검색 결과 $1건'],
   [/^Pages: (\d+)$/, '$1쪽'],
+  [/^LOADING 3D MODEL\.\.\. (\d+)%$/, '3D 모델 불러오는 중... $1%'],
   [/^Page (\d+)$/, '$1쪽'],
   [/^(.+) · No other language edition is available\.$/, '$1 · 다른 언어판은 아직 없습니다.'],
   [/^Documents: (\d+)$/, '자료 $1건'],
