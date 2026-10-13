@@ -27,8 +27,12 @@ const KO = {
   'Enter your brand slogan here.': '브랜드 슬로건을 여기에 입력하세요.', 'Research Library': '연구자료실',
   'Temporary dev sign-in — any value works.': '개발용 임시 로그인 — 아무 값이나 입력하면 됩니다.', 'ID or email': '아이디 또는 이메일', 'Password': '비밀번호',
 
-  // ---- 홈: 3D 뷰어 (큰 제목 슬로건·모델 이름은 번역하지 않음) ----
-  'Engineering in motion.': '움직이는 엔지니어링.', 'DRAG TO ROTATE · SCROLL TO ZOOM': '끌어서 회전 · 스크롤로 확대', 'DRAG TO ROTATE · PINCH TO ZOOM': '끌어서 회전 · 두 손가락으로 확대',
+  // ---- 홈 (큰 제목 슬로건은 번역하지 않음) ----
+  'Independent automotive engineering.': '독립 자동차 엔지니어링.', 'DISCOVER JEONG': 'JEONG 알아보기',
+  'We design, build, and test our own machines, and share what we learn along the way.': '우리는 직접 설계하고, 만들고, 시험합니다. 그리고 그 과정에서 배운 것을 나눕니다.',
+  // ---- 3D 뷰어 (프로젝트 페이지. 모델 이름은 번역하지 않음) ----
+  'DRAG TO ROTATE · CTRL + SCROLL TO ZOOM': '끌어서 회전 · Ctrl + 스크롤로 확대', 'PROJECTS ↓': '프로젝트 ↓',
+  'DRAG TO ROTATE · PINCH TO ZOOM': '끌어서 회전 · 두 손가락으로 확대',
   'MODEL INFO': '모델 정보', 'ROTATE': '자동 회전', 'RESET VIEW': '시점 초기화', 'FULLSCREEN': '전체 화면', 'RETRY': '다시 시도', 'Footer': '하단 메뉴',
   'File': '파일', 'Triangles': '삼각형 수', 'Size': '크기', '3D model viewer': '3D 모델 뷰어', 'LOADING 3D MODEL...': '3D 모델 불러오는 중...',
   'Example front-wing geometry shown as an engineering showcase. Not a completed JEONG vehicle.': '엔지니어링 예시로 보여 주는 프런트 윙 형상입니다. 완성된 JEONG 차량이 아닙니다.',

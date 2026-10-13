@@ -24,6 +24,7 @@ const DEFAULTS = {
   cameraPosition: [1, .62, 1.15],   // 모델 중심에서 카메라를 두는 방향 (거리는 자동 계산)
   materialStyle: { color: 0x8F8C99, metalness: .85, roughness: .4 }, // 새틴 금속 회색
   backgroundStyle: null,            // null = 투명 (배경은 CSS). 색을 주면 그 색으로 채움
+  wheelZoom: 'ctrl',                // 'ctrl' = Ctrl+휠(또는 트랙패드 확대 동작)로만 확대해 페이지 스크롤을 막지 않음. 'always' = 휠만으로 확대
   creaseAngle: 35,                  // 이 각도(도)보다 완만한 모서리는 부드럽게 이어 곡면이 보이게
 };
 
@@ -76,6 +77,9 @@ export function engineeringModelViewer(el, options = {}) {
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
     controls.enablePan = false; // 모델이 화면 밖으로 사라지지 않게
+    // 일반 휠은 뷰어가 가로채지 않고 페이지를 스크롤 (전체 화면에서는 휠만으로 확대)
+    const onWheel = e => { if (o.wheelZoom === 'ctrl' && !e.ctrlKey && !document.fullscreenElement) e.stopPropagation(); };
+    el.addEventListener('wheel', onWheel, { capture: true });
     controls.autoRotateSpeed = 60 / o.autoRotateSeconds; // OrbitControls: 2.0 = 30초에 한 바퀴
     canvas.style.touchAction = 'pan-y'; // 터치: 가로로 끌면 회전, 세로로 밀면 페이지 스크롤 (스크롤이 갇히지 않게)
 
@@ -134,6 +138,7 @@ export function engineeringModelViewer(el, options = {}) {
       $('rotate')?.removeEventListener('click', onRotate);
       $('reset')?.removeEventListener('click', onReset);
       fullBtn?.removeEventListener('click', onFull);
+      el.removeEventListener('wheel', onWheel, { capture: true });
       controls.dispose(); mesh?.geometry.dispose(); material.dispose(); env.dispose(); pmrem.dispose();
       renderer.dispose(); canvas.remove();
       cleanup = () => {};

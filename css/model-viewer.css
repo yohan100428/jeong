@@ -1,0 +1,49 @@
+/* 3D 뷰어 (js/model-viewer.js) 공용 스타일. 클래스는 mv- 로 시작.
+   어두운 스튜디오 배경 위에 모델만 크게, 글·조작부는 가장자리에 작게 */
+.mv-viewer { position: relative; overflow: hidden; display: grid; grid-template: "top top" 1fr "id ctrl" auto / 1fr auto; gap: 16px; align-items: end;
+  height: calc(100svh - 69px); min-height: 460px; padding: clamp(20px, 3vw, 40px) max(20px, calc((100vw - 1280px) / 2)) !important; color: var(--fg);
+  background: radial-gradient(ellipse 55% 60% at 50% 46%, #2A1838, transparent 70%), #17141C; }
+.mv-viewer:fullscreen { padding: 32px !important; }
+.mv-viewer p { margin: 0; }
+.mv-viewer canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; opacity: 0; transition: opacity .8s; }
+.mv-viewer canvas:active { cursor: grabbing; }
+.mv-viewer.mv-ready canvas { opacity: 1; }
+.mv-viewer > :not(canvas) { position: relative; pointer-events: none; } /* 글 위에서도 모델을 끌 수 있게 */
+.mv-tech { font-family: var(--font-tech); font-weight: 700; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; }
+.mv-top { grid-area: top; align-self: start; color: var(--muted); }
+.mv-id { grid-area: id; }
+.mv-id > .mv-name { font-size: .8rem; }
+.mv-id > .mv-hint { margin-top: 8px; color: var(--muted); font-size: .64rem; }
+.mv-touch { display: none; }
+@media (hover: none) { .mv-mouse { display: none; } .mv-touch { display: inline; } } /* 터치 기기용 안내 */
+
+/* 모델 정보 (native details) */
+.mv-info { margin-top: 14px; pointer-events: auto; }
+.mv-info summary { display: inline-block; cursor: pointer; color: var(--muted); list-style: none; }
+.mv-info summary::-webkit-details-marker { display: none; }
+.mv-info summary::before { content: "+ "; }
+.mv-info[open] summary::before { content: "− "; }
+.mv-info summary:hover, .mv-info[open] summary { color: var(--fg); }
+.mv-info dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; max-width: 420px; margin: 12px 0 0; padding: 14px 16px; background: rgba(11, 10, 13, .72); font-family: var(--font-sub); font-size: .82rem; }
+.mv-info dt { color: var(--muted); }
+.mv-info dd { margin: 0; overflow-wrap: anywhere; }
+.mv-info dd.note { grid-column: 1 / -1; margin-top: 6px; color: var(--muted); }
+
+/* 조작부 */
+.mv-ctrl { grid-area: ctrl; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: auto !important; }
+.mv-ctrl button, .mv-ctrl a { letter-spacing: .06em; padding: 11px 16px; border: 1px solid rgba(236, 234, 240, .28); background: rgba(11, 10, 13, .5); color: var(--fg); font: inherit; cursor: pointer; transition: border-color .15s, color .15s; }
+.mv-ctrl button:hover, .mv-ctrl a:hover { border-color: var(--fg); }
+.mv-ctrl button[aria-pressed="true"] { border-color: var(--lime); color: var(--lime); } /* 라임은 켜진 상태 표시에만 */
+.mv-viewer:fullscreen .mv-down { display: none; }
+
+/* 불러오는 중 · 오류 */
+.mv-status { position: absolute !important; inset: 0; display: grid; place-content: center; justify-items: center; gap: 16px; text-align: center; padding: 24px; }
+.mv-status p { color: var(--muted); font-family: var(--font-tech); font-weight: 700; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; animation: mv-pulse 1.6s ease-in-out infinite alternate; }
+.mv-status button { pointer-events: auto; padding: 11px 18px; border: 1px solid var(--fg); background: none; color: var(--fg); font: inherit; cursor: pointer; }
+.mv-status button:hover { background: var(--fg); color: var(--bg); }
+@keyframes mv-pulse { to { opacity: .45; } }
+
+@media (max-width: 700px) {
+  .mv-viewer { grid-template: "top" 1fr "id" auto "ctrl" auto / 1fr; min-height: 520px; }
+  .mv-ctrl button, .mv-ctrl a { flex: 1 1 auto; padding: 13px 10px; text-align: center; }
+}

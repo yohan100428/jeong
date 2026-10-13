@@ -10,8 +10,9 @@
 - 글꼴 2종 (둘 다 한글·영문 지원): 제목·버튼은 Black Han Sans, 설명·라벨은 Gmarket Sans. `fonts/*.woff2` (원본 ttf 는 `fonts/original/`, 저장소 제외). 설정은 `css/style.css` 맨 위
 
 ## 구조
-- `index.html` 홈 — 실제 STL 모델을 돌려 볼 수 있는 3D 뷰어 + 한 줄 하단 메뉴. 스타일 `css/home.css`
-  - `js/model-viewer.js` 재사용 가능한 3D 뷰어 (Three.js, CDN). `js/home.js` 에서 `modelUrl` 만 바꾸면 모델 교체
+- `index.html` 홈 — Hero(DRIVING IS JOY.) + 소개 한 문단 + 하단 메뉴만. 스타일 `css/home.css`
+  - Hero 배경 영상·포스터: `js/home.js` 맨 위 `HERO_MEDIA` 설정 (지금은 CSS 기본 배경)
+- `js/model-viewer.js` + `css/model-viewer.css` 재사용 가능한 3D(STL) 뷰어 (Three.js, CDN). 지금은 프로젝트 페이지 맨 위에서 사용
   - `models/` 공개용 3D 파일. **누구나 내려받을 수 있으므로 비공개 CAD 는 넣지 말 것**
 - `css/style.css` 공용 스타일 · `js/main.js` 메뉴/로그인 팝업 · `js/i18n.js` 언어 전환
 - `research/` 연구자료실 (Research Library)
@@ -28,7 +29,7 @@
   - 현재 상품은 CVT Drive Kit 1개 (DRIVETRAIN, PREVIEW: 가격 없음 · NOT YET VERIFIED)
 - `projects/` 프로젝트 페이지
   - `projects.js` **프로젝트 데이터** — 새 프로젝트는 여기에 객체 하나 추가 (사양·단계·갤러리 규칙은 파일 상단 주석)
-  - `index.html` 목록/필터 · `project.html?slug=...` 상세 (공용 템플릿) · 이미지는 `projects/images/<slug>/`
+  - `index.html` 맨 위 3D 뷰어(`viewer.js` 에서 `modelUrl` 만 바꾸면 모델 교체) → 아래로 내리면 소개·목록/필터 · `project.html?slug=...` 상세 (공용 템플릿) · 이미지는 `projects/images/<slug>/`
   - 사양은 전부 TBD, 갤러리·빌드 로그는 비어 있음 (실제 내용이 생기면 데이터만 채우면 됨)
 - `membership/` 멤버십(구독) 페이지 — **UI 프로토타입, 결제·가입 처리 없음**
   - `membership.js` 맨 위 `PLANS` 가 요금제 데이터 (가격·혜택·버튼). 결제 연결 지점은 파일 상단 주석
