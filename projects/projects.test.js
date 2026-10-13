@@ -2,8 +2,8 @@
 const assert = require('assert');
 const { PROJECTS: p, PROJECT_STAGES, projectMatches: m } = require('./projects.js');
 const hits = g => p.filter(x => m(x, g)).map(x => x.slug);
-assert.deepStrictEqual(hits('all'), ['k-01', 'c-1']);
-assert.deepStrictEqual(hits('vehicles'), ['k-01', 'c-1']);
+assert.deepStrictEqual(hits('all'), ['k-01']);
+assert.deepStrictEqual(hits('vehicles'), ['k-01']);
 assert.deepStrictEqual(hits('experiments'), ['k-01']);
 assert.deepStrictEqual(hits('research'), []);
 // 데이터 규칙: slug 중복 없음, 사양/단계 값이 허용된 종류인지, 값 없는 사양은 tbd 인지

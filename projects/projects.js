@@ -47,29 +47,6 @@ const PROJECTS = [
       { title: 'K-01 Engine and CVT Compatibility Review', type: 'Research report', access: 'open', research: 'k01-engine-cvt-compat' },
     ],
   },
-  {
-    id: '002',
-    slug: 'c-1',
-    name: 'C-1',
-    category: 'Formula-Inspired Vehicle',
-    groups: ['vehicles'],
-    status: 'concept',
-    description: 'A future single-seat performance vehicle concept focused on lightweight construction, aerodynamics, and engineering development.',
-    cover: '',
-    coverKind: '',
-    updatedAt: '',
-    overview: {
-      objectives: ['Lightweight single-seat construction', 'Aerodynamic development', 'A platform for engineering development'],
-      philosophy: 'Accessible performance and open engineering. We do not just show the machine — we document how it is built.',
-      challenges: [],
-      background: '',
-    },
-    specs: [...tbdSpecs(), { label: 'Development stage', value: 'Concept', type: 'confirmed' }],
-    timeline: stages(['in-progress']),
-    gallery: [],
-    logs: [],
-    documents: [],
-  },
 ];
 
 // ---- 아래는 공용 로직 (프로젝트 추가 시 수정 불필요) ----
