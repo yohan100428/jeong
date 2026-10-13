@@ -1,130 +1,46 @@
 /* 홈 전용 스타일 (index.html). 클래스는 전부 hm- 로 시작해 다른 페이지와 겹치지 않음.
-   구성: Hero(전체 폭) → Machines → Philosophy → Research → Parts → Garage feed → Membership → Footer */
-.home, .hm-foot { --hm-pad: max(20px, calc((100vw - 1280px) / 2)); }
-.home { --hm-2: #17141C; overflow-x: clip; }
+   구성: Hero(화면 전체) → 짧은 소개 한 문단 → Footer. 다른 페이지 미리보기는 두지 않음 */
+.home, .hm-foot { --hm-pad: max(24px, calc((100vw - 1280px) / 2)); }
 .home section { padding: 0; }
 .home p { margin: 0; font-family: var(--font-sub); }
-.home h2, .home h3 { margin: 0; }
-.hm-tech { font-family: var(--font-tech) !important; font-weight: 700; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
-.hm-lime { color: var(--lime); }
-
-/* 버튼: 각진 직사각형. 채움 = 라임(주 버튼 하나), 테두리 = 보조 */
-.hm-btn { display: inline-block; padding: 16px 26px; border: 2px solid var(--fg); color: var(--fg); font-size: 1rem; line-height: 1.2; transition: background .2s, color .2s, border-color .2s; }
-.hm-btn span { display: inline-block; margin-left: 8px; transition: transform .2s; }
-.hm-btn:hover { background: var(--fg); color: var(--bg); }
-.hm-btn:hover span { transform: translateX(5px); }
-.hm-btn.fill { background: var(--lime); border-color: var(--lime); color: #111; }
-.hm-btn.fill:hover { background: var(--fg); border-color: var(--fg); }
-.hm-cta { display: flex; flex-wrap: wrap; gap: 14px; }
+.hm-tech { font-family: var(--font-tech) !important; font-weight: 700; font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; }
 
 /* ---- Hero ---- */
-.hm-hero { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
-  min-height: calc(100svh - 69px); padding: 96px var(--hm-pad) clamp(56px, 9vh, 112px) !important; }
-.hm-label { display: flex; align-items: center; gap: 12px; color: var(--fg); }
-.hm-label::before { content: ""; flex: none; width: 28px; height: 3px; background: var(--lime); }
-.hm-hero h1 { margin: 22px 0 0; font-size: clamp(2.6rem, 10.5vw, 9.5rem); line-height: .9; }
-.hm-hero h1 span { display: block; overflow: hidden; padding-bottom: .06em; }
-.hm-hero h1 b { display: block; font-weight: inherit; animation: hm-up .9s cubic-bezier(.2, .9, .2, 1) both; }
-.hm-hero h1 span + span b { animation-delay: .12s; }
-.hm-hero h1 em { font-style: normal; color: var(--lime); }
-.hm-hero-sub { max-width: 40ch; margin-top: 28px !important; font-size: clamp(1.1rem, 2.2vw, 1.6rem); }
-.hm-hero .hm-cta { margin-top: 40px; }
-.hm-label, .hm-hero-sub, .hm-hero .hm-cta { animation: hm-fade .8s .35s both; }
-.hm-side { position: absolute; right: var(--hm-pad); bottom: clamp(56px, 9vh, 112px); writing-mode: vertical-rl; color: var(--muted); }
-@keyframes hm-up { from { transform: translateY(105%); } }
-@keyframes hm-fade { from { opacity: 0; transform: translateY(12px); } }
+.hm-hero { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: center;
+  min-height: calc(100svh - 69px); padding: 96px var(--hm-pad) !important; }
+.hm-hero > :not(.hm-media) { animation: hm-fade 1s cubic-bezier(.2, .9, .2, 1) both; }
+.hm-label { color: var(--muted); }
+.hm-hero h1 { margin: 28px 0 0; font-size: clamp(2.7rem, 10vw, 9rem); line-height: .92; animation-delay: .1s; }
+.hm-hero h1 em { font-style: normal; color: var(--lime); } /* 라임은 이 마침표 하나뿐 */
+.hm-hero-sub { margin-top: 28px !important; color: var(--muted); font-size: clamp(1.05rem, 1.8vw, 1.35rem); animation-delay: .2s; }
+.hm-btn { align-self: flex-start; margin-top: 56px; padding: 16px 28px; border: 1px solid var(--fg); color: var(--fg); font-size: .95rem; line-height: 1.2; animation-delay: .3s; transition: background .2s, color .2s; }
+.hm-btn span { display: inline-block; margin-left: 10px; transition: transform .2s; }
+.hm-btn:hover { background: var(--fg); color: var(--bg); }
+.hm-btn:hover span { transform: translateX(5px); }
+@keyframes hm-fade { from { opacity: 0; transform: translateY(14px); } }
 
-/* HeroMedia: 영상 / 포스터 / CSS 기본 배경. 영상·포스터 설정은 js/home.js 의 HERO_MEDIA */
+/* HeroMedia: 영상 / 포스터 / 기본 배경. 설정은 js/home.js 의 HERO_MEDIA.
+   기본 배경 = 검정 바탕에 보라 빛 두 군데 + 아주 옅은 입자 결. 도형·격자·그림 없음 */
 .hm-media { position: absolute; inset: 0; z-index: -1; overflow: hidden;
-  background: radial-gradient(ellipse 70% 90% at 82% 28%, #3A174F, transparent 62%), radial-gradient(ellipse 50% 60% at 8% 100%, #24122F, transparent 70%), var(--bg); }
+  background: linear-gradient(0deg, var(--bg), transparent 32%), radial-gradient(ellipse 60% 85% at 88% 18%, #3A174F, transparent 68%), radial-gradient(ellipse 45% 55% at 62% 108%, #24122F, transparent 70%), var(--bg); }
+.hm-media::before { content: ""; position: absolute; inset: 0; opacity: .07; mix-blend-mode: overlay;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .hm-media video, .hm-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hm-media.has-media .hm-art { display: none; }
-/* 글이 읽히도록 왼쪽·아래를 어둡게 (--overlay 는 HERO_MEDIA.overlayOpacity) */
-.hm-media::after { content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(11, 10, 13, var(--overlay, .6)), transparent 72%), linear-gradient(0deg, var(--bg), transparent 34%); }
-/* 기본 배경 그래픽: 기울어진 보라 면 2장 + 큰 원호 하나 + 옅은 사선 결 */
-.hm-art i { position: absolute; }
-.hm-art i:nth-child(1) { top: -20%; right: -8%; width: 52%; height: 140%; background: linear-gradient(180deg, #4B2064, #1C0D27); transform: skewX(-18deg); opacity: .6; animation: hm-drift 22s ease-in-out infinite alternate; }
-.hm-art i:nth-child(2) { top: -20%; right: 49%; width: 5%; height: 140%; background: var(--accent-hi); transform: skewX(-18deg); opacity: .16; }
-.hm-art i:nth-child(3) { right: 4%; bottom: -46%; height: 105%; aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(185, 147, 217, .22); box-shadow: inset 0 0 0 7vh rgba(11, 10, 13, .3), inset 0 0 0 calc(7vh + 2px) rgba(185, 147, 217, .12); }
-.hm-art i:nth-child(4) { inset: 0; background: repeating-linear-gradient(108deg, rgba(236, 234, 240, .035) 0 1px, transparent 1px 14px); mask-image: linear-gradient(90deg, transparent 40%, #000); -webkit-mask-image: linear-gradient(90deg, transparent 40%, #000); }
-@keyframes hm-drift { to { transform: skewX(-18deg) translateX(-3%); } }
+/* 영상·포스터가 있을 때만: 글이 읽히도록 어둡게 (--overlay 는 HERO_MEDIA.overlayOpacity) */
+.hm-media.has-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 10, 13, var(--overlay, .6)), rgba(11, 10, 13, calc(var(--overlay, .6) * .4))); }
 
-/* ---- 섹션 공통 ---- */
-.hm-sec { padding: clamp(88px, 12vw, 168px) var(--hm-pad) !important; scroll-margin-top: 68px; }
-.hm-sec > h2 { font-size: clamp(2.6rem, 9vw, 7.5rem); line-height: .92; }
-.hm-sec > .hm-sub { margin-top: 18px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.4rem); }
-.hm-no { margin-bottom: 18px !important; color: var(--lime); }
-.hm-rv.in { animation: hm-fade .7s cubic-bezier(.2, .9, .2, 1) both; } /* 기본은 보이는 상태, 화면에 들어올 때 한 번만 */
-
-/* ---- THE MACHINES ---- */
-.hm-projs { display: grid; gap: clamp(72px, 10vw, 140px); margin-top: clamp(56px, 8vw, 104px); }
-.hm-proj { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(28px, 5vw, 80px); align-items: end; }
-.hm-proj:nth-child(even) .hm-proj-vis { order: 2; }
-.hm-proj-vis { position: relative; display: grid; place-items: center; overflow: hidden; aspect-ratio: 16 / 10; background: linear-gradient(135deg, #4B2064, #1C0D27); clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%); }
-.hm-proj-vis b { font-size: clamp(6rem, 24vw, 20rem); line-height: 1; color: transparent; -webkit-text-stroke: 2px rgba(236, 234, 240, .3); transition: transform .5s cubic-bezier(.2, .9, .2, 1); }
-.hm-proj:hover .hm-proj-vis b { transform: scale(1.05); }
-.hm-proj-vis img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hm-proj-vis small { position: absolute; left: 20px; bottom: 16px; color: rgba(236, 234, 240, .7); }
-.hm-status { margin-left: 14px; color: var(--lime); }
-.hm-proj h3 { margin: 14px 0 10px; font-size: clamp(3.4rem, 9vw, 7rem); line-height: .9; }
-.hm-proj-cat { color: var(--muted); }
-.hm-proj-desc { max-width: 44ch; margin: 20px 0 32px !important; color: var(--muted); }
-
-/* ---- 철학: 보라 면 위에 글자만 ---- */
-.hm-phil { background: var(--accent); }
-.hm-phil h2 span { display: block; }
-.hm-ghost { color: transparent; -webkit-text-stroke: 2px rgba(236, 234, 240, .55); }
-.hm-phil-say { max-width: 46ch; margin-top: 40px !important; font-size: clamp(1.05rem, 1.9vw, 1.35rem); color: #E9E2F0; }
-.hm-values { list-style: none; margin: clamp(64px, 9vw, 120px) 0 0; padding: 0; display: grid; gap: clamp(20px, 3vw, 36px); }
-.hm-values li { display: flex; align-items: baseline; gap: clamp(16px, 3vw, 40px); font-size: clamp(1.7rem, 5.4vw, 4.4rem); line-height: 1; }
-.hm-values small { flex: none; color: var(--lime); }
-
-/* ---- Research ---- */
-.hm-research { background: var(--hm-2); }
-.hm-paper { max-width: 920px; margin-top: clamp(48px, 7vw, 88px); padding-left: clamp(18px, 3vw, 36px); border-left: 4px solid var(--accent-hi); }
-.hm-paper-top { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); }
-.hm-paper h3 { margin: 16px 0 8px; font-size: clamp(1.6rem, 3.6vw, 2.8rem); line-height: 1.08; }
-.hm-paper-orig { color: var(--muted); }
-.hm-paper-abs { max-width: 62ch; margin: 20px 0 32px !important; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.hm-research > .hm-cta { margin-top: 40px; }
-
-/* ---- Parts / Membership: 짧은 띠 ---- */
-.hm-band { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px; }
-.hm-band h2 { font-size: clamp(2.2rem, 6.4vw, 5rem); line-height: .94; }
-.hm-band .hm-sub { max-width: 44ch; margin-top: 18px; color: var(--muted); font-size: 1.1rem; }
-.hm-band-act { display: grid; gap: 16px; justify-items: start; }
-.hm-member { background: linear-gradient(120deg, #24122F, var(--bg) 70%); }
-
-/* ---- FROM THE GARAGE ---- */
-.hm-garage { background: var(--hm-2); }
-.hm-feed { list-style: none; margin: clamp(40px, 6vw, 72px) 0 0; padding: 0; display: grid; gap: 10px; max-width: 980px; }
-.hm-feed a { display: grid; grid-template-columns: 9em 1fr auto; gap: 8px 24px; align-items: baseline; padding: 22px 24px; background: var(--bg); transition: background .2s, transform .2s; }
-.hm-feed a:hover { background: var(--hover); transform: translateX(6px); }
-.hm-feed .hm-tech { color: var(--muted); }
-.hm-feed b { display: block; margin-top: 4px; font-size: 1.2rem; font-weight: inherit; line-height: 1.25; }
-.hm-feed i { font-style: normal; color: var(--lime); }
-.hm-feed-empty { max-width: 52ch; margin: 32px 0 !important; color: var(--muted); }
+/* ---- 소개: 한 문단 ---- */
+.hm-about { padding: clamp(96px, 14vw, 184px) var(--hm-pad) !important; }
+.hm-about p { max-width: 24em; color: var(--fg); font-size: clamp(1.3rem, 2.8vw, 2.2rem); line-height: 1.4; }
 
 /* ---- Footer ---- */
-.hm-foot { padding: 72px var(--hm-pad) 40px; border: 0; background: #060508; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
-.hm-word { display: block; color: var(--fg); font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: .08em; line-height: 1; }
-.hm-foot nav { display: flex; flex-wrap: wrap; gap: 8px 28px; color: var(--fg); }
-.hm-foot nav a:hover { color: var(--lime); }
-.hm-copy { grid-column: 1 / -1; padding-top: 28px; border-top: 1px solid var(--line); font-size: .82rem; }
+.hm-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 24px 40px; padding: 40px var(--hm-pad); }
+.hm-word { color: var(--fg); font-family: var(--font-display); letter-spacing: .12em; }
+.hm-foot nav { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.hm-foot nav a:hover { color: var(--fg); }
+.hm-copy { flex-basis: 100%; margin: 0; font-size: .8rem; }
 
-@media (max-width: 900px) {
-  .hm-side { display: none; }
-  .hm-proj { grid-template-columns: 1fr; }
-  .hm-proj:nth-child(even) .hm-proj-vis { order: 0; }
-  .hm-foot { grid-template-columns: 1fr; }
-}
 @media (max-width: 600px) {
-  .hm-hero { padding-top: 64px !important; }
-  .hm-label { font-size: .64rem; letter-spacing: .1em; }
-  .hm-art i:nth-child(1) { width: 80%; right: -30%; animation: none; } /* 모바일: 정지 배경 */
-  .hm-art i:nth-child(2) { display: none; }
-  .hm-cta .hm-btn { flex: 1 1 100%; text-align: center; }
-  .hm-feed a { grid-template-columns: 1fr auto; padding: 18px; }
-  .hm-feed a > .hm-tech { grid-column: 1 / -1; }
+  .hm-hero { padding-block: 72px !important; }
+  .hm-btn { margin-top: 44px; }
 }

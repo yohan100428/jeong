@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JEONG MOTORS — Street Born. Giant Killer.</title>
-<meta name="description" content="JEONG MOTORS is an independent performance engineering brand. Experimental vehicle projects, open engineering research, and parts. Driving is Joy.">
-<meta property="og:title" content="JEONG MOTORS — Street Born. Giant Killer.">
-<meta property="og:description" content="Independent performance engineering. Built different. Engineered for driving joy.">
+<title>JEONG MOTORS — Driving is Joy.</title>
+<meta name="description" content="JEONG MOTORS — independent automotive engineering. Driving is Joy.">
+<meta property="og:title" content="JEONG MOTORS — Driving is Joy.">
+<meta property="og:description" content="Independent automotive engineering.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jeong-4n8.pages.dev/">
 <link rel="stylesheet" href="css/style.css">
@@ -42,79 +42,24 @@
 </dialog>
 
 <main class="home">
-  <!-- Hero: 전체 폭. 배경은 HeroMedia (js/home.js 의 HERO_MEDIA) — 지금은 CSS 기본 배경(.hm-art) -->
+  <!-- Hero: 화면 전체. 배경은 HeroMedia (js/home.js 의 HERO_MEDIA) — 지금은 CSS 기본 배경 -->
   <section class="hm-hero" id="home">
-    <div class="hm-media" id="hero-media" aria-hidden="true"><div class="hm-art"><i></i><i></i><i></i><i></i></div></div>
-    <p class="hm-tech hm-label">JEONG MOTORS / INDEPENDENT PERFORMANCE ENGINEERING</p>
-    <h1><span><b>STREET BORN<em>.</em></b></span><span><b>GIANT KILLER<em>.</em></b></span></h1>
-    <p class="hm-hero-sub">Built different. Engineered for driving joy.</p>
-    <div class="hm-cta">
-      <a class="hm-btn fill" href="projects/index.html">EXPLORE PROJECTS <span aria-hidden="true">→</span></a>
-      <a class="hm-btn" href="#philosophy">OUR PHILOSOPHY</a>
-    </div>
-    <p class="hm-tech hm-side" aria-hidden="true">DRIVING IS JOY</p>
+    <div class="hm-media" id="hero-media" aria-hidden="true"></div>
+    <p class="hm-tech hm-label">JEONG MOTORS</p>
+    <h1>DRIVING IS JOY<em>.</em></h1>
+    <p class="hm-hero-sub">Independent automotive engineering.</p>
+    <a class="hm-btn" href="projects/index.html">DISCOVER JEONG <span aria-hidden="true">→</span></a>
   </section>
 
-  <!-- 프로젝트: projects/projects.js 데이터 (js/home.js 가 채움) -->
-  <section class="hm-sec" id="projects">
-    <p class="hm-tech hm-no">01 / PROJECTS</p>
-    <h2 class="hm-rv">THE MACHINES.</h2>
-    <p class="hm-sub">Real engineering. Real development.</p>
-    <div class="hm-projs" id="machines"></div>
-  </section>
-
-  <section class="hm-sec hm-phil" id="philosophy">
-    <h2 class="hm-rv"><span class="hm-ghost">NOT BUILT TO FLEX.</span><span>BUILT TO DRIVE.</span></h2>
-    <p class="hm-phil-say">Performance shouldn't be defined by prestige alone. We believe in engineering, accessibility, and the freedom to build something different.</p>
-    <ol class="hm-values">
-      <li class="hm-rv"><small class="hm-tech">01</small>ENGINEERING FIRST</li>
-      <li class="hm-rv"><small class="hm-tech">02</small>ACCESSIBLE PERFORMANCE</li>
-      <li class="hm-rv"><small class="hm-tech">03</small>OPEN KNOWLEDGE</li>
-    </ol>
-  </section>
-
-  <!-- 연구: research/documents.js 의 공개 자료 중 최신 1건 -->
-  <section class="hm-sec hm-research" id="research">
-    <p class="hm-tech hm-no">02 / RESEARCH</p>
-    <h2 class="hm-rv">OPEN ENGINEERING.</h2>
-    <p class="hm-sub">Knowledge is meant to move.</p>
-    <article class="hm-paper hm-rv" id="paper"></article>
-    <div class="hm-cta"><a class="hm-btn" href="research/index.html">VIEW ALL RESEARCH <span aria-hidden="true">→</span></a></div>
-  </section>
-
-  <!-- 부품 스토어: 미리보기 단계라 판매 문구 없음 -->
-  <section class="hm-sec hm-band" id="parts">
-    <div>
-      <p class="hm-tech hm-no hm-lime">03 / PARTS STORE</p>
-      <h2 class="hm-rv">PARTS FOR<br>THE DRIVEN.</h2>
-      <p class="hm-sub">Components, tools, and engineering resources selected through real development experience.</p>
-    </div>
-    <div class="hm-band-act">
-      <p class="hm-tech hm-lime">COMING SOON</p>
-      <a class="hm-btn" href="shop/index.html">VISIT PARTS STORE <span aria-hidden="true">→</span></a>
-    </div>
-  </section>
-
-  <!-- 소식: 실제 기록만 (js/home.js 가 채움) -->
-  <section class="hm-sec hm-garage" id="garage">
-    <p class="hm-tech hm-no">04 / UPDATES</p>
-    <h2 class="hm-rv">FROM THE GARAGE.</h2>
-    <div id="feed"></div>
-  </section>
-
-  <!-- 멤버십: 가격·혜택은 확정 전이라 적지 않음 -->
-  <section class="hm-sec hm-band hm-member" id="membership">
-    <div>
-      <h2 class="hm-rv">JOIN THE GARAGE.</h2>
-      <p class="hm-sub">Build, learn, and grow with JEONG.</p>
-    </div>
-    <a class="hm-btn" href="membership/index.html">EXPLORE MEMBERSHIP <span aria-hidden="true">→</span></a>
+  <!-- 소개 한 문단. 자세한 내용은 각 페이지에 있으므로 홈에는 미리보기 섹션을 두지 않음 -->
+  <section class="hm-about">
+    <p>We design, build, and test our own machines, and share what we learn along the way.</p>
   </section>
 </main>
 
 <!-- SNS 링크는 계정이 정해지면 nav 에 추가 -->
 <footer class="hm-foot">
-  <div><b class="hm-word">JEONG MOTORS</b><p>Driving is Joy.</p></div>
+  <span class="hm-word">JEONG MOTORS</span>
   <nav aria-label="Footer">
     <a href="projects/index.html">Projects</a>
     <a href="research/index.html">Research</a>
@@ -125,8 +70,6 @@
 </footer>
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
-<script src="research/documents.js"></script>
-<script src="projects/projects.js"></script>
 <script src="js/home.js"></script>
 </body>
 </html>

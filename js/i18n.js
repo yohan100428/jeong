@@ -28,12 +28,9 @@ const KO = {
   'Temporary dev sign-in — any value works.': '개발용 임시 로그인 — 아무 값이나 입력하면 됩니다.', 'ID or email': '아이디 또는 이메일', 'Password': '비밀번호',
 
   // ---- 홈 (큰 제목 슬로건은 번역하지 않음) ----
-  'OUR PHILOSOPHY': '우리의 철학', 'READ RESEARCH': '연구자료 읽기', 'VIEW ALL RESEARCH': '전체 연구자료 보기', 'VISIT PARTS STORE': '부품 스토어 가기', 'EXPLORE MEMBERSHIP': '멤버십 살펴보기',
-  'Built different. Engineered for driving joy.': '다르게 만든다. 운전의 즐거움을 위해 설계한다.', 'Real engineering. Real development.': '진짜 엔지니어링. 진짜 개발.',
-  "Performance shouldn't be defined by prestige alone. We believe in engineering, accessibility, and the freedom to build something different.": '성능은 명성만으로 정해지지 않습니다. 우리는 엔지니어링, 접근성, 그리고 다른 것을 만들 자유를 믿습니다.',
-  'Knowledge is meant to move.': '지식은 움직여야 합니다.', 'Components, tools, and engineering resources selected through real development experience.': '실제 개발 경험으로 고른 부품, 도구, 엔지니어링 자료.',
-  'Build, learn, and grow with JEONG.': 'JEONG 과 함께 만들고, 배우고, 성장하세요.', 'Development records will appear here as the work is documented.': '작업이 기록되는 대로 개발 기록이 여기에 올라옵니다.',
-  'RESEARCH RELEASE': '연구자료 공개', 'Footer': '하단 메뉴',
+  'Independent automotive engineering.': '독립 자동차 엔지니어링.', 'DISCOVER JEONG': 'JEONG 알아보기', 'Footer': '하단 메뉴',
+  'We design, build, and test our own machines, and share what we learn along the way.': '우리는 직접 설계하고, 만들고, 시험합니다. 그리고 그 과정에서 배운 것을 나눕니다.',
+  // ---- 연구자료실 ----
   'READ PAPER': '논문 읽기', 'DOWNLOAD PDF': 'PDF 다운로드', 'OPEN ORIGINAL PDF': '원본 PDF 새 탭에서 열기', 'Read Paper': '논문 읽기',
   'Document ID': '문서 번호', 'Year': '연도', 'Access': '이용', 'Zoom in': '확대', 'Zoom out': '축소',
   'The online reader could not be loaded in this browser.': '이 브라우저에서 온라인 보기를 불러오지 못했습니다.', 'Open the PDF directly': 'PDF 바로 열기',
