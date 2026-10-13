@@ -31,20 +31,10 @@ function render() {
         <a href="#gallery">Gallery</a><a href="#log">Build log</a><a href="#documents">Documents</a>
       </nav>`;
 
-  // A. 3D 쇼룸 정보 레이어 (모델이 있는 프로젝트만): 이름·상태·조작 안내만. 차량이 주인공이므로 더 넣지 말 것.
-  //    뷰어(#viewer) 가장자리에 놓이고 클릭은 모델로 통과
-  if (p.model) document.getElementById('showroom').innerHTML = `
-    <div class="pj-show-id">
-      <p class="pj-show-label">PROJECT ${esc(p.id)} / ${esc(p.category)}</p>
-      <h1>${esc(p.name)}</h1>
-      <p class="pj-show-status">${PROJECT_STATUS[p.status] || esc(p.status)}</p>
-    </div>
-    <p class="pj-show-hint"><span class="mv-mouse">DRAG TO ROTATE · CTRL + SCROLL TO ZOOM</span><span class="mv-touch">DRAG TO ROTATE · PINCH TO ZOOM</span></p>
-    <a class="pj-show-scroll" href="#details">SCROLL TO EXPLORE ↓</a>`;
-
-  // A-2. Hero. 모델이 있으면 이름·상태는 쇼룸에 이미 있으므로 소개 문단만 (제목·커버 자리표시 반복 안 함)
+  // A. Hero. 모델이 있으면 위 3D 뷰어 배경에 이름이 크게 있으므로 소개 문단만 (큰 제목·커버 자리표시 반복 안 함)
   const hero = p.model ? `
     <section class="pj-intro">
+      <h1 class="sr-only">${esc(p.name)}</h1>
       <p class="pj-sub">PROJECT ${esc(p.id)} / INTRODUCTION</p>
       <p class="pj-intro-lead">${esc(p.description)}</p>${jump}
     </section>` : `

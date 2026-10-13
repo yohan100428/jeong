@@ -42,12 +42,10 @@
 </dialog>
 
 <!-- 3D 뷰어: 프로젝트에 model 이 등록돼 있으면 들어오자마자 보임 (viewer.js → ../js/model-viewer.js).
-     화면에는 모델과 작은 프로젝트 이름·조작 안내만. 끌어서 돌려 볼 수 있고, 설명은 아래로 내리면 나옴.
+     화면에는 모델과 배경의 크고 흐릿한 프로젝트 이름만 (글·버튼 없음). 끌어서 돌려 볼 수 있고, 설명은 아래로 내리면 나옴.
      model 이 없는 프로젝트는 이 영역이 숨겨진 채로 기존 화면 그대로 -->
 <section class="mv-viewer" id="viewer" aria-label="3D model viewer" hidden>
-  <p class="mv-bg" aria-hidden="true"></p> <!-- viewer.js 가 채우는 요소. 상세 페이지에서는 CSS 로 숨김 -->
-  <!-- 쇼룸 정보 레이어: detail.js 가 projects.js 데이터로 채움. 가장자리에만 배치, 가운데 모델은 그대로 끌 수 있음 -->
-  <div class="pj-show" id="showroom"></div>
+  <p class="mv-bg" aria-hidden="true"></p> <!-- viewer.js 가 프로젝트 이름을 채움 -->
   <div class="mv-status" data-mv-status role="status"><p>LOADING 3D MODEL...</p></div>
 </section>
 
