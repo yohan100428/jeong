@@ -10,7 +10,9 @@
 - 글꼴 2종 (둘 다 한글·영문 지원): 제목·버튼은 Black Han Sans, 설명·라벨은 Gmarket Sans. `fonts/*.woff2` (원본 ttf 는 `fonts/original/`, 저장소 제외). 설정은 `css/style.css` 맨 위
 
 ## 구조
-- `index.html` 메인 (상단 메뉴: 햄버거 · 로고 · 언어 · 프로필)
+- `index.html` 홈 (Hero · 프로젝트 · 철학 · 연구 · 부품 · 소식 · 멤버십). 스타일 `css/home.css`, 동작 `js/home.js`
+  - 프로젝트·연구·소식은 `projects/projects.js`, `research/documents.js` 데이터에서 자동 표시 (홈에 따로 적지 않음)
+  - Hero 배경 영상·포스터: `js/home.js` 맨 위 `HERO_MEDIA` 설정 (지금은 CSS 기본 배경)
 - `css/style.css` 공용 스타일 · `js/main.js` 메뉴/로그인 팝업 · `js/i18n.js` 언어 전환
 - `research/` 연구자료실 (Research Library)
   - `documents.js` **자료 데이터** — 새 자료는 여기에 객체 하나 추가
