@@ -75,7 +75,7 @@ const PRODUCTS = [
     relatedProducts: [],
     video: '',                   // YouTube URL. 비우면 영상 영역 숨김
     actionImages: [],            // 실제 사용 사진
-  },,
+  },
 
   {
     id: 'p002',
